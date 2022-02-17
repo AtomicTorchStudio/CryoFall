@@ -5,14 +5,13 @@
     using AtomicTorch.CBND.CoreMod.Items;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Skins.Data;
-    using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
 
     public class ViewModelCraftingSkinSelectionControl : BaseViewModel
     {
         private ViewModelCraftingMenuRecipeDetails selectedRecipeDetails;
 
-        private IProtoItem selectedSkin;
+        private IProtoItemWithSkinData selectedSkin;
 
         private IReadOnlyList<ViewModelSkinForCrafting> skins;
 
@@ -36,7 +35,7 @@
             }
         }
 
-        public IProtoItem SelectedSkin
+        public IProtoItemWithSkinData SelectedSkin
         {
             get => this.selectedSkin;
             set
@@ -54,17 +53,17 @@
                     this.selectedRecipeDetails.SelectedSkin = value;
                 }
 
-                if (this.selectedSkin is not IProtoItemWithSkinData protoItemWithSkinData
-                    || !protoItemWithSkinData.IsSkin)
+                if (this.selectedSkin is null
+                    || !this.selectedSkin.IsSkin)
                 {
                     this.ViewModelSelectedSkin = null;
                     return;
                 }
 
                 this.ViewModelSelectedSkin?.Dispose();
-                this.ViewModelSelectedSkin = new ViewModelSkin(protoItemWithSkinData,
+                this.ViewModelSelectedSkin = new ViewModelSkin(this.selectedSkin,
                                                                Api.Client.Microtransactions.GetSkinData(
-                                                                   (ushort)protoItemWithSkinData.SkinId));
+                                                                   (ushort)this.selectedSkin.SkinId));
             }
         }
 
@@ -110,7 +109,7 @@
                 return;
             }
 
-            this.Skins = skins.Select(p => new ViewModelSkinForCrafting(p))
+            this.Skins = skins.Select(p => new ViewModelSkinForCrafting((IProtoItemWithSkinData)p))
                               .ToList();
 
             this.SelectedSkin = this.Skins[0].ProtoItemSkin;

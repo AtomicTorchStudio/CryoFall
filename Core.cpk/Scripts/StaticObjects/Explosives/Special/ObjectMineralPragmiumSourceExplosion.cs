@@ -38,6 +38,8 @@
 
         public override bool IsDamageThroughObstacles => true;
 
+        public override bool IsExplosionDelaySkippedOnDamage => false;
+
         public override string Name => "Pragmium source explosion";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;

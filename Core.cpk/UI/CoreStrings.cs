@@ -1487,7 +1487,14 @@
 
         public const string Skin_Default = "Default";
 
+        // Please note: there is usually just one feature such as different laser beam color. Hence emphasis on "or". 
+        public const string Skin_HasDecorativeEffects =
+            "This skin features a unique visual effect, sound effect, or other exclusive decorative features.";
+
         public const string Skin_NotOwned = "You don't own this skin.";
+
+        public const string Skin_RequiresSupporterPack =
+            "Note: This skin is available only to owners of the CryoFall Supporter Pack. This skin will not apply a custom appearance to your character, as you don't own the Supporter Pack.";
 
         public const string Skins_Button_BrowseSkins = "Browse skins";
 

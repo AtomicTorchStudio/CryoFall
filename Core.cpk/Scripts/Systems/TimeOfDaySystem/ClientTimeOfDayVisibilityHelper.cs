@@ -17,8 +17,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
                 return true;
             }
 
-            if (worldObject is ICharacter character
-                && !character.IsNpc)
+            if (worldObject is ICharacter { IsNpc: false })
             {
                 // player characters are always visible in night
                 // (as it's too easy to override this with mod)
@@ -39,11 +38,11 @@ namespace AtomicTorch.CBND.CoreMod.Systems.TimeOfDaySystem
                 return true;
             }
 
-            if (CreativeModeSystem.SharedIsInCreativeMode(ClientCurrentCharacterHelper.Character))
-            {
-                // don't apply this limitation to the player in creative mode
-                return true;
-            }
+            //if (CreativeModeSystem.SharedIsInCreativeMode(ClientCurrentCharacterHelper.Character))
+            //{
+            //    // don't apply this limitation to the player in creative mode
+            //    return true;
+            //}
 
             // not needed now as all characters are visible in night
             //if (worldObject is ICharacter character

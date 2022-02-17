@@ -262,6 +262,9 @@ Kosak
 Scripts/Items/Base/SkinName@Cowboy:
 Cowboy
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 Wüstentarnung
 
@@ -289,17 +292,23 @@ Waldtarnung
 Scripts/Items/Base/SkinName@Graphene:
 Graphen
 
+Scripts/Items/Base/SkinName@Halloween:
+Halloween
+
 Scripts/Items/Base/SkinName@Hardened:
 Gehärtet
 
-Scripts/Items/Base/SkinName@Halloween:
-Halloween
+Scripts/Items/Base/SkinName@Hive:
+Schwarm
 
 Scripts/Items/Base/SkinName@Holidays:
 Feiertag
 
 Scripts/Items/Base/SkinName@Hunter:
 Jäger
+
+Scripts/Items/Base/SkinName@Hypnotic:
+Hypnotikum
 
 Scripts/Items/Base/SkinName@Iridium:
 Iridium
@@ -343,6 +352,9 @@ Nomade
 Scripts/Items/Base/SkinName@Pantheon:
 Pantheon
 
+Scripts/Items/Base/SkinName@Paradox:
+Paradox
+
 Scripts/Items/Base/SkinName@Phoenix:
 Phönix
 
@@ -352,8 +364,14 @@ Pirat
 Scripts/Items/Base/SkinName@Primitive:
 Primitiv
 
+Scripts/Items/Base/SkinName@Prototype:
+Prototyp
+
 Scripts/Items/Base/SkinName@Puffer:
 Daunen
+
+Scripts/Items/Base/SkinName@RedLine:
+Rote Linie
 
 Scripts/Items/Base/SkinName@RedMarble:
 Roter Marmor
@@ -372,6 +390,9 @@ Rubin
 
 Scripts/Items/Base/SkinName@Sapphire:
 Saphir
+
+Scripts/Items/Base/SkinName@Scar:
+Narbe
 
 Scripts/Items/Base/SkinName@Shaman:
 Schamane
@@ -408,6 +429,9 @@ Voodoo
 
 Scripts/Items/Base/SkinName@Wasp:
 Wespe
+
+Scripts/Items/Base/SkinName@Zenith:
+Zenit
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Daten-Log (verschlüsselt)
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Lederrüstung
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-Lederhut
+Lederhelm
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 Metallrüstung bietet hervorragenden Schutz vor körperlichen Angriffen, schützt jedoch kaum vor Umweltgefahren.
@@ -963,6 +987,12 @@ Kann zur Zubereitung einer Vielzahl von Rezepten genutzt werden.
 
 Scripts/Items/Food/ItemDough@Name:
 Teig
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+Extrastarker Kaffee aus der Dose. Jetzt mit dem Fünffachen an Koffein.
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+Dosenkaffee
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Ein in der gesamten Galaxis weitverbreiteter Energydrink. Verleiht dir einen wahren Energieschub.
@@ -2596,35 +2626,17 @@ Handfeuerwaffe entwickelt für 10mm-Munition.
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 Pistole 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 Die Laserpistole sendet schnelle und hochenergetische Lichtimpulse aus, die ihr Ziel verbrennen.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 Laserpistole
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
 Das Lasergewehr sendet starke, hochenergetische und größtenteils im Infrarotspektrum erfolgende Lichtimpulse aus, die ihr Ziel verbrennen. Bietet eine sehr viel höhere Reichweite als die Laserpistole.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 Lasergewehr
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-Das Plasmagewehr bildet und projiziert konzentrierte Plasmapakete, die ein Ziel beim Aufprall verbrennen und so schweren Schaden erzeugen. Sehr hoher Energieverbrauch.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-Plasmagewehr
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-Eine exotische Waffe, die kleine, insektenartige Kreaturen anstatt Kugeln auf Gegner verschießt.
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-Schwarmwerfer
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-Eine exotische Waffe, die verflüssigtes Keinit in wirksames Gift umwandelt und auf Gegner verschießt.
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-Toxin-Proliferator
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 Schweres Maschinengewehr entwickelt für leistungsstarke .300-Munition.
@@ -2643,6 +2655,12 @@ Altbewährte Muskete. Benutzt Papierpatronen. Bietet im Vergleich zu Steinschlos
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 Muskete
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+Das Plasmagewehr bildet und projiziert konzentrierte Plasmapakete, die ein Ziel beim Aufprall verbrennen und so schweren Schaden erzeugen. Sehr hoher Energieverbrauch.
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+Plasmagewehr
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 Herkömmliche durchladende Handfeuerwaffe mit einem sich drehenden Munitionszylinder.
@@ -2691,6 +2709,18 @@ Maschinenpistole entwickelt für 10mm-Munition.
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 Maschinenpistole
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+Eine exotische Waffe, die kleine, insektenartige Kreaturen anstatt Kugeln auf Gegner verschießt.
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+Schwarmwerfer
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+Eine exotische Waffe, die verflüssigtes Keinit in wirksames Gift umwandelt und auf Gegner verschießt.
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+Toxin-Proliferator
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Schwere Autokanone entwickelt für montierte Außenlaststationen auf mechanisierter Kampfrüstung. Vewendet großkalibrige Anti-Material-Munition.

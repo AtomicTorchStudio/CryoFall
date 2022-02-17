@@ -85,7 +85,17 @@
 
         private ITextureResource GetIconTexture()
         {
-            var iconTexture = GetPrototypeIconTexture();
+            ITextureResource iconTexture;
+            try
+            {
+                iconTexture = GetPrototypeIconTexture();
+            }
+            catch (Exception ex)
+            {
+                Api.Logger.Exception(ex);
+                iconTexture = TextureResource.NoTexture;
+            }
+
             if (!this.IsUndiscovered)
             {
                 return iconTexture;

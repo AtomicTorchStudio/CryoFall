@@ -5,7 +5,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Food;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.Items.Medical;
-    using AtomicTorch.CBND.CoreMod.Items.Special;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Melee;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged;
     using AtomicTorch.CBND.CoreMod.Rates;
@@ -94,7 +93,7 @@
                         .Add<ItemStrengthBoostBig>(count: 3,   countRandom: 2, weight: 1 / 5.0)
                         .Add<ItemMRE>(count: 1,                countRandom: 2, weight: 1 / 5.0)
                 );
-            
+
             droplist.Add(ItemDroplistPresets.TeleportLocationData);
 
             // extra loot from skill

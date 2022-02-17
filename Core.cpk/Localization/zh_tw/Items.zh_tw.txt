@@ -262,6 +262,9 @@ Scripts/Items/Base/SkinName@Cossack:
 Scripts/Items/Base/SkinName@Cowboy:
 牛仔
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 沙漠迷彩
 
@@ -289,17 +292,23 @@ Scripts/Items/Base/SkinName@ForestCamo:
 Scripts/Items/Base/SkinName@Graphene:
 石墨烯
 
+Scripts/Items/Base/SkinName@Halloween:
+萬聖節
+
 Scripts/Items/Base/SkinName@Hardened:
 硬化
 
-Scripts/Items/Base/SkinName@Halloween:
-萬聖節
+Scripts/Items/Base/SkinName@Hive:
+母巢
 
 Scripts/Items/Base/SkinName@Holidays:
 節日
 
 Scripts/Items/Base/SkinName@Hunter:
 獵人
+
+Scripts/Items/Base/SkinName@Hypnotic:
+催眠
 
 Scripts/Items/Base/SkinName@Iridium:
 銥元素
@@ -343,6 +352,9 @@ Scripts/Items/Base/SkinName@Nomad:
 Scripts/Items/Base/SkinName@Pantheon:
 萬神殿
 
+Scripts/Items/Base/SkinName@Paradox:
+悖論
+
 Scripts/Items/Base/SkinName@Phoenix:
 鳳凰
 
@@ -352,8 +364,14 @@ Scripts/Items/Base/SkinName@Pirate:
 Scripts/Items/Base/SkinName@Primitive:
 原始
 
+Scripts/Items/Base/SkinName@Prototype:
+實驗
+
 Scripts/Items/Base/SkinName@Puffer:
 河豚
+
+Scripts/Items/Base/SkinName@RedLine:
+紅線
 
 Scripts/Items/Base/SkinName@RedMarble:
 紅大理石
@@ -372,6 +390,9 @@ Scripts/Items/Base/SkinName@Ruby:
 
 Scripts/Items/Base/SkinName@Sapphire:
 藍寶石
+
+Scripts/Items/Base/SkinName@Scar:
+疤痕
 
 Scripts/Items/Base/SkinName@Shaman:
 薩滿
@@ -408,6 +429,9 @@ Scripts/Items/Base/SkinName@Voodoo:
 
 Scripts/Items/Base/SkinName@Wasp:
 黃蜂
+
+Scripts/Items/Base/SkinName@Zenith:
+天頂星
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 資料記錄(加密)
@@ -551,7 +575,7 @@ Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 皮大衣
 
 Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
-皮毛帽
+皮毛頭盔
 
 Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 豪華的金衣。配得上真正的統治者。
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 皮革盔甲
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-皮帽
+皮夾克
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 金屬盔甲提供高物理防禦力， 但幾乎沒有任何環境保護能力。
@@ -963,6 +987,12 @@ Scripts/Items/Food/ItemDough@Description:
 
 Scripts/Items/Food/ItemDough@Name:
 麵團
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+醇厚的罐裝咖啡。五倍咖啡因。
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+罐裝咖啡
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 能量飲料在整個宇宙都很受歡迎。讓你能量充沛。
@@ -2596,35 +2626,17 @@ Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 手槍 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 鐳射手槍能射出高能射線並灼燒目標。
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 鐳射手槍
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
-鐳射步槍能夠射出高能射線並灼燒目標。比鐳射手槍距離更遠。
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
+激光步槍能夠射出高能射線並灼燒目標。比激光手槍距離更遠。
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 鐳射步槍
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-電漿步槍能夠射出電漿團並灼燒目標造成大量傷害。超高能量消耗。
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-電漿步槍
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-向敵人發射昆蟲彈藥的異星武器。
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-蟲群發射器
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-將液態翠銅轉化為強力毒素並向敵人射出的異星武器。
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-劇毒增生
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 使用.300彈藥的重型機槍。
@@ -2643,6 +2655,12 @@ Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 火槍
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+電漿步槍能夠射出電漿團並灼燒目標造成大量傷害。超高能量消耗。
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+電漿步槍
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 簡單的連發手槍，擁有轉輪結構承載多發彈藥。
@@ -2691,6 +2709,18 @@ Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 衝鋒槍
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+向敵人發射昆蟲彈藥的異星武器。
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+蟲群發射器
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+將液態翠銅轉化為強力毒素並向敵人射出的異星武器。
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+劇毒增生
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 為戰鬥裝甲設計的手持重型自動加農炮。使用大口徑反器材彈藥。

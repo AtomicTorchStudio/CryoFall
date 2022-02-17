@@ -16,6 +16,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
+    using AtomicTorch.GameEngine.Common.Helpers;
 
     public class ViewModelTradingStationLotEditor : BaseViewModel
     {
@@ -28,6 +29,8 @@
         private readonly List<IProtoItem> existingItemsList;
 
         private readonly TradingStationLot lot;
+
+        private ushort lotQuantity;
 
         private byte minQualityPercent;
 
@@ -84,9 +87,28 @@
         public object IsProtoItemWithFreshness
             => this.selectedProtoItem is IProtoItemWithFreshness { FreshnessMaxValue: > 0 };
 
-        public bool IsStationBuying { get; private set; }
+        public bool IsStationBuying { get; }
 
-        public ushort LotQuantity { get; set; }
+        public ushort LotQuantity
+        {
+            get => this.lotQuantity;
+            set
+            {
+                value = (ushort)MathHelper.Clamp((int)value,
+                                                 min: 1,
+                                                 max: this.selectedProtoItem?.MaxItemsPerStack ?? 1);
+                
+                if (this.LotQuantity == value)
+                {
+                    return;
+                }
+
+                this.lotQuantity = value; 
+                this.NotifyThisPropertyChanged();
+            }
+        }
+
+        public ushort LotQuantityMax => this.selectedProtoItem?.MaxItemsPerStack ?? 1;
 
         public byte MinQualityPercent
         {
@@ -139,17 +161,16 @@
                 }
 
                 this.selectedProtoItem = value.ProtoItem;
+
                 this.NotifyThisPropertyChanged();
                 this.NotifyPropertyChanged(nameof(this.SelectedProtoItem));
                 this.NotifyPropertyChanged(nameof(this.Icon));
                 this.NotifyPropertyChanged(nameof(this.IsProtoItemStackable));
                 this.NotifyPropertyChanged(nameof(this.IsProtoItemWithDurability));
                 this.NotifyPropertyChanged(nameof(this.IsProtoItemWithFreshness));
+                this.NotifyPropertyChanged(nameof(this.LotQuantityMax));
 
-                if (!this.IsProtoItemStackable)
-                {
-                    this.LotQuantity = 1;
-                }
+                this.LotQuantity = 1;
             }
         }
 

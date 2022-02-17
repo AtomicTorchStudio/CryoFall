@@ -23,7 +23,7 @@
 
         private double spawnRateMultiplier;
 
-        // because this script called very rare we're increasing the spawn attempts count
+        // because this script called very rarely we're increasing the spawn attempts count
         protected override double MaxSpawnAttemptsMultiplier => 150;
 
         protected override void PrepareZoneSpawnScript(Triggers triggers, SpawnList spawnList)

@@ -127,7 +127,7 @@
 
                     var characterClientState = character.GetClientState<BaseCharacterClientState>();
                     var skeletonRenderer = characterClientState.SkeletonRenderer;
-                    
+
                     var headWorldPosition = skeletonRenderer.TransformSlotPosition("ProjectilesOrigin", default, out _)
                                             + (0, ClientLaunchOffsetY);
 
@@ -161,7 +161,8 @@
             ICharacter character,
             ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false)
         {
             Client.Rendering.PreloadTextureAsync(TextureProjectile);
         }

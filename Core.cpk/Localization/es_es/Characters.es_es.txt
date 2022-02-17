@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Oso
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+Oso polar
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Escarabajo negro
 
@@ -9,6 +12,15 @@ Reina de pragmio
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 Tirano de las arenas
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+Dron de la nidada
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+Guardián de la nidada
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+Nido de la nidada
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 Excavador
@@ -90,6 +102,9 @@ Jabalí
 
 Scripts/Characters/Mobs/MobWolf@Name:
 Lobo
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+Lobo polar
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 Personaje del jugador

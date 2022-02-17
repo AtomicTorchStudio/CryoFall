@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons
 {
+    using System.Windows.Media;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
 
     public static class MuzzleFlashPresets
@@ -92,6 +93,23 @@
 
         public static readonly IMuzzleFlashDescriptionReadOnly None
             = new MuzzleFlashDescription();
+
+        public static readonly IMuzzleFlashDescriptionReadOnly Poison
+            = Default.Clone()
+                     .Set(textureAtlas: MuzzleFlashAtlases.AtlasPoison,
+                          textureOriginX: MuzzleFlashAtlases.AtlasPoisonOriginX,
+                          lightPower: 6,
+                          lightColor: Color.FromRgb(0x55, 0xBB, 0x33),
+                          lightDurationSeconds: 10 / 60.0);
+
+        public static readonly IMuzzleFlashDescriptionReadOnly PoisonLarge
+            = Default.Clone()
+                     .Set(textureAtlas: MuzzleFlashAtlases.AtlasPoison,
+                          textureOriginX: MuzzleFlashAtlases.AtlasPoisonOriginX,
+                          textureScale: 1.5,
+                          lightPower: 8,
+                          lightColor: Color.FromRgb(0x55, 0xBB, 0x33),
+                          lightDurationSeconds: 10 / 60.0);
 
         // Primitive weapons
         public static readonly IMuzzleFlashDescriptionReadOnly PrimitivePistol

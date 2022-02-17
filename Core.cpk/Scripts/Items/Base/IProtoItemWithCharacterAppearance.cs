@@ -14,6 +14,7 @@
             ICharacter character,
             ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents);
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false);
     }
 }

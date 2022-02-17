@@ -38,7 +38,7 @@
                 // it's a modded skin so it's definitely free
                 return SkinId.None;
             }
-            
+
             if (!BindingStringIdToEnum.TryGetValue(protoItem.ShortId, out var skinId))
             {
                 Api.Logger.Error("Unknown skin: " + protoItem.ShortId);

@@ -41,7 +41,7 @@
         /// To prevent other players from taking vehicles (from world into garage) that were used recently
         /// by anyone else, a time delay applies (vehicles considered "in use" for this duration after pilot left).
         /// </summary>
-        private const double ThresholdNoPilotSeconds = 5 * 60; // 5 minutes
+        private const double ThresholdNoPilotSeconds = 10; // 10 seconds
 
         public static readonly SoundResource SoundResourcePutVehicle
             = new("Objects/Structures/ObjectVehicleAssemblyBay/PutVehicle");

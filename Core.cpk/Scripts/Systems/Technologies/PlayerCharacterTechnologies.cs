@@ -250,15 +250,21 @@
 
         public void ServerResetTechTreeAndRefundLearningPoints()
         {
+            // Unfortunately, we cannot simply use this:
+            // var totalLpToRefund = this.LearningPointsAccumulatedTotal;
+            // because some part of total accumulated LP is spent on upgrading the faction level (or other expenses)
+            // but the game is only refunding the LP spent on the unlocked tech nodes/groups
+            var totalLpToRefund = this.Nodes.Sum(n => (long)n.LearningPointsPrice)
+                                  + this.Groups.Sum(g => (long)g.LearningPointsPrice);
+
             this.Nodes.Clear();
             this.Groups.Clear();
 
-            this.LearningPoints = Math.Min(int.MaxValue,
-                                           this.LearningPointsAccumulatedTotal);
+            this.LearningPoints = (uint)Math.Min(int.MaxValue, this.LearningPoints + totalLpToRefund);
             this.IsTechTreeChanged = true;
 
             Api.Logger.Important(
-                $"Learning points refunded: {this.LearningPoints} LP available",
+                $"Learning points refunded: {this.LearningPoints} LP available; {totalLpToRefund} LP refunded",
                 this.Character);
 
             TechnologiesSystem.ServerEnsureFreeTechGroupsUnlocked(this);

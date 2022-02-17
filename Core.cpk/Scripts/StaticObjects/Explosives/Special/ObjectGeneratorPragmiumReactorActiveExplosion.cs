@@ -17,6 +17,8 @@
 
         public override bool IsActivatesRaidBlock => false;
 
+        public override bool IsExplosionDelaySkippedOnDamage => false;
+
         public override string Name => "Pragmium reactor explosion";
 
         protected override void ClientInitialize(ClientInitializeData data)

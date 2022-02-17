@@ -20,7 +20,7 @@
     using AtomicTorch.GameEngine.Common.Primitives;
     using JetBrains.Annotations;
 
-    internal class ComponentCharacterLaserSight : ClientComponent
+    public class ComponentCharacterLaserSight : ClientComponent
     {
         private const double BeamWidth = 0.1;
 
@@ -281,7 +281,7 @@
                 = new("AdditiveColorEffect");
 
             private static readonly TextureResource TextureResourceBeam
-                = new("FX/WeaponTraces/BeamLaser.png");
+                = new("FX/WeaponTraces/BeamLaserRed.png");
 
             private static readonly TextureResource TextureResourceSpot
                 = new("FX/Special/LaserSightSpot.png");

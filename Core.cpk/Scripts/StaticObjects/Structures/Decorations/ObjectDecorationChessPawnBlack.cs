@@ -44,8 +44,8 @@
         {
             data.PhysicsBody
                 .AddShapeRectangle((0.55, 0.5), offset: (0.225, 0.25))
-                .AddShapeRectangle((0.5, 0.4), offset: (0.25, 0.8), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle((0.5, 0.3), offset: (0.25, 0.9), group: CollisionGroups.HitboxRanged);
+                .AddShapeRectangle((0.5, 0.4),  offset: (0.25, 0.8), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((0.5, 0.3),  offset: (0.25, 0.9), group: CollisionGroups.HitboxRanged);
         }
     }
 }

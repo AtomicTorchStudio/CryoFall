@@ -9,9 +9,7 @@
 
     public class TradingStationLot : BaseNetObject
     {
-        public const int MaxLotQuantity = 9999;
-
-        public const ushort MaxPrice = 999;
+        public const ushort MaxPrice = 9999;
 
         [SyncToClient]
         public uint CountAvailable { get; set; }
@@ -45,14 +43,16 @@
 
         public void SetLotQuantity(ushort lotQuantity)
         {
-            if (this.ProtoItem is null 
+            if (this.ProtoItem is null
                 || !this.ProtoItem.IsStackable)
             {
                 this.LotQuantity = 1;
                 return;
             }
-                
-            this.LotQuantity = MathHelper.Clamp(lotQuantity, 1, MaxLotQuantity);
+
+            this.LotQuantity = (ushort)MathHelper.Clamp((int)lotQuantity,
+                                                        min: 1,
+                                                        max: this.ProtoItem.MaxItemsPerStack);
         }
 
         public void SetPrices(ushort priceCoinPenny, ushort priceCoinShiny)

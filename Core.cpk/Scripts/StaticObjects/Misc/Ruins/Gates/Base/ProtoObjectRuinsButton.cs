@@ -12,7 +12,10 @@
 
     public abstract class ProtoObjectRuinsButton : ProtoObjectMisc
     {
-        public abstract byte GateSearchRadius { get; }
+        /// <summary>
+        /// The server will search for the closest gate within the specified radius.
+        /// </summary>
+        public virtual byte GateSearchRadius => 15;
 
         public override string InteractionTooltipText => InteractionTooltipTexts.Press;
 
@@ -61,7 +64,7 @@
                 new RectangleInt(position.X, position.Y, 1, 1)
                     .Inflate(this.GateSearchRadius));
 
-            var objectGate = gatesNearby.OrderBy(g => g.TilePosition.TileDistanceTo(position))
+            var objectGate = gatesNearby.OrderBy(g => g.TilePosition.TileSqrDistanceTo(position))
                                         .FirstOrDefault();
 
             if (objectGate is null)

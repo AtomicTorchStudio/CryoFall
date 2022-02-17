@@ -7,7 +7,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Explosives;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Minerals;
-    using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -31,24 +30,14 @@
 
         public override bool IsDamageThroughObstacles => true;
 
+        public override bool IsExplosionDelaySkippedOnDamage => false;
+
         [NotLocalizable]
         public override string Name => "Pragmium Queen's death explosion";
 
         public override ObjectMaterial ObjectMaterial => ObjectMaterial.Stone;
 
         public override float VolumeExplosion => 3;
-
-        public override bool SharedOnDamage(
-            WeaponFinalCache weaponCache,
-            IStaticWorldObject targetObject,
-            double damagePreMultiplier,
-            out double obstacleBlockDamageCoef,
-            out double damageApplied)
-        {
-            obstacleBlockDamageCoef = 0;
-            damageApplied = 0; // no damage
-            return true;       // hit
-        }
 
         protected override ITextureResource ClientCreateIcon()
         {

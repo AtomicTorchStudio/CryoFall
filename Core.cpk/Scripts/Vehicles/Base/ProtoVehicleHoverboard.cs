@@ -22,9 +22,10 @@
          TVehiclePublicState,
          TVehicleClientState>
         : ProtoVehicle
-            <TVehiclePrivateState,
-                TVehiclePublicState,
-                TVehicleClientState>
+          <TVehiclePrivateState,
+              TVehiclePublicState,
+              TVehicleClientState>,
+          IProtoVehicleHoverboard
         where TVehiclePrivateState : VehicleMechPrivateState, new()
         where TVehiclePublicState : VehiclePublicState, new()
         where TVehicleClientState : VehicleClientState, new()

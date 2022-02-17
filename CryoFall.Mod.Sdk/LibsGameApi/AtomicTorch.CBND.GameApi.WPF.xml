@@ -1467,7 +1467,7 @@
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Data.World.StaticObjectKind.NaturalObject">
             <summary>
-            Any natural object (minerals, vegetation, etc).
+            Any natural object (minerals, vegetation, etc). Ground decals are allowed.
             </summary>
         </member>
         <member name="F:AtomicTorch.CBND.GameApi.Data.World.StaticObjectKind.Floor">

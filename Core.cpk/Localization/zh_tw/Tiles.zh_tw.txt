@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 異星
 
+Scripts/Tiles/TileArctic@Name:
+極地
+
 Scripts/Tiles/TileBarren@Name:
 荒地
 

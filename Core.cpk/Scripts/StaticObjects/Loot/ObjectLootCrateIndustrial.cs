@@ -1,9 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Loot
 {
-    using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Explosives.Bombs;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Special;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Axes;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Crowbars;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Pickaxes;
@@ -82,7 +80,7 @@
                         .Add<ItemToolboxT3>(count: 1,    weight: 1 / 50.0)
                         .Add<ItemCrowbar>(count: 1,      weight: 1 / 25.0)
                 );
-            
+
             droplist.Add(ItemDroplistPresets.TeleportLocationData);
 
             // extra loot from skill

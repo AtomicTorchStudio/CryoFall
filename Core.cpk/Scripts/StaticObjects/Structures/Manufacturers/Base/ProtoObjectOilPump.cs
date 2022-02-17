@@ -21,93 +21,93 @@
 
         private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrOilSeep
             = new(() => string.Format("{0}[br]{1}[*]{2}[*]{3}",
-                                    ConstructionTileRequirements.Error_UnsuitableGround_Title,
-                                    ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
-                                    Api.GetProtoEntity<TileBarren>().Name,
-                                    Api.GetProtoEntity<TileSwamp>().Name),
-                c =>
-                {
-                    if (PveSystem.SharedIsPve(true))
-                    {
-                        // no soil requirement in PvE
-                        return true;
-                    }
+                                      ConstructionTileRequirements.Error_UnsuitableGround_Title,
+                                      ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
+                                      Api.GetProtoEntity<TileBarren>().Name,
+                                      Api.GetProtoEntity<TileSwamp>().Name),
+                  c =>
+                  {
+                      if (PveSystem.SharedIsPve(true))
+                      {
+                          // no soil requirement in PvE
+                          return true;
+                      }
 
-                    foreach (var obj in c.Tile.StaticObjects)
-                    {
-                        if (obj.ProtoStaticWorldObject is ObjectDepositOilSeep)
-                        {
-                            return true;
-                        }
-                    }
+                      foreach (var obj in c.Tile.StaticObjects)
+                      {
+                          if (obj.ProtoStaticWorldObject is ObjectDepositOilSeep)
+                          {
+                              return true;
+                          }
+                      }
 
-                    var protoTile = c.Tile.ProtoTile;
-                    if (!(protoTile is TileBarren
-                          || protoTile is TileSwamp))
-                    {
-                        // unsuitable ground type
-                        return false;
-                    }
+                      var protoTile = c.Tile.ProtoTile;
+                      if (!(protoTile is TileBarren
+                            || protoTile is TileSwamp))
+                      {
+                          // unsuitable ground type
+                          return false;
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherOilPump
             = new(ErrorTooCloseToAnotherOilPump,
-                c =>
-                {
-                    if (PveSystem.SharedIsPve(false))
-                    {
-                        // no distance limit in PvE
-                        return true;
-                    }
+                  c =>
+                  {
+                      if (PveSystem.SharedIsPve(false))
+                      {
+                          // no distance limit in PvE
+                          return true;
+                      }
 
-                    var startPosition = c.StartTilePosition;
-                    var objectsInBounds = SharedFindObjectsNearby<IProtoObjectStructure>(startPosition);
-                    foreach (var obj in objectsInBounds)
-                    {
-                        if (ReferenceEquals(obj, c.ObjectToRelocate))
-                        {
-                            continue;
-                        }
+                      var startPosition = c.StartTilePosition;
+                      var objectsInBounds = SharedFindObjectsNearby<IProtoObjectStructure>(startPosition);
+                      foreach (var obj in objectsInBounds)
+                      {
+                          if (ReferenceEquals(obj, c.ObjectToRelocate))
+                          {
+                              continue;
+                          }
 
-                        switch (obj.ProtoStaticWorldObject)
-                        {
-                            case ProtoObjectOilPump:
-                                // found another extractor nearby
-                                return false;
+                          switch (obj.ProtoStaticWorldObject)
+                          {
+                              case ProtoObjectOilPump:
+                                  // found another extractor nearby
+                                  return false;
 
-                            case ProtoObjectConstructionSite
-                                when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
-                                         ProtoObjectOilPump:
-                                // found a blueprint for another extractor nearby
-                                return false;
-                        }
-                    }
+                              case ProtoObjectConstructionSite
+                                  when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
+                                           ProtoObjectOilPump:
+                                  // found a blueprint for another extractor nearby
+                                  return false;
+                          }
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDeposit
             = new(Error_CannotBuildTooCloseToDeposit,
-                c =>
-                {
-                    var startPosition = c.StartTilePosition;
-                    var objectsInBounds = SharedFindObjectsNearby<ObjectDepositOilSeep>(startPosition);
-                    foreach (var obj in objectsInBounds)
-                    {
-                        if (startPosition == obj.TilePosition)
-                        {
-                            // can build right over the source
-                            continue;
-                        }
+                  c =>
+                  {
+                      var startPosition = c.StartTilePosition;
+                      var objectsInBounds = SharedFindObjectsNearby<ObjectDepositOilSeep>(startPosition);
+                      foreach (var obj in objectsInBounds)
+                      {
+                          if (startPosition == obj.TilePosition)
+                          {
+                              // can build right over the source
+                              continue;
+                          }
 
-                        // found a deposit nearby but not right under it - cannot build too close to a deposit
-                        return false;
-                    }
+                          // found a deposit nearby but not right under it - cannot build too close to a deposit
+                          return false;
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
         public override byte ContainerInputSlotsCount => 1;
 

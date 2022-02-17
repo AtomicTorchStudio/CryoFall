@@ -18,10 +18,10 @@
             spawnList.CreatePreset(interval: 3.5, padding: 1.5)
                      .Add<ObjectTreeSwamp>()
                      .Add<ObjectTreeWillow>()
-                     .Add<ObjectTreeDeadMossy1>(weight: 1.0 / 5.0)
-                     .Add<ObjectTreeDeadMossy2>(weight: 1.0 / 5.0)
-                     .Add<ObjectTreeStumpMossy>(weight: 1.0 / 5.0)
-                     .Add<ObjectTreeSnagMossy>(weight: 1.0 / 5.0)
+                     .AddExact<ObjectTreeDeadMossy1>(weight: 1.0 / 5.0)
+                     .AddExact<ObjectTreeDeadMossy2>(weight: 1.0 / 5.0)
+                     .AddExact<ObjectTreeStumpMossy>(weight: 1.0 / 5.0)
+                     .AddExact<ObjectTreeSnagMossy>(weight: 1.0 / 5.0)
                      .SetCustomPaddingWithSelf(2.1);
         }
     }

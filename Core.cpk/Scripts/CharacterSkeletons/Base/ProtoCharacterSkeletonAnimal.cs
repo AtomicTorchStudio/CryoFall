@@ -16,30 +16,28 @@
         // cache singleton instance for human footsteps sound
         private static readonly Lazy<ReadOnlySoundPreset<GroundSoundMaterial>> HumanFootstepsSoundPreset
             = new(() =>
-                {
-                    const string localSoundsFolderPath = "Skeletons/Human/Footsteps/";
+                  {
+                      const string localSoundsFolderPath = "Skeletons/Human/Footsteps/";
 
-                    var preset = new SoundPreset<GroundSoundMaterial>();
-                    foreach (var enumValue in EnumExtensions.GetValues<GroundSoundMaterial>())
-                    {
-                        var soundFileName = GroundSoundMaterial.Solid;
+                      var preset = new SoundPreset<GroundSoundMaterial>();
+                      foreach (var enumValue in EnumExtensions.GetValues<GroundSoundMaterial>())
+                      {
+                          // use Solid sound for most ground materials except the following
+                          var soundFileName = enumValue switch
+                          {
+                              GroundSoundMaterial.Vegetation => enumValue,
+                              GroundSoundMaterial.Mud        => enumValue,
+                              GroundSoundMaterial.Snow       => enumValue,
+                              _                              => GroundSoundMaterial.Solid
+                          };
 
-                        // use Solid sound for all ground materials except Vegetation and Mud
-                        switch (enumValue)
-                        {
-                            case GroundSoundMaterial.Vegetation:
-                            case GroundSoundMaterial.Mud:
-                                soundFileName = enumValue;
-                                break;
-                        }
+                          preset.Add(enumValue, localSoundsFolderPath + soundFileName);
+                      }
 
-                        preset.Add(enumValue, localSoundsFolderPath + soundFileName);
-                    }
-
-                    var readOnlySoundPreset = preset.ToReadOnly();
-                    //this.VerifySoundPreset(readOnlySoundPreset);
-                    return readOnlySoundPreset;
-                });
+                      var readOnlySoundPreset = preset.ToReadOnly();
+                      //this.VerifySoundPreset(readOnlySoundPreset);
+                      return readOnlySoundPreset;
+                  });
 
         private readonly Lazy<ITextureResource> lazyIcon;
 

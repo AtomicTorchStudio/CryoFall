@@ -4,9 +4,9 @@
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Tools.Lights;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterCreation;
-    using AtomicTorch.CBND.CoreMod.Systems.CharacterDeath;
     using AtomicTorch.CBND.CoreMod.Systems.CharacterDespawnSystem;
     using AtomicTorch.CBND.CoreMod.Systems.LandClaim;
+    using AtomicTorch.CBND.CoreMod.Tiles;
     using AtomicTorch.CBND.CoreMod.Zones;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Zones;
@@ -157,6 +157,12 @@
                     continue;
                 }
 
+                if (worldService.GetTile(randomPosition).ProtoTile is IProtoTileCold)
+                {
+                    // cannot respawn in cold biome
+                    continue;
+                }
+
                 if (!LandClaimSystem.SharedIsPositionInsideOwnedOrFreeArea(randomPosition,
                                                                            character,
                                                                            requireFactionPermission: false))
@@ -166,7 +172,7 @@
                 }
 
                 if (ServerCharacterSpawnHelper.IsPositionValidForCharacterSpawn(randomPosition.ToVector2D(),
-                    isPlayer: true))
+                        isPlayer: true))
                 {
                     // valid position found
                     return randomPosition;

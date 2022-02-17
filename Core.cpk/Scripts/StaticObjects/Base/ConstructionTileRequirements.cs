@@ -134,7 +134,7 @@
                       foreach (var entry in tempList.AsList())
                       {
                           if (entry.PhysicsBody.AssociatedWorldObject
-                                  is ICharacter { IsNpc: true, ProtoGameObject: IProtoCharacterMob })
+                              is ICharacter { IsNpc: true, ProtoGameObject: IProtoCharacterMob })
                           {
                               // found npc nearby
                               return false;
@@ -256,7 +256,7 @@
                   c => c.Tile.StaticObjects.All(
                       o => o.ProtoStaticWorldObject is IProtoObjectStructure
                            || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
-        
+
         public static readonly Validator ValidatorNoStaticObjects
             = new(ErrorNoFreeSpace,
                   c => !c.Tile.StaticObjects.Any());

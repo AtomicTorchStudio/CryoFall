@@ -262,6 +262,9 @@ Kazak
 Scripts/Items/Base/SkinName@Cowboy:
 Kovboy
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 Çöl kamuflajı
 
@@ -289,17 +292,23 @@ Orman kamuflajı
 Scripts/Items/Base/SkinName@Graphene:
 Grafen
 
+Scripts/Items/Base/SkinName@Halloween:
+Cadılar Bayramı
+
 Scripts/Items/Base/SkinName@Hardened:
 Yıpranmış
 
-Scripts/Items/Base/SkinName@Halloween:
-Cadılar Bayramı
+Scripts/Items/Base/SkinName@Hive:
+Kovan
 
 Scripts/Items/Base/SkinName@Holidays:
 Tatiller
 
 Scripts/Items/Base/SkinName@Hunter:
 Avcı
+
+Scripts/Items/Base/SkinName@Hypnotic:
+Hipnotik
 
 Scripts/Items/Base/SkinName@Iridium:
 İridyum
@@ -343,6 +352,9 @@ Göçebe
 Scripts/Items/Base/SkinName@Pantheon:
 Panteon
 
+Scripts/Items/Base/SkinName@Paradox:
+Paradoks
+
 Scripts/Items/Base/SkinName@Phoenix:
 Anka Kuşu
 
@@ -352,8 +364,14 @@ Korsan
 Scripts/Items/Base/SkinName@Primitive:
 İlkel
 
+Scripts/Items/Base/SkinName@Prototype:
+Prototip
+
 Scripts/Items/Base/SkinName@Puffer:
 Balon
+
+Scripts/Items/Base/SkinName@RedLine:
+Kırmızı çizgi
 
 Scripts/Items/Base/SkinName@RedMarble:
 Kırmızı mermer
@@ -372,6 +390,9 @@ Yakut
 
 Scripts/Items/Base/SkinName@Sapphire:
 Safir
+
+Scripts/Items/Base/SkinName@Scar:
+Yara
 
 Scripts/Items/Base/SkinName@Shaman:
 Şaman
@@ -408,6 +429,9 @@ Voodoo
 
 Scripts/Items/Base/SkinName@Wasp:
 Eşek arısı
+
+Scripts/Items/Base/SkinName@Zenith:
+Zenit
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Veri Günlüğü (şifreli)
@@ -551,7 +575,7 @@ Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 Kürk manto
 
 Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
-Kürk şapka
+Yün başlık
 
 Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 Gösterişli altın giysi. Yalnızca gerçek hükümdarlara yakışır.
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Deri zırh
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-Deri şapka
+Deri başlık
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 Metal zırh, fiziksel saldırıları karşı büyük bir koruma sağlar, fakat çevresel tehlikelere karşı neredeyse etkisizdir.
@@ -963,6 +987,12 @@ Farklı türde tarifler için yemek yapmakta kullanılabilir.
 
 Scripts/Items/Food/ItemDough@Name:
 Hamur
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+Aşırı güçlü kavanoz kahve. Kafein oranı x5'dir.
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+Kavanoz kahve
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Gezegendeki en popüler enerji içeceği. Ciddi bir enerji artışı sağlar.
@@ -2596,35 +2626,17 @@ Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 Tabanca 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 Lazer silahı hedefi yakmak için gereken yüksek enerjili ışığı hızla üretir.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 Lazer tabanca
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
 Lazer tüfek kızılötesi spektrumda güçlü bir yüksek enerjili ışık yayarak hedefi yakar. Lazer tabancaya göre daha yüksek menzil olanağı sunar.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 Lazer tüfek
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-Plazma tüfeği çarpma anında hedefi şiddetli bir şekilde yakarak çok ağır hasara yol açan plazma paketleri oluşturur ve ateşler. Güç tüketimi çok yüksektir.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-Plazma tüfeği
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-Mermi yerine düşmanların üstüne küçük böcek gibi yaratıklar ateşleyen egzotik silah.
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-Sürü atıcı
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-Düşmana toksin atmak için sıvı keinite kullanan egzotik silah.
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-Toksin kümesi
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 Yüksek enerjili .300 mermi için geliştirilmiş ağır makineli tüfek.
@@ -2643,6 +2655,12 @@ Eski usül tüfek. Kağıt kovan kullanır. Çakmaklı tabanca ile kıyaslandı�
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 Tüfek
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+Plazma tüfeği çarpma anında hedefi şiddetli bir şekilde yakarak çok ağır hasara yol açan plazma paketleri oluşturur ve ateşler. Güç tüketimi çok yüksektir.
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+Plazma tüfeği
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 Cephaneyi tutan döner bir silindire sahip basit bir tabanca.
@@ -2691,6 +2709,18 @@ Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 Hafif makineli tüfek
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+Mermi yerine düşmanların üstüne küçük böcek gibi yaratıklar ateşleyen egzotik silah.
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+Sürü atıcı
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+Düşmana toksin atmak için sıvı keinite kullanan egzotik silah.
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+Toksin kümesi
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Mekanize savaş zırhlarında kullanılması için yapılmış ağır otomatik top. Yüksek kalibreli, anti-materyal mermisi kullanır.

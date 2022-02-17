@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Niedźwiedź
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+Niedźwiedź polarny
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Czarny żuk
 
@@ -9,6 +12,15 @@ Królowa pragmium
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 Piaskowy tyran
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+Pomiot-zwiadowca
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+Pomiot-strażnik
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+Gniazdo pomiotów
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 Kopacz
@@ -90,6 +102,9 @@ Dzik
 
 Scripts/Characters/Mobs/MobWolf@Name:
 Wilk
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+Wilk polarny
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 Gracz

@@ -12,6 +12,10 @@
     {
         public static readonly IReadOnlyList<Entry> Entries = new[]
         {
+            new Entry("R33—Winter Update",
+                      new DateTime(2022, month: 2, day: 18),
+                      "Updates/R30.jpg"), // reusing the main art
+            
             new Entry("R32—Customizations Update",
                       new DateTime(2022, month: 1, day: 1),
                       "Updates/R32.jpg"),

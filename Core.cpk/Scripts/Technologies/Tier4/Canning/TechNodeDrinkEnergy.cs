@@ -9,7 +9,7 @@
             config.Effects
                   .AddRecipe<RecipeDrinkEnergy>();
 
-            config.SetRequiredNode<TechNodeDrinkSoft>();
+            config.SetRequiredNode<TechNodePreservative>();
         }
     }
 }

@@ -1853,8 +1853,14 @@ UI/CoreStrings@Skin_AccessUnlockByPlaying:
 UI/CoreStrings@Skin_Default:
 기본
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+이 스킨은 고유한 시각 및 음향 효과 및 그밖의 전용 장식 기능을 특징으로 합니다.
+
 UI/CoreStrings@Skin_NotOwned:
 이 스킨을 보유하고 있지 않습니다.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+참고: 이 스킨은 CryoFall 후원자 팩을 소유하신 분들만 이용할 수 있습니다. 후원자 팩을 소유하고 있지 않다면, 해당 스킨을 자신의 캐릭터 외모를 꾸미는 데 적용할 수 없습니다.
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 스킨 검색
@@ -1982,6 +1988,12 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_ConfirmEmail:
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com 계정 등록
 [br](Steam ID용).`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Steam 클라이언트의 게임 속성에서 Steam 오버레이 사용에 체크한 뒤, 게임을 다시 시작해주십시오.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+Steam 오버레이를 이용할 수 없습니다
 
 UI/CoreStrings@SupporterPack_Badge:
 후원자 배지

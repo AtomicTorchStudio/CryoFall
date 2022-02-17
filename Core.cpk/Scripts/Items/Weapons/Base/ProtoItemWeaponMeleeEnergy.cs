@@ -46,9 +46,15 @@
             ICharacter character,
             ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false)
         {
-            base.ClientSetupSkeleton(item, character, protoCharacterSkeleton, skeletonRenderer, skeletonComponents);
+            base.ClientSetupSkeleton(item,
+                                     character,
+                                     protoCharacterSkeleton,
+                                     skeletonRenderer,
+                                     skeletonComponents,
+                                     isPreview);
 
             if (!this.ItemLightConfig.IsLightEnabled)
             {

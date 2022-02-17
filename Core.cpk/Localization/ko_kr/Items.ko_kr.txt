@@ -262,6 +262,9 @@ Scripts/Items/Base/SkinName@Cossack:
 Scripts/Items/Base/SkinName@Cowboy:
 카우보이
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 사막 위장
 
@@ -289,17 +292,23 @@ Scripts/Items/Base/SkinName@ForestCamo:
 Scripts/Items/Base/SkinName@Graphene:
 그래핀
 
+Scripts/Items/Base/SkinName@Halloween:
+핼러윈
+
 Scripts/Items/Base/SkinName@Hardened:
 견고
 
-Scripts/Items/Base/SkinName@Halloween:
-핼러윈
+Scripts/Items/Base/SkinName@Hive:
+군락
 
 Scripts/Items/Base/SkinName@Holidays:
 휴일
 
 Scripts/Items/Base/SkinName@Hunter:
 사냥꾼
+
+Scripts/Items/Base/SkinName@Hypnotic:
+최면
 
 Scripts/Items/Base/SkinName@Iridium:
 이리듐
@@ -343,6 +352,9 @@ Scripts/Items/Base/SkinName@Nomad:
 Scripts/Items/Base/SkinName@Pantheon:
 판테온
 
+Scripts/Items/Base/SkinName@Paradox:
+역설
+
 Scripts/Items/Base/SkinName@Phoenix:
 불사조
 
@@ -352,8 +364,14 @@ Scripts/Items/Base/SkinName@Pirate:
 Scripts/Items/Base/SkinName@Primitive:
 구식
 
+Scripts/Items/Base/SkinName@Prototype:
+시제품
+
 Scripts/Items/Base/SkinName@Puffer:
 패딩
+
+Scripts/Items/Base/SkinName@RedLine:
+붉은 선
 
 Scripts/Items/Base/SkinName@RedMarble:
 붉은 대리석
@@ -372,6 +390,9 @@ Scripts/Items/Base/SkinName@Ruby:
 
 Scripts/Items/Base/SkinName@Sapphire:
 사파이어
+
+Scripts/Items/Base/SkinName@Scar:
+상흔
 
 Scripts/Items/Base/SkinName@Shaman:
 주술사
@@ -408,6 +429,9 @@ Scripts/Items/Base/SkinName@Voodoo:
 
 Scripts/Items/Base/SkinName@Wasp:
 말벌
+
+Scripts/Items/Base/SkinName@Zenith:
+천정
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 데이터 기록 (암호화)
@@ -551,7 +575,7 @@ Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 모피 코트
 
 Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
-털모자
+모피 모자
 
 Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 아주 화려한 황금 복장. 진정한 통치자에게 적합합니다.
@@ -963,6 +987,12 @@ Scripts/Items/Food/ItemDough@Description:
 
 Scripts/Items/Food/ItemDough@Name:
 반죽
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+아주 진한 캔 커피. 카페인 양이 5배나 됩니다.
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+캔 커피
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 은하계 전역에서 인기 있는 에너지 음료. 당신에게 엄청난 에너지를 선사합니다.
@@ -2596,35 +2626,17 @@ Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 10mm 권총
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 레이저권총은 표적을 태워 버리는 고에너지 광선의 펄스를 빠르게 방출합니다.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 레이저권총
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
-레이저소총은 주로 적외선 스펙트럼과 같은 고에너지 광선을 빠르게 방출하여 표적을 태웁니다. 레이저권총보다 훨씬 넓은 사정 거리를 제공합니다.
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
+레이저소총은 주로 적외선 스펙트럼과 내에서 고에너지 광선을 빠르게 방출하여 표적을 태웁니다. 레이저권총보다 훨씬 넓은 사정 거리를 제공합니다.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 레이저소총
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-플라스마소총은 충격 시, 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-플라스마소총
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-총알 대신 작은 곤충 같은 생물체를 적에게 발사하는 신식 무기.
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-군체 발사기
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-액화 케이나이트로 강력한 독소를 만들어 적에게 발사하는 신식 무기.
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-독소 증식체
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 .300 탄용으로 개발된 중기관총.
@@ -2643,6 +2655,12 @@ Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 머스킷
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+플라스마소총은 충격 시, 표적을 심하게 태우는 대형 응집 플라스마 덩어리를 형성하고 투사하여 막대한 대미지를 줍니다. 매우 높은 전력을 소모합니다.
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+플라스마소총
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 탄약이 든 회전식 실린더를 가진 단순한 리볼버.
@@ -2692,6 +2710,18 @@ Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 기관단총
 
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+총알 대신 작은 곤충 같은 생물체를 적에게 발사하는 신식 무기.
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+군집 발사기
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+액화 케이나이트로 강력한 독소를 만들어 적에게 발사하는 신식 무기.
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+독소 증식체
+
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 기계화된 전투 장갑의 손 위치에 고정할 수 있도록 고안된 중기관포. 대구경 및 대물 탄약을 사용합니다.
 
@@ -2726,5 +2756,5 @@ Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Description:
 표적에게 파고들어 추가 대미지를 주는, 곤충 같이 생긴 생명체를 대규모로 발사합니다.
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleSwarmLauncher@Name:
-군집 발사기
+대군집 발사기
 

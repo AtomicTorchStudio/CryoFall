@@ -110,19 +110,13 @@
                 return 0;
             }
 
-            Vector2D position;
-            switch (worldObject)
+            var position = worldObject switch
             {
-                case IStaticWorldObject staticWorldObject:
-                    position = staticWorldObject.TilePosition.ToVector2D()
-                               + staticWorldObject.ProtoStaticWorldObject.Layout.Center;
-                    break;
-                case IDynamicWorldObject dynamicWorldObject:
-                    position = dynamicWorldObject.Position;
-                    break;
-                default:
-                    throw new InvalidOperationException();
-            }
+                IStaticWorldObject staticWorldObject => staticWorldObject.TilePosition.ToVector2D()
+                                                        + staticWorldObject.ProtoStaticWorldObject.Layout.Center,
+                IDynamicWorldObject dynamicWorldObject => dynamicWorldObject.Position,
+                _                                      => throw new InvalidOperationException()
+            };
 
             var distance = position.DistanceTo(character.Position);
 

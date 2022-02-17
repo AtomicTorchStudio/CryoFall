@@ -73,6 +73,8 @@
                                           ? $"-{this.DiscountPercent}%"
                                           : null;
 
+        public bool HasSkinCustomEffects => this.ProtoItemSkin.HasSkinCustomEffects;
+
         public TextureBrush IconBaseItem
             => Api.Client.UI.GetTextureBrush(this.ProtoItemSkin.BaseProtoItem.Icon);
 

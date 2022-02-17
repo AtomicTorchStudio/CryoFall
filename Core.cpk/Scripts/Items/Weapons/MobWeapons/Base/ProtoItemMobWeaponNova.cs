@@ -58,7 +58,8 @@
             ICharacter character,
             ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false)
         {
             // do nothing
         }
@@ -100,7 +101,12 @@
                 this.ServerCalculateDamageCoefficientByDistanceToTarget,
                 callbackCalculateDamageCoefByDistanceForDynamicObjects:
                 this.ServerCalculateDamageCoefficientByDistanceToTarget,
-                collisionGroups: new[] { CollisionGroups.HitboxRanged, CollisionGroup.Default });
+                collisionGroups: new[]
+                {
+                    CollisionGroups.HitboxMelee,
+                    CollisionGroups.HitboxRanged,
+                    CollisionGroup.Default
+                });
 
             return true;
         }

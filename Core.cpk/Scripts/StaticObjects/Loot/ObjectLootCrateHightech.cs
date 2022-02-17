@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.Items.Drones;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
-    using AtomicTorch.CBND.CoreMod.Items.Special;
     using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Skills;
     using AtomicTorch.CBND.CoreMod.SoundPresets;

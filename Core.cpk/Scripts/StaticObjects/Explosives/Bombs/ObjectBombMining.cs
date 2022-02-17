@@ -24,6 +24,8 @@
 
         public override bool IsActivatesRaidBlock => false;
 
+        public override bool IsExplosionDelaySkippedOnDamage => true;
+
         public override string Name => "Mining charge";
 
         public override double ServerCalculateTotalDamageByExplosive(

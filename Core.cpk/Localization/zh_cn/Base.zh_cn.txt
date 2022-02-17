@@ -227,7 +227,7 @@ Scripts/Base/Stats/StatName@PerkCannotAttack:
 无法攻击
 
 Scripts/Base/Stats/StatName@PerkCannotUseMedicalItems:
-无法使用正在冷却中的医疗物品
+无法使用正在冷却中的医疗物品/
 
 Scripts/Base/Stats/StatName@PerkCannotBreakBones:
 不会骨折

@@ -12,9 +12,9 @@
 
     public class ObjectTreePoplar : ProtoObjectTree
     {
-        public override double TreeHeight => 2.2;
-
         public override string Name => "Poplar tree";
+
+        public override double TreeHeight => 2.2;
 
         protected override TimeSpan TimeToMature => TimeSpan.FromHours(3);
 
@@ -63,7 +63,9 @@
             // saplings drop (requires skill)
             droplist
                 .Add<ItemSaplingPoplar>(condition: SkillLumbering.ConditionGetSapplings, count: 1, probability: 0.1)
-                .Add<ItemSaplingPoplar>(condition: SkillLumbering.ConditionGetExtraSapplings, count: 1, probability: 0.1);
+                .Add<ItemSaplingPoplar>(condition: SkillLumbering.ConditionGetExtraSapplings,
+                                        count: 1,
+                                        probability: 0.1);
         }
     }
 }

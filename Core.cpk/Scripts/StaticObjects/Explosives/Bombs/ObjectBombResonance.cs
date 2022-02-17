@@ -36,7 +36,11 @@
 
         public override double DamageRadius => DamageRadiusMax;
 
+        public override TimeSpan ExplosionDelay => TimeSpan.FromSeconds(5);
+
         public override bool IsActivatesRaidBlock => true;
+
+        public override bool IsExplosionDelaySkippedOnDamage => true;
 
         public override string Name => "Resonance bomb";
 
@@ -124,13 +128,13 @@
             void ProcessExplosionDirection(int xOffset, int yOffset)
             {
                 foreach (var (_, offsetIndex) in
-                    WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
-                        positionEpicenter: positionEpicenter,
-                        damageDistanceFullDamage: DamageRadiusFullDamage,
-                        damageDistanceMax: DamageRadiusMax,
-                        Api.Client.World,
-                        xOffset,
-                        yOffset))
+                         WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
+                             positionEpicenter: positionEpicenter,
+                             damageDistanceFullDamage: DamageRadiusFullDamage,
+                             damageDistanceMax: DamageRadiusMax,
+                             Api.Client.World,
+                             xOffset,
+                             yOffset))
                 {
                     ClientTimersSystem.AddAction(
                         delaySeconds: 0.1 * offsetIndex, // please note the offsetIndex is starting with 1
@@ -152,13 +156,13 @@
             void ProcessExplosionDirection(int xOffset, int yOffset)
             {
                 foreach (var (_, offsetIndex) in
-                    WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
-                        positionEpicenter: tile.Position.ToVector2D(),
-                        damageDistanceFullDamage: DamageRadiusFullDamage,
-                        damageDistanceMax: DamageRadiusMax,
-                        Api.Client.World,
-                        xOffset,
-                        yOffset))
+                         WeaponExplosionSystem.SharedEnumerateExplosionBombermanDirectionTilesWithTargets(
+                             positionEpicenter: tile.Position.ToVector2D(),
+                             damageDistanceFullDamage: DamageRadiusFullDamage,
+                             damageDistanceMax: DamageRadiusMax,
+                             Api.Client.World,
+                             xOffset,
+                             yOffset))
                 {
                     var rectangle = new Rectangle()
                     {

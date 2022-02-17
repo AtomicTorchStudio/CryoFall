@@ -10,6 +10,8 @@
     {
         IProtoItem BaseProtoItem { get; }
 
+        bool HasSkinCustomEffects { get; }
+
         bool IsModSkin { get; }
 
         bool IsSkin { get; }

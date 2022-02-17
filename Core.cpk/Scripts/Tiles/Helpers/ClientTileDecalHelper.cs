@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
+    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.DataStructures;
     using AtomicTorch.GameEngine.Common.Primitives;
 
@@ -66,13 +67,46 @@
             }
 
             var position = tile.Position;
+
+            bool hasDecalLayerUnder = false,
+                 hasDecalLayerDefault = false,
+                 hasDecalLayerOver = false;
+
             foreach (var decal in decals)
             {
-                if (IsValidDecal(decal, tile, position, noiseSelectorRangeMultiplier))
+                // prevent selection of a decal that is in the layer
+                // which is already occupied by one of the previous decals
+                switch (decal.DrawOrder)
                 {
-                    // create decal renderer
-                    sceneObject.AddComponent<ClientComponentTerrainDecalRenderer>()
-                               .Setup(decal, position);
+                    case DrawOrder.GroundDecals when hasDecalLayerDefault:
+                        continue;
+                    case DrawOrder.GroundDecalsUnder when hasDecalLayerUnder:
+                        continue;
+                    case DrawOrder.GroundDecalsOver when hasDecalLayerOver:
+                        continue;
+                }
+
+                if (!IsValidDecal(decal, tile, position, noiseSelectorRangeMultiplier))
+                {
+                    continue;
+                }
+
+                // create decal renderer
+                sceneObject.AddComponent<ClientComponentTerrainDecalRenderer>()
+                           .Setup(decal, position);
+
+                // remember which layer is occupied now to prevent other decals in it
+                switch (decal.DrawOrder)
+                {
+                    case DrawOrder.GroundDecals:
+                        hasDecalLayerDefault = true;
+                        break;
+                    case DrawOrder.GroundDecalsUnder:
+                        hasDecalLayerUnder = true;
+                        break;
+                    case DrawOrder.GroundDecalsOver:
+                        hasDecalLayerOver = true;
+                        break;
                 }
             }
         }

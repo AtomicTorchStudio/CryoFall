@@ -83,7 +83,7 @@
             var restrictedZone = ZoneSpecialConstructionRestricted.Instance
                                                                   .ServerZoneInstance;
             if (restrictedZone.IsContainsPosition(
-                worldObject.OccupiedTile.NeighborTileDownLeft.Position))
+                    worldObject.OccupiedTile.NeighborTileDownLeft.Position))
             {
                 // this is a public Oil pump or Lithium extractor
                 // should not decay
@@ -399,7 +399,7 @@
             {
                 Logger.Dev($"Changing active state for {data.GameObject}: {data.PublicState.IsActive} -> {isActive}");
             }*/
-            
+
             data.PublicState.IsActive = isActive;
 
             LiquidContainerSystem.UpdateWithManufacturing(

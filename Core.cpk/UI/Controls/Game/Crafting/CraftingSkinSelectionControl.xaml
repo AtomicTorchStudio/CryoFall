@@ -12,7 +12,8 @@
                       mc:Ignorable="d"
                       d:DesignHeight="300" d:DesignWidth="300"
                       d:DataContext="{d:DesignInstance data:ViewModelCraftingSkinSelectionControl}">
-    <Grid Visibility="{Binding DataContext.IsVisible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=LayoutRoot}">
+    <Grid
+        Visibility="{Binding DataContext.IsVisible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=LayoutRoot}">
         <core:WidgetPanel InnerGlowSize="7"
                           VisibilityBackgroundImage="Collapsed"
                           WidgetBackground="{StaticResource WindowBackgroundBrush}" />
@@ -96,8 +97,33 @@
 
                                         <!-- Tooltip -->
                                         <base:ToolTipServiceExtend.ToolTip>
-                                            <TextBlock Text="{Binding Title}"
-                                                       FontWeight="Bold" />
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.ColumnSpan="2"
+                                                           Text="{Binding Title}"
+                                                           FontWeight="Bold"
+                                                           Margin="0,0,0,3" />
+
+                                                <Control Grid.Row="1"
+                                                         Grid.Column="0"
+                                                         Visibility="{Binding HasSkinCustomEffects, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                         Style="{StaticResource ControlInfoPointStyle}"
+                                                         VerticalAlignment="Top" />
+                                                <core:FormattedTextBlock Grid.Row="1"
+                                                                         Grid.Column="1"
+                                                                         Text="{x:Static loc:CoreStrings.Skin_HasDecorativeEffects}"
+                                                                         Visibility="{Binding HasSkinCustomEffects, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                                         Foreground="{StaticResource BrushColorAltLabelForeground}"
+                                                                         MaxWidth="240"
+                                                                         Margin="4,0,0,0" />
+                                            </Grid>
                                         </base:ToolTipServiceExtend.ToolTip>
                                     </Border>
                                 </ControlTemplate>

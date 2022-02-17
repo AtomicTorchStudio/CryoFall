@@ -16,7 +16,7 @@
 
         public override double AutoAggroNotificationDistance => 0;
 
-        public override float CharacterWorldHeight => 2.0f;
+        public override float CharacterWorldHeight => 1.65f;
 
         public override double CorpseInteractionAreaScale => 1.1;
 

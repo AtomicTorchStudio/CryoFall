@@ -81,6 +81,14 @@
 
         public static readonly int AtlasPlasmaOriginX = 34;
 
+        public static readonly TextureAtlasResource AtlasPoison
+            = new("FX/MuzzleFlash/AtlasPoison",
+                  columns: 6,
+                  rows: 2,
+                  isTransparent: true);
+
+        public static readonly int AtlasPoisonOriginX = 34;
+
         /// <summary>
         /// Used for primitive rifles such as musket.
         /// </summary>

@@ -117,6 +117,7 @@
                                                .ToList();
 
             this.SkinsFeatured = allSkins.Where(vm => vm.DiscountPercent > 0
+                                                      && !vm.IsOwned
                                                       && vm.SkinsPool == SkinsPool.InAppPurchase)
                                          .ToList();
 

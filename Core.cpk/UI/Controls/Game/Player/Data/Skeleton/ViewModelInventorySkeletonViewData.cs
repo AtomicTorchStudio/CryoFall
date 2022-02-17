@@ -239,7 +239,8 @@
                                                             this.character,
                                                             this.protoCharacterSkeleton,
                                                             this.skeletonRenderer,
-                                                            skeletonComponents);
+                                                            skeletonComponents,
+                                                            isPreview: true);
 
                 if (overrideProtoItemInHand is IProtoItemWeapon protoItemWeapon)
                 {

@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 곰
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+북극곰
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 검은 딱정벌레
 
@@ -9,6 +12,15 @@ Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 모래 폭군
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+군체 벌레
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+군체 수호충
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+군체 둥지
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 땅굴벌레
@@ -90,6 +102,9 @@ Scripts/Characters/Mobs/MobWildBoar@Name:
 
 Scripts/Characters/Mobs/MobWolf@Name:
 늑대
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+북극 늑대
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 플레이어 캐릭터

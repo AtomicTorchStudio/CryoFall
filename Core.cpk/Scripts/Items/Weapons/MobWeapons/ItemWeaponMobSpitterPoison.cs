@@ -10,7 +10,6 @@
     using AtomicTorch.CBND.GameApi.Data.Weapons;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.GameEngine.Common.Helpers;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ItemWeaponMobSpitterPoison : ProtoItemMobWeaponRanged
     {
@@ -27,8 +26,6 @@
         public override double FireAnimationDuration => 0.3;
 
         public override double FireInterval => 1.5;
-
-        protected override Vector2D? MuzzleFlashTextureOffset => (210, 50); 
 
         public override (float min, float max) SoundPresetWeaponDistance
             => (SoundConstants.AudioListenerMinDistanceRangedShot + 3,
@@ -74,6 +71,12 @@
         protected override WeaponFireTracePreset PrepareFireTracePreset()
         {
             return WeaponFireTracePresets.MobPoisonBig;
+        }
+
+        protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
+        {
+            description.Set(MuzzleFlashPresets.PoisonLarge)
+                       .Set(textureScreenOffset: (70, 60));
         }
 
         protected override void PrepareProtoWeaponRanged(

@@ -119,11 +119,11 @@
             if (!dropTilePosition.HasValue)
             {
                 if (ClientTryDropItemToGroundContainerNearby(
-                    character.Tile,
-                    itemToDrop,
-                    countToDrop,
-                    out dropTilePosition,
-                    out var resultItemsContainer))
+                        character.Tile,
+                        itemToDrop,
+                        countToDrop,
+                        out dropTilePosition,
+                        out var resultItemsContainer))
                 {
                     OnSuccess(resultItemsContainer);
                     return true;

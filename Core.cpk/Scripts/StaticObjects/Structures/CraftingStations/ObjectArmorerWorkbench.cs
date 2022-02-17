@@ -6,7 +6,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectArmorerWorkbench : ProtoObjectCraftStation
     {
@@ -19,12 +18,6 @@
         public override double ObstacleBlockDamageCoef => 0.5;
 
         public override float StructurePointsMax => 1200;
-
-        public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-        {
-            return base.SharedGetObjectCenterWorldOffset(worldObject)
-                   + (0, 0.5);
-        }
 
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
@@ -59,10 +52,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle((2, 0.75), offset: (0, 0.1))
-                .AddShapeRectangle((2, 0.6), offset: (0, 0.3), group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle((2, 0.75),   offset: (0, 0.1))
+                .AddShapeRectangle((2, 0.6),    offset: (0, 0.3),   group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle((1.8, 0.25), offset: (0.1, 0.8), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle((1.8, 0.7), offset: (0.1, 0.3), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle((1.8, 0.7),  offset: (0.1, 0.3), group: CollisionGroups.ClickArea);
         }
     }
 }

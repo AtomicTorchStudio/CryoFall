@@ -22,91 +22,91 @@
 
         private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrGeothermalSpring
             = new(() => string.Format("[b]{0}[/b][br]{1}[*]{2}[*]{3}[*]{4}[*]{5}",
-                                    ConstructionTileRequirements.Error_UnsuitableGround_Title,
-                                    ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
-                                    Api.GetProtoEntity<TileForestTropical>().Name,
-                                    Api.GetProtoEntity<TileForestTemperate>().Name,
-                                    Api.GetProtoEntity<TileForestBoreal>().Name,
-                                    Api.GetProtoEntity<TileMeadows>().Name),
-                c =>
-                {
-                    if (PveSystem.SharedIsPve(true))
-                    {
-                        // no soil requirement in PvE
-                        return true;
-                    }
+                                      ConstructionTileRequirements.Error_UnsuitableGround_Title,
+                                      ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
+                                      Api.GetProtoEntity<TileForestTropical>().Name,
+                                      Api.GetProtoEntity<TileForestTemperate>().Name,
+                                      Api.GetProtoEntity<TileForestBoreal>().Name,
+                                      Api.GetProtoEntity<TileMeadows>().Name),
+                  c =>
+                  {
+                      if (PveSystem.SharedIsPve(true))
+                      {
+                          // no soil requirement in PvE
+                          return true;
+                      }
 
-                    foreach (var obj in c.Tile.StaticObjects)
-                    {
-                        if (obj.ProtoStaticWorldObject is ObjectDepositGeothermalSpring)
-                        {
-                            return true;
-                        }
-                    }
+                      foreach (var obj in c.Tile.StaticObjects)
+                      {
+                          if (obj.ProtoStaticWorldObject is ObjectDepositGeothermalSpring)
+                          {
+                              return true;
+                          }
+                      }
 
-                    var protoTile = c.Tile.ProtoTile;
-                    return protoTile is TileForestTropical
-                           || protoTile is TileForestTemperate
-                           || protoTile is TileForestBoreal
-                           || protoTile is TileMeadows;
-                });
+                      var protoTile = c.Tile.ProtoTile;
+                      return protoTile is TileForestTropical
+                             || protoTile is TileForestTemperate
+                             || protoTile is TileForestBoreal
+                             || protoTile is TileMeadows;
+                  });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherExtractor
             = new(ErrorTooCloseToAnotherExtractor,
-                c =>
-                {
-                    if (PveSystem.SharedIsPve(false))
-                    {
-                        // no distance limit in PvE
-                        return true;
-                    }
+                  c =>
+                  {
+                      if (PveSystem.SharedIsPve(false))
+                      {
+                          // no distance limit in PvE
+                          return true;
+                      }
 
-                    var startPosition = c.StartTilePosition;
-                    var objectsInBounds = SharedFindObjectsNearby<IProtoObjectStructure>(startPosition);
-                    foreach (var obj in objectsInBounds)
-                    {
-                        if (ReferenceEquals(obj, c.ObjectToRelocate))
-                        {
-                            continue;
-                        }
+                      var startPosition = c.StartTilePosition;
+                      var objectsInBounds = SharedFindObjectsNearby<IProtoObjectStructure>(startPosition);
+                      foreach (var obj in objectsInBounds)
+                      {
+                          if (ReferenceEquals(obj, c.ObjectToRelocate))
+                          {
+                              continue;
+                          }
 
-                        switch (obj.ProtoStaticWorldObject)
-                        {
-                            case ProtoObjectLithiumOreExtractor:
-                                // found another extractor nearby
-                                return false;
+                          switch (obj.ProtoStaticWorldObject)
+                          {
+                              case ProtoObjectLithiumOreExtractor:
+                                  // found another extractor nearby
+                                  return false;
 
-                            case ProtoObjectConstructionSite
-                                when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
-                                         ProtoObjectLithiumOreExtractor:
-                                // found a blueprint for another extractor nearby
-                                return false;
-                        }
-                    }
+                              case ProtoObjectConstructionSite
+                                  when ProtoObjectConstructionSite.SharedGetConstructionProto(obj) is
+                                           ProtoObjectLithiumOreExtractor:
+                                  // found a blueprint for another extractor nearby
+                                  return false;
+                          }
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDeposit
             = new(Error_CannotBuildTooCloseToDeposit,
-                c =>
-                {
-                    var startPosition = c.StartTilePosition;
-                    var objectsInBounds = SharedFindObjectsNearby<ObjectDepositGeothermalSpring>(startPosition);
-                    foreach (var obj in objectsInBounds)
-                    {
-                        if (startPosition == obj.TilePosition)
-                        {
-                            // can build right over the source
-                            continue;
-                        }
+                  c =>
+                  {
+                      var startPosition = c.StartTilePosition;
+                      var objectsInBounds = SharedFindObjectsNearby<ObjectDepositGeothermalSpring>(startPosition);
+                      foreach (var obj in objectsInBounds)
+                      {
+                          if (startPosition == obj.TilePosition)
+                          {
+                              // can build right over the source
+                              continue;
+                          }
 
-                        // found a deposit nearby but not right under it - cannot build too close to a deposit
-                        return false;
-                    }
+                          // found a deposit nearby but not right under it - cannot build too close to a deposit
+                          return false;
+                      }
 
-                    return true;
-                });
+                      return true;
+                  });
 
         public override byte ContainerInputSlotsCount => 0;
 
@@ -157,7 +157,7 @@
                      c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                               c.Tile,
                               t => t.PhysicsBody.IsStatic
-                                   && t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject 
+                                   && t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
                                        is not ObjectDepositGeothermalSpring))
                 .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
                      c => c.Tile.StaticObjects.All(

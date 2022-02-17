@@ -439,7 +439,7 @@
                 {
                     var associatedWorldObject = testResult.PhysicsBody.AssociatedWorldObject;
                     if ((associatedWorldObject is not null
-                        && associatedWorldObject.IsStatic)
+                         && associatedWorldObject.IsStatic)
                         || testResult.PhysicsBody.AssociatedProtoTile is not null)
                     {
                         isValidTile = false;

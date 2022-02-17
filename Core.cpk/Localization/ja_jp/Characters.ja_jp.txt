@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 クマ
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+ホッキョクグマ
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 ブラックビートル
 
@@ -9,6 +12,15 @@ Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 サンドタイラント
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+ブルードドローン
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+ブルードガーディアン
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+ブルードネスト
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 穴掘虫
@@ -90,6 +102,9 @@ Scripts/Characters/Mobs/MobWildBoar@Name:
 
 Scripts/Characters/Mobs/MobWolf@Name:
 オオカミ
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+ホッキョクオオカミ
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 プレイヤー

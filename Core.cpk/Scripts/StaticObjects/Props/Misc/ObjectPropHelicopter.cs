@@ -35,7 +35,7 @@
 
             AddHalfHeightWallHitboxes(data, width: 1.1, offsetX: 0.7, offsetY: 0.15);
             AddHalfHeightWallHitboxes(data, width: 1,   offsetX: 1.6, offsetY: 0.5);
-            AddHalfHeightWallHitboxes(data, width: 0.4,   offsetX: 2.6, offsetY: 0.65);
+            AddHalfHeightWallHitboxes(data, width: 0.4, offsetX: 2.6, offsetY: 0.65);
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Ours
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+Ours polaire
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Scarabée noir
 
@@ -9,6 +12,15 @@ Reine du pragmium
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 Tyran des sables
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+Drone grouilleur
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+Gardien grouilleur
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+Nid de grouilleurs
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 Enfouisseur
@@ -90,6 +102,9 @@ Cochon sauvage
 
 Scripts/Characters/Mobs/MobWolf@Name:
 Loup
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+Loup polaire
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 Personnage joueur

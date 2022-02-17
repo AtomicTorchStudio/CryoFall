@@ -16,13 +16,13 @@
 
             // stumps
             var stumps = spawnList.CreatePreset(interval: 20, padding: 1.5)
-                                  .Add<ObjectTreeStump>()
-                                  .Add<ObjectTreeStumpWithTwig>()
+                                  .AddExact<ObjectTreeStump>()
+                                  .AddExact<ObjectTreeStumpWithTwig>()
                                   .SetCustomPaddingWithSelf(15);
 
             // fallen tree
             var fallenTree = spawnList.CreatePreset(interval: 40, padding: 2)
-                                      .Add<ObjectTreeFallen>()
+                                      .AddExact<ObjectTreeFallen>()
                                       .SetCustomPaddingWithSelf(25)
                                       .SetCustomPaddingWith(stumps, 10);
         }

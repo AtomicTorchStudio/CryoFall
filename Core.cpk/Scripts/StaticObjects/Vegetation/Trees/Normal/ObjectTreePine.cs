@@ -11,9 +11,9 @@
 
     public class ObjectTreePine : ProtoObjectTree
     {
-        public override double TreeHeight => 2.2;
-
         public override string Name => "Spruce tree";
+
+        public override double TreeHeight => 2.2;
 
         protected override TimeSpan TimeToMature => TimeSpan.FromHours(2);
 
@@ -40,7 +40,7 @@
 
             // saplings drop (requires skill)
             droplist
-                .Add<ItemSaplingPine>(condition: SkillLumbering.ConditionGetSapplings, count: 1, probability: 0.1)
+                .Add<ItemSaplingPine>(condition: SkillLumbering.ConditionGetSapplings,      count: 1, probability: 0.1)
                 .Add<ItemSaplingPine>(condition: SkillLumbering.ConditionGetExtraSapplings, count: 1, probability: 0.1);
         }
 

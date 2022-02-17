@@ -262,6 +262,9 @@ Cosaque
 Scripts/Items/Base/SkinName@Cowboy:
 Cow-boy
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 Camouflage désert
 
@@ -289,17 +292,23 @@ Camouflage forêt
 Scripts/Items/Base/SkinName@Graphene:
 Graphène
 
+Scripts/Items/Base/SkinName@Halloween:
+Halloween
+
 Scripts/Items/Base/SkinName@Hardened:
 Endurci
 
-Scripts/Items/Base/SkinName@Halloween:
-Halloween
+Scripts/Items/Base/SkinName@Hive:
+Ruche
 
 Scripts/Items/Base/SkinName@Holidays:
 Fêtes
 
 Scripts/Items/Base/SkinName@Hunter:
 Chasseur
+
+Scripts/Items/Base/SkinName@Hypnotic:
+Hypnotique
 
 Scripts/Items/Base/SkinName@Iridium:
 Iridium
@@ -343,6 +352,9 @@ Nomade
 Scripts/Items/Base/SkinName@Pantheon:
 Panthéon
 
+Scripts/Items/Base/SkinName@Paradox:
+Paradoxe
+
 Scripts/Items/Base/SkinName@Phoenix:
 Phénix
 
@@ -352,8 +364,14 @@ Pirate
 Scripts/Items/Base/SkinName@Primitive:
 Primitif
 
+Scripts/Items/Base/SkinName@Prototype:
+Prototype
+
 Scripts/Items/Base/SkinName@Puffer:
 Matelassé
+
+Scripts/Items/Base/SkinName@RedLine:
+Ligne rouge
 
 Scripts/Items/Base/SkinName@RedMarble:
 Rouge marbré
@@ -372,6 +390,9 @@ Rubis
 
 Scripts/Items/Base/SkinName@Sapphire:
 Saphir
+
+Scripts/Items/Base/SkinName@Scar:
+Cicatrice
 
 Scripts/Items/Base/SkinName@Shaman:
 Chaman
@@ -408,6 +429,9 @@ Vaudou
 
 Scripts/Items/Base/SkinName@Wasp:
 Guêpe
+
+Scripts/Items/Base/SkinName@Zenith:
+Zénith
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Journalisation de données (chiffré)
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Armure en cuir
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-Chapeau en cuir
+Casque de cuir
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 Une armure en métal offre une excellente protection contre les attaques physiques, mais quasiment aucune protection contre les dangers environnementaux.
@@ -963,6 +987,12 @@ Peut être utilisée dans diverses recettes.
 
 Scripts/Items/Food/ItemDough@Name:
 Pâte à pain
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+Un café en canette extra-fort. Contient 5 fois plus de caféine !
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+Canette de café
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Une boisson énergétique populaire à travers toute la galaxie. Octroie un sérieux regain d'énergie.
@@ -2596,35 +2626,17 @@ Un pistolet conçu pour être utilisé avec des munitions de 10mm.
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 Pistolet 10 mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 Le pistolet laser émet des rafales rapides d'énergie lumineuse concentrée brûlant la cible.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 Pistolet laser
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
 Le fusil laser émet de puissantes rafales d'énergie lumineuse concentrée, principalement dans le spectre de l'infrarouge, brûlant la cible. Offre une portée bien plus importante que le pistolet laser.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 Fusil laser
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-Le fusil à plasma forme et projette de gros paquets de plasma concentré qui brûlent sévèrement la cible à l'impact en infligeant de terribles dommages. Très gourmand en énergie.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-Fusil à plasma
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-Une arme exotique qui projette de petites créatures de la taille d'un insecte en direction de l'ennemi plutôt que de tirer des balles.
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-Lance-essaim
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-Une arme exotique qui utilise de la kénerite liquéfiée pour générer et tirer une puissante toxine en direction des ennemis.
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-Proliférateur de toxine
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 Une mitrailleuse lourde conçue pour être utilisée avec de puissantes munitions de 7,62mm.
@@ -2643,6 +2655,12 @@ Un mousquet à l'ancienne, qui utilise des cartouches en papier. Offre une meill
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 Mousquet
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+Le fusil à plasma forme et projette de gros paquets de plasma concentré qui brûlent sévèrement la cible à l'impact en infligeant de terribles dommages. Très gourmand en énergie.
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+Fusil à plasma
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 Une arme à feu à répétition dotée d'un barillet rotatif qui contient les munitions.
@@ -2691,6 +2709,18 @@ Une mitraillette conçue pour être utilisée avec des munitions de 10mm.
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 Mitraillette
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+Une arme exotique qui projette de petites créatures de la taille d'un insecte en direction de l'ennemi plutôt que de tirer des balles.
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+Lance-essaim
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+Une arme exotique qui utilise de la kénerite liquéfiée pour générer et tirer une puissante toxine en direction des ennemis.
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+Proliférateur de toxine
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Un canon automatique lourd conçu pour les points d'attache des bras des armures de combat mécanisées. Utilise des munitions de gros calibre de type anti-matériel.

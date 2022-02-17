@@ -257,7 +257,7 @@
             }
 
             if (weaponCache.ProtoWeapon is not null
-                    and not IProtoItemWeaponMelee)
+                and not IProtoItemWeaponMelee)
             {
                 // hit but not damaged - only melee weapons (including pickaxes can damage this)
                 obstacleBlockDamageCoef = this.ObstacleBlockDamageCoef;

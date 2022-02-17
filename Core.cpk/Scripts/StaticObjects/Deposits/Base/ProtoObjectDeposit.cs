@@ -119,8 +119,8 @@
             this.ClientSetupRenderer(clientState.Renderer);
 
             if (data.GameObject.OccupiedTile.StaticObjects.Any(
-                o => o.ProtoStaticWorldObject is IProtoObjectExtractor
-                     && !o.IsDestroyed))
+                    o => o.ProtoStaticWorldObject is IProtoObjectExtractor
+                         && !o.IsDestroyed))
             {
                 // there are other static objects so don't create structure points bar and hide the renderer
                 clientState.Renderer.IsEnabled = false;

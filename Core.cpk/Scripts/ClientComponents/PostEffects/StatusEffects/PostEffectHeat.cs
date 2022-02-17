@@ -5,9 +5,6 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components.Camera;
     using AtomicTorch.CBND.GameApi.ServicesClient.Rendering;
 
-    /// <summary>
-    /// Heat post effect.
-    /// </summary>
     public class PostEffectHeat : BasePostEffect
     {
         private static readonly EffectResource EffectResource

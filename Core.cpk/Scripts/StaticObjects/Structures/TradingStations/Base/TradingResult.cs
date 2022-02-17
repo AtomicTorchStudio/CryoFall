@@ -44,7 +44,7 @@
 
         [Description(CoreStrings.Item_CheckTooLowFreshness)]
         ErrorTooLowFreshness = 57,
-        
+
         ErrorItemPrototypeMismatch = 58
     }
 }

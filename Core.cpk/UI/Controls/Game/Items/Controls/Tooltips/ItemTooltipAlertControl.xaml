@@ -1,0 +1,41 @@
+﻿<base:BaseUserControl
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips.ItemTooltipAlertControl"
+    x:Name="UserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300"
+    Margin="0,0,100,3"
+    HorizontalAlignment="Left"
+    Opacity="0.8">
+    <!-- The 100 right margin is necessary to not overflow the item icon in the item tooltip -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Control Style="{StaticResource ControlExclamationPointStyle}"
+                 Width="11"
+                 Height="11"
+                 FontSize="11"
+                 Margin="-1,-0.5,0,0"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left" />
+
+        <core:FormattedTextBlock
+            Grid.Column="2"
+            Content="{Binding Text, ElementName=UserControl}"
+            Foreground="{StaticResource BrushColorRed7}"
+            FontSize="11"
+            LineHeight="12"
+            LineStackingStrategy="BlockLineHeight"
+            TextWrapping="Wrap" />
+    </Grid>
+
+</base:BaseUserControl>

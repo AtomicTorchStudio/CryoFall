@@ -16,7 +16,7 @@
 
             // small shrubs
             spawnList.CreatePreset(interval: 20, padding: 2)
-                     .Add<ObjectSmallThornyShrub>();
+                     .AddExact<ObjectSmallThornyShrub>();
         }
     }
 }

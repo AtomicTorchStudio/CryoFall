@@ -4,7 +4,6 @@
 
     public class ObjectPropWallBunkerCornerBL : ProtoObjectProp
     {
-
         protected override void CreateLayout(StaticObjectLayout layout)
         {
             layout.Setup("##",
@@ -17,6 +16,5 @@
             AddRectangleWithHitboxes(data, size: (1.6, 2.0), offset: (0.4, 0));
             AddRectangleWithHitboxes(data, size: (1.2, 1.0), offset: (0.4, 2));
         }
-
     }
 }

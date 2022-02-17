@@ -1,6 +1,5 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.CraftingStations
 {
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Systems.InteractionChecker;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting;
     using AtomicTorch.CBND.GameApi.Data.Characters;

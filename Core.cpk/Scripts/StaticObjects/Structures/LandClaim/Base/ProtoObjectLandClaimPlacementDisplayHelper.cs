@@ -291,7 +291,7 @@
             List<RectangleInt> result)
         {
             foreach (var landClaim in
-                Api.Client.World.GetStaticWorldObjectsOfProto<IProtoObjectLandClaim>())
+                     Api.Client.World.GetStaticWorldObjectsOfProto<IProtoObjectLandClaim>())
             {
                 var protoObjectLandClaim = (IProtoObjectLandClaim)landClaim.ProtoGameObject;
                 var landClaimCenterPosition = LandClaimSystem

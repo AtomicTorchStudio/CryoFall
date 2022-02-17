@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 외계
 
+Scripts/Tiles/TileArctic@Name:
+북극
+
 Scripts/Tiles/TileBarren@Name:
 불모지
 

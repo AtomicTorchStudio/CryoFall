@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Decorations
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;

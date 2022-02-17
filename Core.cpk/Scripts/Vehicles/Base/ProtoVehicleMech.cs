@@ -158,8 +158,8 @@
                     protoItemWithCharacterAppearance.ClientSetupSkeleton(
                         item: null,
                         character: null,
-                        (ProtoCharacterSkeleton)protoSkeleton,
-                        skeletonRenderer,
+                        protoCharacterSkeleton: (ProtoCharacterSkeleton)protoSkeleton,
+                        skeletonRenderer: skeletonRenderer,
                         skeletonComponents: new List<IClientComponent>());
                 }
             }

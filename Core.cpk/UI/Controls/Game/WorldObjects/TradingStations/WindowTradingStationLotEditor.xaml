@@ -215,25 +215,10 @@
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-
-                    <!-- Text: Quantity -->
-                    <TextBlock Grid.Row="0"
-                               Grid.Column="0"
-                               Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_Quantity}" />
-                    <TextBox Grid.Row="0"
-                             Grid.Column="2"
-                             Text="{Binding LotQuantity, UpdateSourceTrigger=PropertyChanged}"
-                             MaxLength="4"
-                             Visibility="{Binding IsProtoItemStackable, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
-                    <TextBlock Grid.Row="0"
-                               Grid.Column="2"
-                               Text="{Binding LotQuantity}"
-                               Visibility="{Binding IsProtoItemStackable, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}"
-                               VerticalAlignment="Center"
-                               Margin="7,0,0,0" />
-
-                    <StackPanel Grid.Row="1"
+                    
+                    <StackPanel Grid.Row="0"
                                 Grid.Column="0"
                                 Orientation="Horizontal"
                                 Background="Transparent"
@@ -243,12 +228,12 @@
                         <TextBlock Text=" " />
                         <Rectangle Fill="{Binding IconCoinShiny}" UseLayoutRounding="True" Width="18" Height="18" />
                     </StackPanel>
-                    <TextBox Grid.Row="1"
+                    <TextBox Grid.Row="0"
                              Grid.Column="2"
                              Text="{Binding PriceCoinShiny, UpdateSourceTrigger=PropertyChanged}"
-                             MaxLength="3" />
+                             MaxLength="4" />
 
-                    <StackPanel Grid.Row="2"
+                    <StackPanel Grid.Row="1"
                                 Grid.Column="0"
                                 Orientation="Horizontal"
                                 Background="Transparent"
@@ -258,13 +243,38 @@
                         <TextBlock Text=" " />
                         <Rectangle Fill="{Binding IconCoinPenny}" UseLayoutRounding="True" Width="18" Height="18" />
                     </StackPanel>
-                    <TextBox Grid.Row="2"
+                    <TextBox Grid.Row="1"
                              Grid.Column="2"
                              Text="{Binding PriceCoinPenny, UpdateSourceTrigger=PropertyChanged}"
-                             MaxLength="3" />
+                             MaxLength="4" />
+                    
+                    <!-- Text: Quantity -->
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="{x:Static loc:CoreStrings.WindowTradingStationLotEditor_Quantity}" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="2"
+                             Text="{Binding LotQuantity, UpdateSourceTrigger=PropertyChanged}"
+                             MaxLength="4"
+                             Visibility="{Binding IsProtoItemStackable, Converter={StaticResource BoolToHiddenVisibilityConverter}}" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="2"
+                               Text="{Binding LotQuantity}"
+                               Visibility="{Binding IsProtoItemStackable, Converter={StaticResource BoolToHiddenVisibilityConverter}, ConverterParameter=Reverse}"
+                               VerticalAlignment="Center"
+                               Margin="7,0,0,0" />
+                    
+                    <Slider Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Value="{Binding LotQuantity}"
+                            Minimum="1"
+                            Maximum="{Binding LotQuantityMax}"
+                            Visibility="{Binding IsProtoItemStackable, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Margin="-15,-3,-8,0" />
 
                     <ContentControl
-                        Grid.Row="3"
+                        Grid.Row="4"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
                         Visibility="{Binding IsStationBuying, Converter={StaticResource BoolToVisibilityConverter}}"

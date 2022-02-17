@@ -1846,7 +1846,7 @@ UI/CoreStrings@Skin_AccessLimitedEdition:
 Visual de edição limitada (indisponível atualmente).
 
 UI/CoreStrings@Skin_AccessSupporterPack:
-Disponível como parte do pacote de apoiador.
+Disponível como parte do Supporter Pack.
 
 UI/CoreStrings@Skin_AccessUnlockByPlaying:
 Libera ao jogar o jogo.
@@ -1854,8 +1854,14 @@ Libera ao jogar o jogo.
 UI/CoreStrings@Skin_Default:
 Padrão
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+Conta com efeitos visuais e sonoros únicos, ou outras características decorativas exclusivas.
+
 UI/CoreStrings@Skin_NotOwned:
 Você não tem esse visual.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+Nota: este visual não será personalizado porque você não tem o Supporter Pack de CryoFall.
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 Procurar visuais
@@ -1983,6 +1989,12 @@ Confirmar e-mail
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `Criação da conta AtomicTorch.com
 [br](para seu Steam ID).`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Ative o painel Steam na aba Em jogo, no painel de Configurações do Cliente, e depois reinicie.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+O painel Steam não está disponível
 
 UI/CoreStrings@SupporterPack_Badge:
 Insígnia de apoiador

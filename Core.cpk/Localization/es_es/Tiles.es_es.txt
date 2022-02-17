@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 Alienígena
 
+Scripts/Tiles/TileArctic@Name:
+Ártico
+
 Scripts/Tiles/TileBarren@Name:
 Árido
 

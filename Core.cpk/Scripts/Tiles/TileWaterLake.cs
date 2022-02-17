@@ -8,7 +8,7 @@
     {
         private TileWaterLakeBridge bridgeProtoTile;
 
-        public override byte BlendOrder => byte.MaxValue;
+        public override byte BlendOrder => 201;
 
         public override IProtoTileWater BridgeProtoTile
             => this.bridgeProtoTile

@@ -262,6 +262,9 @@ Kozak
 Scripts/Items/Base/SkinName@Cowboy:
 Kowboj
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 Kamu pustynny
 
@@ -289,17 +292,23 @@ Kamu leśny
 Scripts/Items/Base/SkinName@Graphene:
 Grafen
 
+Scripts/Items/Base/SkinName@Halloween:
+Halloween
+
 Scripts/Items/Base/SkinName@Hardened:
 Utwardzony
 
-Scripts/Items/Base/SkinName@Halloween:
-Halloween
+Scripts/Items/Base/SkinName@Hive:
+Rój
 
 Scripts/Items/Base/SkinName@Holidays:
 Gwiazdka
 
 Scripts/Items/Base/SkinName@Hunter:
 Łowca
+
+Scripts/Items/Base/SkinName@Hypnotic:
+Hipnotyczny
 
 Scripts/Items/Base/SkinName@Iridium:
 Irydium
@@ -343,6 +352,9 @@ Nomada
 Scripts/Items/Base/SkinName@Pantheon:
 Pantheon
 
+Scripts/Items/Base/SkinName@Paradox:
+Paradoks
+
 Scripts/Items/Base/SkinName@Phoenix:
 Feniks
 
@@ -352,8 +364,14 @@ Pirat
 Scripts/Items/Base/SkinName@Primitive:
 Prymitywne
 
+Scripts/Items/Base/SkinName@Prototype:
+Prototyp
+
 Scripts/Items/Base/SkinName@Puffer:
 Puchówka
+
+Scripts/Items/Base/SkinName@RedLine:
+Z czerwoną linią
 
 Scripts/Items/Base/SkinName@RedMarble:
 Czerwony marmur
@@ -372,6 +390,9 @@ Rubin
 
 Scripts/Items/Base/SkinName@Sapphire:
 Szafir
+
+Scripts/Items/Base/SkinName@Scar:
+Szrama
 
 Scripts/Items/Base/SkinName@Shaman:
 Szaman
@@ -408,6 +429,9 @@ Voodoo
 
 Scripts/Items/Base/SkinName@Wasp:
 Osa
+
+Scripts/Items/Base/SkinName@Zenith:
+Zenit
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Dziennik danych (zaszyfrowany)
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Skórzany pancerz
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-Czapka skórzana
+Hełm skórzany
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 Metalowy pancerz zapewnia doskonałą ochronę przed atakami fizycznymi, ale prawie nie chroni przed zagrożeniami środowiskowymi.
@@ -963,6 +987,12 @@ Można używać w wielu przepisach.
 
 Scripts/Items/Food/ItemDough@Name:
 Ciasto
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+Wyjątkowo mocna kawa w puszce. Teraz zawiera 5X więcej kofeiny.
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+Kawa w puszce
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Napój energetyczny popularny w całej galaktyce. Daje zdrowego kopa.
@@ -2596,35 +2626,17 @@ Pistolet przystosowany do amunicji 10 mm.
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 Pistolet 10 mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 Pistolet laserowy emituje bardzo częste, wysokoenergetyczne impulsy świetlne, które potrafią spopielić cel.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 Pistolet laserowy
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
 Karabin laserowy emituje potężne, wysokoenergetyczne impulsy świetlne, głównie w zakresie podczerwieni, które potrafią spopielić cel. Zapewnia znacznie większy zasięg niż pistolet laserowy.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 Karabin laserowy
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-Karabin plazmowy strzela dużymi skoncentrowanymi ładunkami plazmowymi, które poważnie spalają cel po trafieniu, zadając olbrzymie obrażenia. Bardzo wysoki pobór mocy.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-Karabin plazmowy
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-Egzotyczna broń, która zamiast pocisków wystrzeliwuje małe owadopodobne stworzenia.
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-Miotacz roju
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-Egzotyczna broń, która wystrzeliwuje silną truciznę produkowaną na bazie upłynnionego kainitu.
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-Proliferator toksyn
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 Ciężki karabin maszynowy przystosowany do amunicji .300.
@@ -2643,6 +2655,12 @@ Staroświecki muszkiet na ładunki papierowe. Zapewnia większy zasięg i obraż
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 Muszkiet
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+Karabin plazmowy strzela dużymi skoncentrowanymi ładunkami plazmowymi, które poważnie spalają cel po trafieniu, zadając olbrzymie obrażenia. Bardzo wysoki pobór mocy.
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+Karabin plazmowy
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 Prosty pistolet powtarzalny z obrotowym magazynkiem na amunicję.
@@ -2691,6 +2709,18 @@ Pistolet maszynowy przystosowany do amunicji 10 mm.
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 Pistolet maszynowy
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+Egzotyczna broń, która zamiast pocisków wystrzeliwuje małe owadopodobne stworzenia.
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+Miotacz roju
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+Egzotyczna broń, która wystrzeliwuje silną truciznę produkowaną na bazie upłynnionego kainitu.
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+Proliferator toksyn
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Ciężkie działko automatyczne przeznaczone do montażu węźle uzbrojenia na bojowych pancerzach wspomaganych. Wykorzystuje wielkokalibrową amunicję przeciwpancerną.

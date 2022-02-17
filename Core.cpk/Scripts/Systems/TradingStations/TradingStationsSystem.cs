@@ -546,7 +546,7 @@
                 if (lot.ProtoItem is null
                     || !(lot.PriceCoinPenny > 0 || lot.PriceCoinShiny > 0)
                     || lot.LotQuantity < 1
-                    || lot.LotQuantity > TradingStationLot.MaxLotQuantity)
+                    || lot.LotQuantity > lot.ProtoItem.MaxItemsPerStack)
                 {
                     lot.CountAvailable = 0;
                     lot.ItemOnSale = null;

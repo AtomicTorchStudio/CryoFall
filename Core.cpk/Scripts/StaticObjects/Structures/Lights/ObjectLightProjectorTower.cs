@@ -125,10 +125,10 @@
         protected override void SharedCreatePhysics(CreatePhysicsData data)
         {
             data.PhysicsBody
-                .AddShapeRectangle(size: (0.8, 0.6), offset: (0.1, 0.1))
-                .AddShapeRectangle(size: (0.5, 1.0), offset: (0.25, 0.3), group: CollisionGroups.HitboxMelee)
-                .AddShapeRectangle(size: (0.5, 0.3), offset: (0.25, 0.95), group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3), group: CollisionGroups.ClickArea);
+                .AddShapeRectangle(size: (0.8, 0.6),  offset: (0.1, 0.1))
+                .AddShapeRectangle(size: (0.5, 1.0),  offset: (0.25, 0.3),  group: CollisionGroups.HitboxMelee)
+                .AddShapeRectangle(size: (0.5, 0.3),  offset: (0.25, 0.95), group: CollisionGroups.HitboxRanged)
+                .AddShapeRectangle(size: (0.5, 1.25), offset: (0.25, 0.3),  group: CollisionGroups.ClickArea);
         }
 
         public class ClientState : ObjectLightClientState

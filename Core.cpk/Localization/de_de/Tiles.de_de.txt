@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 Außerirdisch
 
+Scripts/Tiles/TileArctic@Name:
+Arktisch
+
 Scripts/Tiles/TileBarren@Name:
 Ödland
 

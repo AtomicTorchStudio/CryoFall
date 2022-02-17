@@ -67,6 +67,14 @@
             defense.Psi = 0.45 / defense.Multiplier;
         }
 
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+
+            var key = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
+            hints.Add(string.Format(ItemHints.HelmetLightAndNightVision, InputKeyNameHelper.GetKeyText(key)));
+        }
+
         protected override void PrepareProtoItemEquipmentHeadWithLight(
             ItemLightConfig lightConfig,
             ItemFuelConfig fuelConfig)
@@ -83,14 +91,6 @@
         {
             return ItemsSoundPresets.ItemGeneric.Clone()
                                     .Replace(ItemSound.Use, "Items/Equipment/UseNightVision");
-        }
-
-        protected override void PrepareHints(List<string> hints)
-        {
-            base.PrepareHints(hints);
-
-            var key = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
-            hints.Add(string.Format(ItemHints.HelmetLightAndNightVision, InputKeyNameHelper.GetKeyText(key)));
         }
     }
 }

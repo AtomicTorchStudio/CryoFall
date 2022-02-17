@@ -68,9 +68,9 @@
             void CollectVehicles(CollisionGroup collisionGroup)
             {
                 foreach (var testResult in vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
-                    position: noObstaclesBounds.Offset,
-                    size: noObstaclesBounds.Size,
-                    collisionGroup: collisionGroup).EnumerateAndDispose())
+                             position: noObstaclesBounds.Offset,
+                             size: noObstaclesBounds.Size,
+                             collisionGroup: collisionGroup).EnumerateAndDispose())
                 {
                     if (testResult.PhysicsBody.AssociatedWorldObject is IDynamicWorldObject dynamicWorldObject
                         && dynamicWorldObject.ProtoGameObject is IProtoVehicle)
@@ -107,9 +107,9 @@
             bool HasObstacles(CollisionGroup collisionGroup)
             {
                 foreach (var testResult in vehicleAssemblyBay.PhysicsBody.PhysicsSpace.TestRectangle(
-                    position: noObstaclesBounds.Offset,
-                    size: noObstaclesBounds.Size,
-                    collisionGroup: collisionGroup).EnumerateAndDispose())
+                             position: noObstaclesBounds.Offset,
+                             size: noObstaclesBounds.Size,
+                             collisionGroup: collisionGroup).EnumerateAndDispose())
                 {
                     if (testResult.PhysicsBody.AssociatedWorldObject == vehicleAssemblyBay)
                     {

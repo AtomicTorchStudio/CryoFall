@@ -1856,8 +1856,14 @@ Oyunu oynayarak kilidini aç.
 UI/CoreStrings@Skin_Default:
 Olağan
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+Bu skin'de eşsiz görsel, sessel efektler veya başka dekoratif özellikler bulunabilir.
+
 UI/CoreStrings@Skin_NotOwned:
 Bu skine sahip değilsin.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+Not: Bu skin'i sadece CryoFall Destekleyici Paketi sahipleri alabilir. Bu skin karakterinizin görünüşünü değiştirmeyecek çünkü Destekleyici Paketi'ne sahip değilsiniz.
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 Skinler arasında gez
@@ -1985,6 +1991,12 @@ E-postayı doğrula
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com hesap kaydı
 [br](Steam ID'niz için)`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Steam Oturumunda Steam Arayüzünü aktif edin ve oyunu yeniden başlatın.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+Steam Arayüzü kullanılamaz
 
 UI/CoreStrings@SupporterPack_Badge:
 Destekçi rozeti

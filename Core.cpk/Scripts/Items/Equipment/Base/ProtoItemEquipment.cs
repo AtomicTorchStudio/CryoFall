@@ -132,18 +132,7 @@
 
             folders.Add($"Characters/Equipment/{this.ShortId}");
         }
-
-        protected bool ClientIsMustUseDefaultAppearance(ICharacter character, bool isPreview)
-        {
-            // currently the game will not apply Supporter Pack skins for players that don't own Supporter Pack
-            return this.IsSkin
-                   && (!isPreview || !CraftingSkinPreviewControl.IsDisplayed)
-                   && character is not null
-                   && !character.IsNpc
-                   && Client.Microtransactions.GetSkinData((ushort)this.SkinId).Pool == SkinsPool.SupporterPack
-                   && !PlayerCharacter.GetPublicState(character).IsSupporterPackOwner;
-        }
-
+    
         protected override void ClientTooltipCreateControlsInternal(IItem item, List<UIElement> controls)
         {
             controls.Add(

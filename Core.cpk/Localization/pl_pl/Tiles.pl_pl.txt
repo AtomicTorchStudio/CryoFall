@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 Obca
 
+Scripts/Tiles/TileArctic@Name:
+Arktyczne
+
 Scripts/Tiles/TileBarren@Name:
 Jałowa gleba
 

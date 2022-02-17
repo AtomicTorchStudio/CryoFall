@@ -35,6 +35,5 @@
         {
             effects.AddPercent(this, StatName.WeaponMeleeDamageBonusMultiplier, 25);
         }
-
     }
 }

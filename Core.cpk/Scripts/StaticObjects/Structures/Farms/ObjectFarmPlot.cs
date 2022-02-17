@@ -36,7 +36,9 @@
             = new("Terrain/Field/WetField.png");
 
         protected override ITextureResource PrepareDefaultTexture(Type thisType)
-            => this.Texture;
+        {
+            return this.Texture;
+        }
 
         protected override void PrepareFarmPlotConstructionConfig(
             ConstructionTileRequirements tileRequirements,

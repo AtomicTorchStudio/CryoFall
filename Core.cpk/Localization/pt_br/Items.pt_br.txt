@@ -262,6 +262,9 @@ Cossaco
 Scripts/Items/Base/SkinName@Cowboy:
 Caubói
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 Camuflagem de deserto
 
@@ -289,17 +292,23 @@ Camuflagem de floresta
 Scripts/Items/Base/SkinName@Graphene:
 Grafeno
 
+Scripts/Items/Base/SkinName@Halloween:
+Halloween
+
 Scripts/Items/Base/SkinName@Hardened:
 Endurecido
 
-Scripts/Items/Base/SkinName@Halloween:
-Halloween
+Scripts/Items/Base/SkinName@Hive:
+Colmeia
 
 Scripts/Items/Base/SkinName@Holidays:
 Natal
 
 Scripts/Items/Base/SkinName@Hunter:
 Caçador
+
+Scripts/Items/Base/SkinName@Hypnotic:
+Hipnótica
 
 Scripts/Items/Base/SkinName@Iridium:
 Irídio
@@ -343,6 +352,9 @@ Nômade
 Scripts/Items/Base/SkinName@Pantheon:
 Panteão
 
+Scripts/Items/Base/SkinName@Paradox:
+Paradoxo
+
 Scripts/Items/Base/SkinName@Phoenix:
 Fênix
 
@@ -352,8 +364,14 @@ Pirata
 Scripts/Items/Base/SkinName@Primitive:
 Primitivo
 
+Scripts/Items/Base/SkinName@Prototype:
+Protótipo
+
 Scripts/Items/Base/SkinName@Puffer:
 Acolchoado
+
+Scripts/Items/Base/SkinName@RedLine:
+Linha vermelha
 
 Scripts/Items/Base/SkinName@RedMarble:
 Mármore escarlate
@@ -372,6 +390,9 @@ Rubi
 
 Scripts/Items/Base/SkinName@Sapphire:
 Safira
+
+Scripts/Items/Base/SkinName@Scar:
+Cicatriz
 
 Scripts/Items/Base/SkinName@Shaman:
 Xamã
@@ -408,6 +429,9 @@ Vodu
 
 Scripts/Items/Base/SkinName@Wasp:
 Vespa
+
+Scripts/Items/Base/SkinName@Zenith:
+Zênite
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Registro de dados (criptografado)
@@ -551,7 +575,7 @@ Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 Casaco de pele
 
 Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
-Chapéu felpudo
+Elmo de pele
 
 Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 Um traje luxuoso de ouro. Digno de grandes soberanos.
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 Armadura de couro
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-Chapéu de couro
+Elmo de couro
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 A armadura de metal oferece uma ótima proteção contra ataques físicos, mas praticamente não protege contra riscos ambientais.
@@ -963,6 +987,12 @@ Pode ser usada na cozinha para diversas receitas.
 
 Scripts/Items/Food/ItemDough@Name:
 Massa
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+Café em lata extraforte. Agora com 5x mais cafeína.
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+Café em lata
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Bebida energética popular na galáxia inteira. É altamente estimulante.
@@ -2596,35 +2626,17 @@ Pistola criada para utilizar cartuchos de 10 mm.
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 Pistola 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 A pistola laser dispara rápidos pulsos de luz de alta energia que queimam o alvo.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 Pistola laser
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
-O fuzil laser dispara fortes pulsos de luz de alta energia, predominantemente infravermelha, que queimam o alvo. Oferece um alcance de tiro muito maior do que a da pistola laser.
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
+O fuzil laser emite pulsos de luz com alta energia, sendo a maioria dentro do espectro infravermelho, que queimam o alvo. Tem um alcance maior do que a pistola laser.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 Fuzil laser
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-O fuzil de plasma forma e dispara grandes concentrações de plasma que queimam gravemente o alvo, causando muito dano. Consumo de energia muito alto.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-Fuzil de plasma
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-Arma exótica que lança criaturinhas semelhantes a insetos nos inimigos em vez de balas.
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-Lança-enxames
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-Arma exótica que usa a cainita liquefeita para criar e lançar uma toxina potente nos inimigos.
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-Proliferador de toxinas
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 Metralhadora pesada criada para utilizar poderosos cartuchos de calibre .300.
@@ -2643,6 +2655,12 @@ Mosquete estilo antigo. Usa cartucho de papel. Oferece dano e alcance superiores
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 Mosquete
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+O fuzil de plasma forma e dispara grandes concentrações de plasma que queimam gravemente o alvo, causando muito dano. Consumo de energia muito alto.
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+Fuzil de plasma
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 Uma arma de fogo de repetição simples com um cilindro giratório que acomoda a munição.
@@ -2691,6 +2709,18 @@ Submetralhadora criada para utilizar cartuchos de 10 mm.
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 Submetralhadora
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+Arma exótica que lança criaturinhas semelhantes a insetos nos inimigos em vez de balas.
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+Lança-enxames
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+Arma exótica que usa a cainita liquefeita para criar e lançar uma toxina potente nos inimigos.
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+Propagador de toxinas
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Canhão automático pesado desenvolvido para ser montado nos acoplamentos da armadura de combate mecanizada. Usa munição de calibre grosso e antimaterial.

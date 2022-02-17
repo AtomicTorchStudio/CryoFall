@@ -34,7 +34,7 @@
                 { Left | Top | Bottom, new Chunks(no,   no, 2,  0,  no, no) },
                 { Right | Top | Bottom, new Chunks(no,  no, 1,  0,  no, no) },
                 { Left | Right | Top, new Chunks(1,     2,  no, no, no, no) },
-                { Left | Right | Bottom, new Chunks(no, no, no, no, 1,  3) },
+                { Left | Right | Bottom, new Chunks(no, no, no, no, 1,  3) }
                 // four side neighbors - no need for outline textures
             };
         }

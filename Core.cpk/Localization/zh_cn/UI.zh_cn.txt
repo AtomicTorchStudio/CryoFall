@@ -1855,8 +1855,14 @@ UI/CoreStrings@Skin_AccessUnlockByPlaying:
 UI/CoreStrings@Skin_Default:
 默认
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+此皮肤有着独特视觉效果和音效，或其他独占特征。
+
 UI/CoreStrings@Skin_NotOwned:
 您尚未拥有此皮肤。
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+注：此皮肤仅向CryoFall支持者包的所有者开放。因为您尚未拥有CryoFall支持者包，此皮肤将不会在您的角色身上显示。
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 浏览皮肤
@@ -1984,6 +1990,12 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_ConfirmEmail:
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com已注册
 [br](为您的SteamID)。`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+请在Steam设置中启用本游戏的SteamUI覆盖，并重启游戏。
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+SteamUI覆盖不可用。
 
 UI/CoreStrings@SupporterPack_Badge:
 支援徽章

@@ -84,12 +84,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             void ProcessExplosionDirection(int xOffset, int yOffset)
             {
                 foreach (var (damagedObject, offsetIndex) in
-                    SharedEnumerateExplosionBombermanDirectionTilesWithTargets(positionEpicenter,
-                                                                               damageDistanceFullDamage,
-                                                                               damageDistanceMax,
-                                                                               world,
-                                                                               xOffset,
-                                                                               yOffset))
+                         SharedEnumerateExplosionBombermanDirectionTilesWithTargets(positionEpicenter,
+                             damageDistanceFullDamage,
+                             damageDistanceMax,
+                             world,
+                             xOffset,
+                             yOffset))
                 {
                     if (damagedObject is null)
                     {
@@ -145,7 +145,8 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             bool isDamageThroughObstacles,
             Func<double, double> callbackCalculateDamageCoefByDistanceForStaticObjects,
             Func<double, double> callbackCalculateDamageCoefByDistanceForDynamicObjects,
-            [CanBeNull] CollisionGroup[] collisionGroups = null)
+            [CanBeNull] CollisionGroup[] collisionGroups = null,
+            Func<IWorldObject, bool> filterCanDamage = null)
         {
             var playerCharacterSkills = weaponFinalCache.Character?.SharedGetSkills();
             var protoWeaponSkill = playerCharacterSkills is not null
@@ -192,6 +193,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     if (damagedObject?.ProtoWorldObject is not IDamageableProtoWorldObject)
                     {
                         // non-damageable world object
+                        continue;
+                    }
+
+                    if (filterCanDamage is not null
+                        && !filterCanDamage.Invoke(damagedObject))
+                    {
                         continue;
                     }
 
@@ -247,6 +254,12 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                         if (tileObject.PhysicsBody.HasAnyShapeCollidingWithGroup(defaultCollisionGroup))
                         {
                             // has a collider colliding with the collision group so we ignore this
+                            continue;
+                        }
+
+                        if (filterCanDamage is not null
+                            && !filterCanDamage.Invoke(tileObject))
+                        {
                             continue;
                         }
 
@@ -526,7 +539,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
             CollisionGroup collisionGroup)
         {
             if (physicsBody.AssociatedWorldObject?.ProtoWorldObject
-                    is not IProtoStaticWorldObject protoStaticWorldObject)
+                is not IProtoStaticWorldObject protoStaticWorldObject)
             {
                 return physicsBody.ClampPointInside(
                     positionEpicenter,
@@ -630,7 +643,7 @@ namespace AtomicTorch.CBND.CoreMod.Systems.Weapons
                     }
 
                     if (testWorldObject.ProtoWorldObject
-                            is IDamageableProtoWorldObject { ObstacleBlockDamageCoef: < 1 })
+                        is IDamageableProtoWorldObject { ObstacleBlockDamageCoef: < 1 })
                     {
                         // damage goes through
                         continue;

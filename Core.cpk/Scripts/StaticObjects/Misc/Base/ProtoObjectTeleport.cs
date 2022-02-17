@@ -110,7 +110,7 @@
                 }
 
                 if (worldObject.GetPublicState<VehiclePublicState>().PilotCharacter
-                        is not null)
+                    is not null)
                 {
                     // the vehicle has a pilot
                     continue;

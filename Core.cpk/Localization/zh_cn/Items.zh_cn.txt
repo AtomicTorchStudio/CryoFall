@@ -262,6 +262,9 @@ Scripts/Items/Base/SkinName@Cossack:
 Scripts/Items/Base/SkinName@Cowboy:
 牛仔
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 沙漠迷彩
 
@@ -289,17 +292,23 @@ Scripts/Items/Base/SkinName@ForestCamo:
 Scripts/Items/Base/SkinName@Graphene:
 石墨烯
 
+Scripts/Items/Base/SkinName@Halloween:
+万圣节
+
 Scripts/Items/Base/SkinName@Hardened:
 硬化
 
-Scripts/Items/Base/SkinName@Halloween:
-万圣节
+Scripts/Items/Base/SkinName@Hive:
+母巢
 
 Scripts/Items/Base/SkinName@Holidays:
 节日
 
 Scripts/Items/Base/SkinName@Hunter:
 猎人
+
+Scripts/Items/Base/SkinName@Hypnotic:
+催眠
 
 Scripts/Items/Base/SkinName@Iridium:
 铱元素
@@ -343,6 +352,9 @@ Scripts/Items/Base/SkinName@Nomad:
 Scripts/Items/Base/SkinName@Pantheon:
 万神殿
 
+Scripts/Items/Base/SkinName@Paradox:
+悖论
+
 Scripts/Items/Base/SkinName@Phoenix:
 凤凰
 
@@ -352,8 +364,14 @@ Scripts/Items/Base/SkinName@Pirate:
 Scripts/Items/Base/SkinName@Primitive:
 原始
 
+Scripts/Items/Base/SkinName@Prototype:
+实验
+
 Scripts/Items/Base/SkinName@Puffer:
 河豚
+
+Scripts/Items/Base/SkinName@RedLine:
+红线
 
 Scripts/Items/Base/SkinName@RedMarble:
 红大理石
@@ -372,6 +390,9 @@ Scripts/Items/Base/SkinName@Ruby:
 
 Scripts/Items/Base/SkinName@Sapphire:
 蓝宝石
+
+Scripts/Items/Base/SkinName@Scar:
+疤痕
 
 Scripts/Items/Base/SkinName@Shaman:
 萨满
@@ -408,6 +429,9 @@ Scripts/Items/Base/SkinName@Voodoo:
 
 Scripts/Items/Base/SkinName@Wasp:
 黄蜂
+
+Scripts/Items/Base/SkinName@Zenith:
+天顶星
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 数据记录(加密)
@@ -551,7 +575,7 @@ Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 皮大衣
 
 Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
-皮毛帽
+皮毛头盔
 
 Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 豪华的金衣。配得上真正的统治者。
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 皮革盔甲
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-皮帽
+皮革头盔
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 金属盔甲提供高物理防御力， 但几乎没有任何环境保护能力。
@@ -963,6 +987,12 @@ Scripts/Items/Food/ItemDough@Description:
 
 Scripts/Items/Food/ItemDough@Name:
 面团
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+醇厚的罐装咖啡。五倍咖啡因。
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+罐装咖啡
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 能量饮料在整个宇宙都很受欢迎。让你能量充沛。
@@ -2596,35 +2626,17 @@ Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 手枪 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 激光手枪能射出高能射线并灼烧目标。
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 激光手枪
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
 激光步枪能够射出高能射线并灼烧目标。比激光手枪距离更远。
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 激光步枪
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-电浆步枪能够射出电浆团并灼烧目标造成大量伤害。超高能量消耗。
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-电浆步枪
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-向敌人发射昆虫弹药的异星武器。
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-虫群发射器
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-将液态翠铜转化为强力毒素并向敌人射出的异星武器。
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-剧毒增生
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 使用.300弹药的重型机枪。
@@ -2643,6 +2655,12 @@ Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 火枪
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+电浆步枪能够射出电浆团并灼烧目标造成大量伤害。超高能量消耗。
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+电浆步枪
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 简单的连发手枪，拥有转轮结构承载多发弹药。
@@ -2691,6 +2709,18 @@ Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 冲锋枪
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+向敌人发射昆虫弹药的异星武器。
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+虫群发射器
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+将液态翠铜转化为强力毒素并向敌人射出的异星武器。
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+剧毒增生
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 为战斗装甲设计的手持重型自动加农炮。使用大口径反器材弹药。

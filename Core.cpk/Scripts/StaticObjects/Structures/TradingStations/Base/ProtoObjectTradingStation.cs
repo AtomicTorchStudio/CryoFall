@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.TradingStations
 {
     using System.Linq;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.TradingStations;
@@ -162,7 +161,7 @@
                 lot.ClientSubscribe(_ => _.ItemOnSale,
                                     _ => RefreshAppearance(),
                                     data.ClientState);
-                
+
                 lot.ClientSubscribe(_ => _.ProtoItem,
                                     _ => RefreshAppearance(),
                                     data.ClientState);

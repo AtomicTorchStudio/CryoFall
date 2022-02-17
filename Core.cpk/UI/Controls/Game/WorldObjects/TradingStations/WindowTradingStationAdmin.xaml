@@ -23,9 +23,17 @@
                     FontSize="12"
                     FontWeight="Bold"
                     FontFamily="{StaticResource CondensedFontFamily}">
+                    
+            <!-- Text: Stock -->
+            <TabItem Header="{x:Static loc:CoreStrings.WindowTradingStationAdmin_Stock}"
+                     IsSelected="True">
+                <Grid Margin="0,5">
+                    <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelStockContainerExchange}" />
+                </Grid>
+            </TabItem>
 
             <!-- Text: Lot config -->
-            <TabItem Header="{x:Static loc:CoreStrings.WindowTradingStationAdmin_LotConfig}" IsSelected="True">
+            <TabItem Header="{x:Static loc:CoreStrings.WindowTradingStationAdmin_LotConfig}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -130,13 +138,6 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </Grid>
-            </TabItem>
-
-            <!-- Text: Stock -->
-            <TabItem Header="{x:Static loc:CoreStrings.WindowTradingStationAdmin_Stock}">
-                <Grid Margin="0,5">
-                    <controls:ItemsContainerExchangeControl DataContext="{Binding ViewModelStockContainerExchange}" />
                 </Grid>
             </TabItem>
 

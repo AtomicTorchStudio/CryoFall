@@ -85,6 +85,33 @@
                 spriteDrawOrder: DrawOrder.Light + 1,
                 soundsCuesNumber: 6);
 
+        public static readonly ExplosionPreset KeiniteBroodNest
+            = ExplosionPreset.CreatePreset(
+                protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),
+                serverDamageApplyDelay: 0.8 * 0.25,
+                soundSetPath: "Explosions/ExplosionLarge",
+                spriteAnimationDuration: 0.9,
+                spriteSetPath: "FX/Explosions/ExplosionLarge2",
+                spriteAtlasColumns: 8,
+                spriteAtlasRows: 3,
+                spriteWorldSize: new Size2F(3.5, 3.5),
+                blastwaveDelay: 0.1,
+                blastwaveAnimationDuration: 0.6,
+                blastWaveColor: Color.FromRgb(0x99, 0xFF, 0x33),
+                blastwaveWorldSizeFrom: 0.25 * new Size2F(3, 2),
+                blastwaveWorldSizeTo: 1 * new Size2F(3,      2),
+                lightDuration: 1,
+                lightWorldSize: 35,
+                lightColor: Color.FromRgb(0xBB, 0xFF, 0x66),
+                screenShakesDuration: 0.2,
+                screenShakesWorldDistanceMin: 0.2,
+                screenShakesWorldDistanceMax: 0.25,
+                spriteColorAdditive: Color.FromRgb(0x00,       0x22, 0x00),
+                spriteColorMultiplicative: Color.FromRgb(0xCC, 0xFF, 0xAA),
+                spriteBrightness: 1.33,
+                spriteDrawOrder: DrawOrder.Light + 1,
+                soundsCuesNumber: 6);
+
         public static readonly ExplosionPreset KeiniteSmall
             = ExplosionPreset.CreatePreset(
                 protoObjectCharredGround: Api.GetProtoEntity<ObjectCharredGround1>(),

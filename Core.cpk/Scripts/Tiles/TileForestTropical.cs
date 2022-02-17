@@ -144,50 +144,28 @@
             // add fern decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/ForestTropical/Fern*",
-                                   size: (1, 1),
+                                   // these are 2x2 to prevent placing them right next to each other
+                                   size: (2, 2),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
-                                   noiseSelector: new CombinedNoiseSelector(
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 854712138)),
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 907512642)),
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 893146123)))));
+                                   noiseSelector: new NoiseSelector(
+                                       from: 0.8,
+                                       to: 1,
+                                       noise: new WhiteNoise(seed: 854712138))));
 
             // add flower decal
             settings.AddDecal(
                 new ProtoTileDecal("Terrain/ForestTropical/JungleFlower*",
-                                   size: (1, 1),
+                                   // these are 2x2 to prevent placing them right next to each other
+                                   size: (2, 2),
+                                   // the offset is useful to make flowers appear right next to fern
+                                   offset: (1, 1),
                                    drawOrder: DrawOrder.GroundDecalsOver,
                                    hidingSetting: DecalHidingSetting.AnyObject,
-                                   noiseSelector: new CombinedNoiseSelector(
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 654352413)),
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 219301646)),
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 1283912642)),
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 1283917341)),
-                                       new NoiseSelector(
-                                           from: 0.99,
-                                           to: 1,
-                                           noise: new WhiteNoise(seed: 858366412)))));
+                                   noiseSelector: new NoiseSelector(
+                                       from: 0.6,
+                                       to: 1,
+                                       noise: new WhiteNoise(seed: 654352413))));
         }
     }
 }

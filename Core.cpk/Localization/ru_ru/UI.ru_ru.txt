@@ -1848,8 +1848,14 @@ UI/CoreStrings@Skin_AccessUnlockByPlaying:
 UI/CoreStrings@Skin_Default:
 По умолчанию
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+Этот скин обладает уникальным визуальным эффектом, звуковым эффектом или другими эксклюзивными особенностями.
+
 UI/CoreStrings@Skin_NotOwned:
 У вас нет этого скина.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+`Внимание: этот скин доступен только владельцам "Набора поддержки CryoFall". Этот скин не придаст уникальный образ вашему персонажу, так как вы не владеете "Набором поддержки".`
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 Посмотреть скины
@@ -1977,6 +1983,12 @@ UI/CoreStrings@SteamAccountRegisterOrLinkForm_ConfirmEmail:
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `Регистрация учетной записи AtomicTorch.com
 [br](для вашего Steam ID).`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Пожалуйста, включите оверлей Steam в настройках игры клиента Steam и перезагрузите игру.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+Оверлей Steam не доступен
 
 UI/CoreStrings@SupporterPack_Badge:
 Значок фаната

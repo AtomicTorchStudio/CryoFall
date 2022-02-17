@@ -1,8 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Props.Bunker
 {
-    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
-    using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ObjectPropBunkerBSlope : ProtoObjectProp
     {

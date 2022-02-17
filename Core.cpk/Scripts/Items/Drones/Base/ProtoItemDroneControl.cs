@@ -72,7 +72,8 @@
             ICharacter character,
             ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false)
         {
             // item in hand and animation disabled
             return;

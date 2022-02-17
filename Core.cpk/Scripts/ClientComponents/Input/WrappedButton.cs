@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class WrappedButton<TButton> : IWrappedButton
+    public class WrappedButton<TButton> : IWrappedButton
         where TButton : struct, Enum
     {
         private static readonly Dictionary<TButton, WrappedButton<TButton>> WrappedButtons

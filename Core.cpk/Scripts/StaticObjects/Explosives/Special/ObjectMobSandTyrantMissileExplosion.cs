@@ -6,6 +6,7 @@
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects;
     using AtomicTorch.CBND.CoreMod.CharacterStatusEffects.Debuffs;
     using AtomicTorch.CBND.CoreMod.Items.Weapons.MobWeapons;
+    using AtomicTorch.CBND.CoreMod.Systems.Physics;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Special;
     using AtomicTorch.CBND.CoreMod.Vehicles;
@@ -38,6 +39,8 @@
 
         public override bool IsDamageThroughObstacles => true;
 
+        public override bool IsExplosionDelaySkippedOnDamage => false;
+
         public override StaticObjectKind Kind => StaticObjectKind.SpecialAllowDecals;
 
         [NotLocalizable]
@@ -60,8 +63,25 @@
                 callbackCalculateDamageCoefByDistanceForDynamicObjects: this
                     .ServerCalculateDamageCoefByDistanceForDynamicObjects,
                 // Missiles are falling from the sky and the explosion circles are clearly designated.
-                // Players expecting that they will be not damaged when they stand outside the circles. 
-                collisionGroups: new[] { CollisionGroup.Default });
+                // Players are expecting that they will be not damaged when they stand outside the circles. 
+                collisionGroups: new[] { CollisionGroups.Default });
+
+            // this is only for hoverboards as hoverboards on the ground have no physical collider
+            WeaponExplosionSystem.ServerProcessExplosionCircle(
+                positionEpicenter: positionEpicenter,
+                physicsSpace: physicsSpace,
+                damageDistanceMax: this.DamageRadius,
+                weaponFinalCache: weaponFinalCache,
+                damageOnlyDynamicObjects: true,
+                isDamageThroughObstacles: this.IsDamageThroughObstacles,
+                callbackCalculateDamageCoefByDistanceForStaticObjects:
+                this.ServerCalculateDamageCoefByDistanceForStaticObjects,
+                callbackCalculateDamageCoefByDistanceForDynamicObjects: this
+                    .ServerCalculateDamageCoefByDistanceForDynamicObjects,
+                // this is only for hoverboards 
+                collisionGroups: new[] { CollisionGroups.HitboxMelee },
+                // can damage only hoverboards
+                filterCanDamage: worldObject => worldObject.ProtoGameObject is IProtoVehicleHoverboard);
         }
 
         public override void ServerOnObjectHitByExplosion(

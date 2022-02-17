@@ -151,8 +151,8 @@
             }
 
             if (worldObject.OccupiedTile.EightNeighborTiles.Any(
-                tile => tile.StaticObjects.Any(
-                    o => o.ProtoStaticWorldObject is ObjectMineralPragmiumSource)))
+                    tile => tile.StaticObjects.Any(
+                        o => o.ProtoStaticWorldObject is ObjectMineralPragmiumSource)))
             {
                 // cannot destroy - there is a Pragmium Source nearby
                 ServerRestartDestroyTimer(privateState);

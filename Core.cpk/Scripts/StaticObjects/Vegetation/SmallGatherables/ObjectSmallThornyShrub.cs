@@ -49,10 +49,6 @@
                     size: (0.5, 0.6),
                     group: CollisionGroups.HitboxMelee)
                 .AddShapeRectangle(
-                    offset: (0.25, 0.2),
-                    size: (0.5, 0.6),
-                    group: CollisionGroups.HitboxRanged)
-                .AddShapeRectangle(
                     offset: (0.1, 0.1),
                     size: (0.8, 0.9),
                     group: CollisionGroups.ClickArea);

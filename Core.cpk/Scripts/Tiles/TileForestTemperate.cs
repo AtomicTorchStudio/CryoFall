@@ -21,18 +21,6 @@
             = new("Terrain/ForestTemperate/TileForest3.jpg",
                   isTransparent: false);
 
-        //public AmbientSoundPreset AdditiveAmbientSoundResourceDayTrees { get; }
-        //    = new AmbientSoundPreset(new SoundResource("Ambient/TemperateForest"));
-
-        //public AmbientSoundPreset AdditiveAmbientSoundResourceNightTrees { get; }
-        //    = new AmbientSoundPreset(new SoundResource("Ambient/TemperateForestNight"));
-
-        //public  AmbientSoundPreset AmbientSoundResourceDay { get; }
-        //    = new AmbientSoundPreset(new SoundResource("Ambient/TemperatePlains"));
-
-        //public AmbientSoundPreset AmbientSoundResourceNight { get; }
-        //    = new AmbientSoundPreset(new SoundResource("Ambient/TemperatePlainsNight"));
-
         public override byte BlendOrder => 8;
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Vegetation;

@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Bär
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+Eisbär
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Schwarzer Käfer
 
@@ -9,6 +12,15 @@ Pragmiumkönigin
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 Sandtyrann
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+Brutdrohne
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+Brutwächter
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+Brutnest
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 Erdgräber
@@ -90,6 +102,9 @@ Wildschwein
 
 Scripts/Characters/Mobs/MobWolf@Name:
 Wolf
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+Polarwolf
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 Spielcharakter

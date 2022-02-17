@@ -17,6 +17,8 @@
 
         public override bool IsActivatesRaidBlock => false;
 
+        public override bool IsExplosionDelaySkippedOnDamage => false;
+
         // resource deposit (oil seep, geothermal spring, etc) explosion
         public override string Name => "Deposit explosion";
 

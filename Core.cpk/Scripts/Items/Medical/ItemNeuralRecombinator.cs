@@ -23,9 +23,6 @@
             @"You have used this item recently.
               [br]Please wait {0} until you can use this item again.";
 
-        private static readonly double ServerCooldownSeconds
-            = TimeSpan.FromDays(4).TotalSeconds;
-
         private static Dictionary<ICharacter, double> serverLastItemUseTimeByCharacter;
 
         public override double CooldownDuration => MedicineCooldownDuration.None;
@@ -38,6 +35,11 @@
         public override double MedicalToxicity => 0;
 
         public override string Name => "Neural recombinator";
+
+        private static double ServerCooldownSeconds
+            => Server.Core.IsLocalServer
+                   ? TimeSpan.FromHours(4).TotalSeconds
+                   : TimeSpan.FromDays(1).TotalSeconds;
 
         protected override bool ClientItemUseFinish(ClientItemData data)
         {

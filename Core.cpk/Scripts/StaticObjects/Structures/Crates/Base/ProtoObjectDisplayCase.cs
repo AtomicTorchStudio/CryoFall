@@ -57,7 +57,8 @@
             {
                 var component = (ClientComponentDisplayCaseSlotRenderer)c;
                 component.RendererShowcaseItem.PositionOffset += (0, primaryRenderer.PositionOffset.Y);
-                component.RendererShowcaseItem.DrawOrderOffsetY += primaryRenderer.DrawOrderOffsetY - this.ShowcaseItemRendererOffset.Y;
+                component.RendererShowcaseItem.DrawOrderOffsetY +=
+                    primaryRenderer.DrawOrderOffsetY - this.ShowcaseItemRendererOffset.Y;
                 component.Refresh();
             }
         }

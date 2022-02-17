@@ -60,7 +60,7 @@
 
         public override double ReadyDelayDuration => WeaponReadyDelays.DefaultRanged;
 
-        public virtual double SkeletonPreviewOffsetX 
+        public virtual double SkeletonPreviewOffsetX
             => this.MuzzleFlashDescription.TextureScreenOffset.X; // use the muzzle flash location as the barrel length
 
         public override (float min, float max) SoundPresetWeaponDistance

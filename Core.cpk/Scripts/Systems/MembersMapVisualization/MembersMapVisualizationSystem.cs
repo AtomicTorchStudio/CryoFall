@@ -112,20 +112,20 @@
             }
 
             var partyMembers = PartySystem.ClientGetCurrentPartyMembers();
-            var privateFactionMembers = FactionSystem.ClientCurrentFaction is not null
-                                        && FactionSystem.ClientCurrentFactionKind != FactionKind.Public
-                                            ? FactionSystem.ClientGetCurrentFactionMembers()
-                                            : Array.Empty<FactionMemberEntry>();
+            var factionMembers = FactionSystem.ClientCurrentFaction is not null
+                                     /*&& FactionSystem.ClientCurrentFactionKind != FactionKind.Public*/
+                                     ? FactionSystem.ClientGetCurrentFactionMembers()
+                                     : Array.Empty<FactionMemberEntry>();
 
             if (partyMembers.Count <= 1
-                && privateFactionMembers.Count <= 1)
+                && factionMembers.Count <= 1)
             {
                 return;
             }
 
             if (data.Length
-                != (Math.Max(partyMembers.Count,            1)
-                    + Math.Max(privateFactionMembers.Count, 1)
+                != (Math.Max(partyMembers.Count,     1)
+                    + Math.Max(factionMembers.Count, 1)
                     - 2))
             {
                 // incorrect data - doesn't match the current members list (excluding the current player)
@@ -151,7 +151,7 @@
                                  (entry.Position + worldOffset).ToVector2Ushort()));
             }
 
-            foreach (var factionMemberEntry in privateFactionMembers)
+            foreach (var factionMemberEntry in factionMembers)
             {
                 var factionMemberName = factionMemberEntry.Name;
                 if (factionMemberName == currentCharacterName)
@@ -216,22 +216,21 @@
         {
             var partyMembers = PartySystem.ServerGetPartyMembersReadOnly(character);
             var faction = FactionSystem.ServerGetFaction(character);
-            var privateFactionMembers = faction is not null
-                                        && Faction.GetPublicState(faction).Kind != FactionKind.Public
-                                            ? FactionSystem.ServerGetFactionMembersReadOnly(faction)
-                                            : Array.Empty<FactionMemberEntry>();
+            var factionMembers = faction is not null
+                                     /*&& Faction.GetPublicState(faction).Kind != FactionKind.Public*/
+                                     ? FactionSystem.ServerGetFactionMembersReadOnly(faction)
+                                     : Array.Empty<FactionMemberEntry>();
 
             if (partyMembers.Count <= 1
-                && privateFactionMembers.Count <= 1)
+                && factionMembers.Count <= 1)
             {
                 return;
             }
 
             var currentCharacterName = character.Name;
-            var result = new NetworkPartyMemberData[
-                Math.Max(partyMembers.Count,            1)
-                + Math.Max(privateFactionMembers.Count, 1)
-                - 2];
+            var result = new NetworkPartyMemberData[Math.Max(partyMembers.Count,     1)
+                                                    + Math.Max(factionMembers.Count, 1)
+                                                    - 2];
 
             var index = 0;
             var worldOffset = Server.World.WorldBounds.Offset;
@@ -256,7 +255,7 @@
                 result[index++] = new NetworkPartyMemberData(position);
             }
 
-            foreach (var factionMemberEntry in privateFactionMembers)
+            foreach (var factionMemberEntry in factionMembers)
             {
                 var factionMemberName = factionMemberEntry.Name;
                 if (factionMemberName == currentCharacterName)

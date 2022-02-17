@@ -50,13 +50,15 @@
             ICharacter character,
             ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false)
         {
             base.ClientSetupSkeleton(item,
                                      character,
                                      protoCharacterSkeleton,
                                      skeletonRenderer,
-                                     skeletonComponents);
+                                     skeletonComponents,
+                                     isPreview);
             if (item is not null)
             {
                 this.ClientRefreshWeaponInHandSprite(item);

@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Equipment
 {
+    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering.Lighting;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
@@ -8,7 +9,6 @@
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
-    using System.Collections.Generic;
 
     public class ItemBraidedHelmetLamp : ProtoItemEquipmentHeadWithLight
     {
@@ -49,6 +49,14 @@
                 psi: 0.0);
         }
 
+        protected override void PrepareHints(List<string> hints)
+        {
+            base.PrepareHints(hints);
+
+            var key = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
+            hints.Add(string.Format(ItemHints.HelmetLightAndNightVision, InputKeyNameHelper.GetKeyText(key)));
+        }
+
         protected override void PrepareProtoItemEquipmentHeadWithLight(
             ItemLightConfig lightConfig,
             ItemFuelConfig fuelConfig)
@@ -68,14 +76,6 @@
             return ItemsSoundPresets.ItemGeneric.Clone()
                                     .Replace(ItemSound.Use,          "Items/Equipment/UseLight")
                                     .Replace(ItemSound.CannotSelect, "Items/Equipment/UseLight");
-        }
-
-        protected override void PrepareHints(List<string> hints)
-        {
-            base.PrepareHints(hints);
-
-            var key = ClientInputManager.GetKeyForButton(GameButton.HeadEquipmentLightToggle);
-            hints.Add(string.Format(ItemHints.HelmetLightAndNightVision, InputKeyNameHelper.GetKeyText(key)));
         }
     }
 }

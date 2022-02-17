@@ -171,12 +171,12 @@
                                    Vector2Ushort.Zero));
             }
 
-            var privateFactionMembers = FactionSystem.ClientCurrentFaction is not null
-                                        && FactionSystem.ClientCurrentFactionKind != FactionKind.Public
-                                            ? FactionSystem.ClientGetCurrentFactionMembers()
-                                            : Array.Empty<FactionMemberEntry>();
+            var factionMembers = FactionSystem.ClientCurrentFaction is not null
+                                     /*&& FactionSystem.ClientCurrentFactionKind != FactionKind.Public*/
+                                     ? FactionSystem.ClientGetCurrentFactionMembers()
+                                     : Array.Empty<FactionMemberEntry>();
 
-            foreach (var factionMemberEntry in privateFactionMembers)
+            foreach (var factionMemberEntry in factionMembers)
             {
                 var memberName = factionMemberEntry.Name;
                 if (memberName == currentCharacterName)

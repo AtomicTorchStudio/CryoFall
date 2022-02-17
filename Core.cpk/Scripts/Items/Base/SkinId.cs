@@ -73,14 +73,34 @@
         Machinegun300ForestCamo = 1400,
         Machinegun300Lightning = 1401,
         Machinegun300DesertCamo = 1402,
+        Machinegun300CryoFall = 1403,
 
         Rifle300Aquamarine = 1500,
         Rifle300UrbanCamo = 1501,
         Rifle300Roots = 1502,
+        Rifle300CryoFall = 1503,
 
         GrenadeLauncherMultiMagma = 1600,
         GrenadeLauncherMultiUrbanCamo = 1601,
         GrenadeLauncherMultiForestCamo = 1602,
+
+        LaserPistolParadox = 1700,
+        LaserPistolRedLine = 1701,
+        LaserPistolZenith = 1702,
+
+        PlasmaRifleLightning = 1800,
+        PlasmaRifleParadox = 1801,
+        PlasmaRifleRedMarble = 1802,
+
+        LaserRifleParadox = 1900,
+        LaserRiflePrototype = 1901,
+        LaserRifleZenith = 1902,
+
+        SwarmLauncherHive = 2000,
+        SwarmLauncherScar = 2001,
+
+        ToxinProliferatorHive = 2100,
+        ToxinProliferatorHypnotic = 2101,
 
         RapierLaserEmerald = 5000,
         RapierLaserRuby = 5001,
@@ -134,10 +154,15 @@
 
         ApartSuitExplorer = 11600,
 
+        // IMPORTANT: the following section of assault armor and helmets has incorrect identifiers.
+        // Please excercise caution when adding new skins.
         AssaultArmorSnake = 11700,
-        AssaultHelmetElite = 11701,
+        AssaultHelmetElite = 11701, // incorrect ID, it must have been a part of the helmets section, but was placed into armor section
+        AssaultArmorCryoFall = 11702,
 
         AssaultHelmetMercenary = 11800,
+        AssaultHelmetCryoFall = 11801,
+
 
         PragmiumSuitAlien = 11900,
 

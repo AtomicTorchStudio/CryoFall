@@ -5,7 +5,6 @@
 
     public class ObjectPropWallBunkerVertical : ProtoObjectProp
     {
-
         protected override void ClientSetupRenderer(IComponentSpriteRenderer renderer)
         {
             base.ClientSetupRenderer(renderer);
@@ -21,6 +20,5 @@
         {
             AddRectangleWithHitboxes(data, size: (1.2, 1.0), offset: (0.4, 0));
         }
-
     }
 }

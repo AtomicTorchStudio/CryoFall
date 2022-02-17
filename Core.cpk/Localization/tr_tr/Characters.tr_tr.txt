@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Ayı
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+Kutup ayısı
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Kara böcek
 
@@ -9,6 +12,15 @@ Pragmium Kraliçesi
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 Kum Tiranı
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+Kan dronu
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+Kuluçka koruyucusu
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+Kuluçka yuvası
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 Tünelci
@@ -90,6 +102,9 @@ Yaban domuzu
 
 Scripts/Characters/Mobs/MobWolf@Name:
 Kurt
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+Kutup kurdu
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 Oyuncu karakteri

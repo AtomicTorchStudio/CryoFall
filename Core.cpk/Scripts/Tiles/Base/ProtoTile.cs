@@ -27,9 +27,9 @@
     {
         public static readonly TextureAtlasResource TileCliffHeightEdgeMaskAtlas
             = new("Terrain/Masks/MaskHeightEdge.png",
-                columns: 4,
-                rows: 1,
-                isTransparent: true);
+                  columns: 4,
+                  rows: 1,
+                  isTransparent: true);
 
         protected static readonly TextureResource BlendMaskTextureGeneric2Smooth
             = new("Terrain/Masks/MaskGeneric2");
@@ -82,9 +82,9 @@
 
         public virtual TextureAtlasResource CliffAtlas { get; }
             = new("Terrain/Cliffs/TerrainCliffs.png",
-                columns: 6,
-                rows: 4,
-                isTransparent: true);
+                  columns: 6,
+                  rows: 4,
+                  isTransparent: true);
 
         /// <summary>
         /// Gets the texture resource used as icon in Editor toolbar.
@@ -625,9 +625,10 @@
 
             this.WorldMapTexture = SharedCreateMapTexture(this.WorldMapTexturePath);
 
-            this.groundTextures =
-                new ReadOnlyListWrapper<ProtoTileGroundTexture>(settings.GroundTextures, ensureNotChanged: false);
-            this.decals = new ReadOnlyListWrapper<ProtoTileDecal>(settings.Decals, ensureNotChanged: false);
+            this.groundTextures = new ReadOnlyListWrapper<ProtoTileGroundTexture>(settings.GroundTextures,
+                ensureNotChanged: false);
+            this.decals = new ReadOnlyListWrapper<ProtoTileDecal>(settings.Decals,
+                                                                  ensureNotChanged: false);
 
             this.EditorIconTexture = this.GetEditorIconTexture();
 
@@ -683,7 +684,7 @@
                 isFocusable: false);
         }
 
-        protected class Settings
+        public class Settings
         {
             internal readonly List<ProtoTileDecal> Decals = new();
 

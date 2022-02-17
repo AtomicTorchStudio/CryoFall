@@ -10,8 +10,6 @@
 
     public class ViewModelFactionMembersListControl : BaseViewModel
     {
-        private readonly bool isPrivateFaction;
-
         private readonly NetworkSyncList<FactionMemberEntry> membersList;
 
         private readonly FactionPrivateState privateState;
@@ -21,8 +19,6 @@
         public ViewModelFactionMembersListControl(bool sortByRole)
         {
             this.sortByRole = sortByRole;
-            this.isPrivateFaction =
-                Faction.GetPublicState(FactionSystem.ClientCurrentFaction).Kind != FactionKind.Public;
             this.privateState = Faction.GetPrivateState(FactionSystem.ClientCurrentFaction);
             this.privateState.OfficerRoleTitleBinding.ClientAnyModification
                 += this.OfficerRoleTitleBindingAnyModificationHandler;
@@ -48,11 +44,8 @@
             this.membersList.ClientElementInserted += this.MembersListElementInsertedHandler;
             this.membersList.ClientElementRemoved += this.MembersListElementRemovedHandler;
 
-            if (this.isPrivateFaction)
-            {
-                OnlinePlayersSystem.ClientPlayerAddedOrRemoved
-                    += this.OnlinePlayersSystemOnClientPlayerAddedOrRemovedHandler;
-            }
+            OnlinePlayersSystem.ClientPlayerAddedOrRemoved
+                += this.OnlinePlayersSystemOnClientPlayerAddedOrRemovedHandler;
         }
 
         public ObservableCollection<FactionMemberViewEntry> MembersList { get; }
@@ -65,11 +58,8 @@
             this.membersList.ClientElementInserted -= this.MembersListElementInsertedHandler;
             this.membersList.ClientElementRemoved -= this.MembersListElementRemovedHandler;
 
-            if (this.isPrivateFaction)
-            {
-                OnlinePlayersSystem.ClientPlayerAddedOrRemoved
-                    -= this.OnlinePlayersSystemOnClientPlayerAddedOrRemovedHandler;
-            }
+            OnlinePlayersSystem.ClientPlayerAddedOrRemoved
+                -= this.OnlinePlayersSystemOnClientPlayerAddedOrRemovedHandler;
 
             base.DisposeViewModel();
         }
@@ -81,9 +71,8 @@
         {
             this.MembersList.Add(
                 new FactionMemberViewEntry(entry,
-                                           isOnlineStatusAvailable: this.isPrivateFaction,
-                                           isOnline: this.isPrivateFaction
-                                                     && OnlinePlayersSystem.ClientIsOnline(entry.Name)));
+                                           isOnlineStatusAvailable: true,
+                                           isOnline: OnlinePlayersSystem.ClientIsOnline(entry.Name)));
             this.SortMembersList();
         }
 
@@ -143,9 +132,8 @@
             {
                 this.MembersList.Add(
                     new FactionMemberViewEntry(entry,
-                                               isOnlineStatusAvailable: this.isPrivateFaction,
-                                               isOnline: this.isPrivateFaction
-                                                         && OnlinePlayersSystem.ClientIsOnline(entry.Name)));
+                                               isOnlineStatusAvailable: true,
+                                               isOnline: OnlinePlayersSystem.ClientIsOnline(entry.Name)));
             }
         }
 

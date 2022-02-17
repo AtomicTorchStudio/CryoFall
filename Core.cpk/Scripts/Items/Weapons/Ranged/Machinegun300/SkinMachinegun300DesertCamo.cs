@@ -1,7 +1,7 @@
-﻿using AtomicTorch.GameEngine.Common.Primitives;
-
-namespace AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged
+﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged
 {
+    using AtomicTorch.GameEngine.Common.Primitives;
+
     public class SkinMachinegun300DesertCamo : ItemMachinegun300
     {
         public override string Name => SkinName.DesertCamo;

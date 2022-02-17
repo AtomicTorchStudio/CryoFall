@@ -16,7 +16,9 @@
         where TClientState : VegetationClientState, new()
     {
         public override Vector2D SharedGetObjectCenterWorldOffset(IWorldObject worldObject)
-            => (0.5, 0.15);
+        {
+            return (0.5, 0.15);
+        }
     }
 
     public abstract class ProtoObjectSmallGatherableVegetation

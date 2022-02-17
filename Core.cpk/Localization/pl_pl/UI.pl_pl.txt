@@ -1854,8 +1854,14 @@ Odblokuj, grając.
 UI/CoreStrings@Skin_Default:
 Domyśl.
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+W tej skórce zastosowano niesamowity efekt graficzny, dźwiękowy lub zawiera ona inne wyjątkowe dekoracje.
+
 UI/CoreStrings@Skin_NotOwned:
 Nie masz tej skórki.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+Uwaga: ta skórka jest dostępna tylko dla posiadaczy Pakietu fana. Nie zapewni ona żadnego niestandardowego wyglądu twojej postaci, ponieważ nie posiadasz Pakietu fana.
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 Przeglądaj skórki
@@ -1983,6 +1989,12 @@ Potwierdź e-mail
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `Rejestracja konta AtomicTorch.com
 [br](dla ID Steam).`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Włącz nakładkę Steam we właściwościach gry w kliencie Steam i ponownie uruchom grę.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+Nakładka Steam jest niedostępna
 
 UI/CoreStrings@SupporterPack_Badge:
 Odznaka fana

@@ -53,7 +53,7 @@
 
         public abstract double DamageRadius { get; }
 
-        public virtual TimeSpan ExplosionDelay { get; } = TimeSpan.FromSeconds(5);
+        public abstract TimeSpan ExplosionDelay { get; }
 
         public ExplosionPreset ExplosionPreset { get; private set; }
 
@@ -62,6 +62,12 @@
         public abstract bool IsActivatesRaidBlock { get; }
 
         public virtual bool IsDamageThroughObstacles => false;
+
+        /// <summary>
+        /// Does the explosive object should detonate immediately (skip the delay) when damaged?
+        /// It makes sense to keep it "true" for bombs and set it to "false" for some environmental explosions.
+        /// </summary>
+        public abstract bool IsExplosionDelaySkippedOnDamage { get; }
 
         public override StaticObjectKind Kind => StaticObjectKind.Structure;
 
@@ -179,7 +185,8 @@
             out double obstacleBlockDamageCoef,
             out double damageApplied)
         {
-            if (IsServer)
+            if (IsServer
+                && this.IsExplosionDelaySkippedOnDamage)
             {
                 // an explosive object was damaged
                 var privateState = GetPrivateState(targetObject);
@@ -326,9 +333,9 @@
                             }
 
                             if (c.Tile.StaticObjects.All(
-                                o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
-                                     || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
-                                     || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform))
+                                    o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                                         || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
+                                         || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform))
                             {
                                 // no static objects except floor
                                 return true;

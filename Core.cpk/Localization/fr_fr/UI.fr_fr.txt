@@ -1848,8 +1848,14 @@ Débloquez-la en jouant au jeu.
 UI/CoreStrings@Skin_Default:
 Par défaut
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+Cette skin propose un effet visuel ou sonore unique, ou un autre type d'élément décoratif exclusif.
+
 UI/CoreStrings@Skin_NotOwned:
 Vous ne possédez pas cette skin.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+Remarque : cette skin est réservée aux propriétaires du pack Supporter. Elle n'apportera pas de modification à l'apparence de votre personnage, car vous ne possédez pas le pack Supporter.
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 Parcourir les skins
@@ -1977,6 +1983,12 @@ Confirmer l'e-mail
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `Enregistrement de compte AtomicTorch.com
 [br](pour votre ID Steam).`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Veuillez activer l'overlay Steam dans les propriétés du jeu dans le client Steam, puis redémarrer le jeu.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+Overlay Steam non disponible
 
 UI/CoreStrings@SupporterPack_Badge:
 Badge Supporter

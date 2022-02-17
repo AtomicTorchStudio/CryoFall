@@ -291,11 +291,11 @@
         private static void ClientPreloadTextures()
         {
             foreach (var texture in new[]
-            {
-                TextureBase, TextureFront, TextureStage2, TextureStage3,
-                TextureStage4, TextureStage5, TextureTower,
-                TextureTowerMast1, TextureTowerMast2
-            })
+                     {
+                         TextureBase, TextureFront, TextureStage2, TextureStage3,
+                         TextureStage4, TextureStage5, TextureTower,
+                         TextureTowerMast1, TextureTowerMast2
+                     })
             {
                 Client.Rendering.PreloadTextureAsync(texture);
             }

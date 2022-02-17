@@ -1854,8 +1854,14 @@ UI/CoreStrings@Skin_AccessUnlockByPlaying:
 UI/CoreStrings@Skin_Default:
 基本
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+このスキンには独自の視覚効果や音響効果などの専用装飾が施されています。
+
 UI/CoreStrings@Skin_NotOwned:
 このスキンを所有していません。
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+注意：このスキンは、CryoFall サポーターパックをお持ちの方のみご利用いただけます。サポーターパックをお持ちでない方は、このスキンを使用してもキャラクターには適用されません。
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 スキン閲覧
@@ -1983,6 +1989,12 @@ Eメール確認
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.comのアカウント登録
 [br]（SteamID用）`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+SteamクライアントのゲームプロパティでSteamオーバーレイを有効にして、ゲームを再起動してください。
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+Steamオーバーレイが有効化されていません。
 
 UI/CoreStrings@SupporterPack_Badge:
 サポーターバッジ

@@ -4,7 +4,6 @@
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Resources;
-    using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class TileClay : ProtoTile
@@ -37,6 +36,15 @@
                     blendMaskTexture: BlendMaskTextureGeneric2Smooth,
                     noiseSelector: null));
 
+            // add clay pit decals
+            settings.AddDecal(
+                new ProtoTileDecal("Terrain/Clay/ClayPit*",
+                                   size: (2, 2),
+                                   noiseSelector: new NoiseSelector(
+                                       from: 0.95,
+                                       to: 1,
+                                       noise: new WhiteNoise(seed: 306721460))));
+
             // add clay stones decals
             var clayStonesTextures = ProtoTileDecal.CollectTextures("Terrain/Clay/ClayStones*");
             var clayStonesSize = new Vector2Ushort(2, 2);
@@ -58,16 +66,6 @@
                                        offset: (x, y),
                                        noiseSelector: clayStonesNoiseSelector));
             }
-
-            // add clay pit decals
-            settings.AddDecal(
-                new ProtoTileDecal("Terrain/Clay/ClayPit*",
-                                   size: (2, 2),
-                                   drawOrder: DrawOrder.GroundDecalsUnder,
-                                   noiseSelector: new NoiseSelector(
-                                       from: 0.95,
-                                       to: 1,
-                                       noise: new WhiteNoise(seed: 306721460))));
         }
     }
 }

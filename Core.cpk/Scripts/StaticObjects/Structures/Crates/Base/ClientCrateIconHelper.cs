@@ -36,7 +36,7 @@ namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Crates
             // currently we're not using the CrateIcon rendering effect (the black outline)
             // as it's doesn't look good especially with lower texture quality
             return GetOriginalIcon(protoEntity);
-            
+
             if (protoEntity is null)
             {
                 return null;

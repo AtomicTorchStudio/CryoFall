@@ -114,11 +114,7 @@
             }
         }
 
-        //public double ReloadDurationSeconds { get; private set; }
-
         public Visibility VisibilityAmmoOverlay { get; private set; }
-
-        //public double WeaponSwitchDurationSeconds { get; private set; }
 
         public double WeaponReadyCountdownDuration { get; private set; }
 

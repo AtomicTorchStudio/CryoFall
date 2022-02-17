@@ -17,9 +17,11 @@
                                          .TooltipMessage;
 
         public string DisplaysMembersStatusAndMapLocationLabel
+            => null;
+        /* Commented out: currently all factions allow this feature.
             => this.FactionKind == FactionKind.Public
                    ? null
-                   : BulletPointPrefix + CoreStrings.Faction_Description_ShowsOnlineStatusAndMapLocation;
+                   : BulletPointPrefix + CoreStrings.Faction_Description_ShowsOnlineStatusAndMapLocation;*/
 
         public FactionKind FactionKind { get; }
 

@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Urso
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+Urso polar
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Besouro negro
 
@@ -9,6 +12,15 @@ Rainha de Prágmio
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 Tirano da Areia
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+Verme macho
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+Verme guardião
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+Ninho de verme
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 Entocado
@@ -90,6 +102,9 @@ Javali selvagem
 
 Scripts/Characters/Mobs/MobWolf@Name:
 Lobo
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+Lobo polar
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 Personagem jogador

@@ -1854,8 +1854,14 @@ Im Spiel freischaltbar.
 UI/CoreStrings@Skin_Default:
 Standard
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+Dieser Skin besitzt ein besonderes Aussehen, besondere Soundeffekte oder andere exklusive dekorative Eigenschaften.
+
 UI/CoreStrings@Skin_NotOwned:
 Du besitzt diesen Skin nicht.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+Achtung: Dieser Skin ist nur Besitzern des CryoFall Supporter Pakets zugänglich. Da du das Supporter Paket nicht besitzt, hat dieser Skin keinen Effekt auf das Aussehen deines Charakters.
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 Skins browsen
@@ -1983,6 +1989,12 @@ E-Mail bestätigen
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `AtomicTorch.com Nutzerkontoregistrierung
 [br](für deine Steam-ID).`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Bitte aktiviere das Steam Overlay in den Spieleigenschaften im Steam-Client und starte das Spiel neu.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+Das Steam Overlay ist nicht verfügbar
 
 UI/CoreStrings@SupporterPack_Badge:
 Supporter Abzeichen

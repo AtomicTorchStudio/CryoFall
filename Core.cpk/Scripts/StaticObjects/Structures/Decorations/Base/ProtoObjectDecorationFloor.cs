@@ -12,8 +12,8 @@
 
         public static readonly ConstructionTileRequirements.Validator ValidatorNoFloorDecoration
             = new(ErrorHasFloorDecoration,
-                c => !c.Tile.StaticObjects.Any(
-                         o => o.ProtoStaticWorldObject is ProtoObjectDecorationFloor));
+                  c => !c.Tile.StaticObjects.Any(
+                           o => o.ProtoStaticWorldObject is ProtoObjectDecorationFloor));
 
         public override bool IsRelocatable => true;
 

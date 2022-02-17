@@ -12,8 +12,6 @@
     /// </summary>
     public class ObjectGateRuinsButton : ProtoObjectRuinsButton
     {
-        public override byte GateSearchRadius => 10;
-
         [NotLocalizable]
         public override string Name => "Ruins gate button";
 

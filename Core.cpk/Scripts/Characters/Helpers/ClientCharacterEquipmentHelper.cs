@@ -124,8 +124,7 @@
                 || isSkeletonChanged)
             {
                 skeletonRenderer?.Destroy();
-                if (newProtoSkeleton is null
-                    || newProtoSkeleton.SkeletonResourceFront is null)
+                if (newProtoSkeleton?.SkeletonResourceFront is null)
                 {
                     return;
                 }
@@ -185,7 +184,8 @@
                                                      character,
                                                      clientState.CurrentProtoSkeleton,
                                                      skeletonRenderer,
-                                                     skeletonComponents);
+                                                     skeletonComponents,
+                                                     isPreview: false);
             }
 
             if (character.IsCurrentClientCharacter

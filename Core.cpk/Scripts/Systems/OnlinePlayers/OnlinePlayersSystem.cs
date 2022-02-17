@@ -125,14 +125,14 @@
                 var faction = FactionSystem.ServerGetFaction(aboutPlayerCharacter);
                 if (faction is not null)
                 {
-                    if (FactionSystem.SharedGetFactionKind(faction) == FactionKind.Public)
+                    /*if (FactionSystem.SharedGetFactionKind(faction) == FactionKind.Public)
                     {
                         // public faction doesn't provide online status of faction members
                     }
                     else
-                    {
+                    {*/
                         aboutPlayerCharacterFactionClanTag = FactionSystem.SharedGetClanTag(faction);
-                    }
+                    //}
                 }
             }
 
@@ -336,8 +336,8 @@
             {
                 // send only the party and faction members
                 var faction = FactionSystem.ServerGetFaction(playerCharacter);
-                if (faction is not null
-                    && FactionSystem.SharedGetFactionKind(faction) != FactionKind.Public)
+                if (faction is not null)
+                    //&& FactionSystem.SharedGetFactionKind(faction) != FactionKind.Public)
                 {
                     var factionClanTag = FactionSystem.SharedGetClanTag(faction);
                     onlinePlayersList.AddRange(

@@ -11,7 +11,7 @@
     /// It should exist in a single instance stored in server database.
     /// It is managed exclusively by <see cref="LandClaimSystem" />.
     /// </summary>
-    internal class LandClaimAreaManager
+    public class LandClaimAreaManager
         : ProtoGameObject<
               ILogicObject,
               LandClaimAreaManager.PrivateState,

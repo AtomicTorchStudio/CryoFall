@@ -11,7 +11,7 @@
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
     using AtomicTorch.GameEngine.Common.Primitives;
 
-    internal class ClientComponentMuzzleFlash : ClientComponent
+    public class ClientComponentMuzzleFlash : ClientComponent
     {
         private double animationDuration;
 
@@ -162,7 +162,9 @@
             // (as muzzle flash need sometimes to be rendered behind the skeleton)
             this.spriteRendererFlash.DrawOrderOffsetY
                 = this.spriteRendererSmoke.DrawOrderOffsetY
-                      = -worldDrawPosition.Y + this.skeletonRenderer.DrawOrderOffsetY;
+                      = -worldDrawPosition.Y
+                        + this.skeletonRenderer.DrawOrderOffsetY
+                        + this.skeletonRenderer.PositionOffset.Y;
 
             var lightTextureOffset = this.description.LightScreenOffsetRelativeToTexture;
             boneWorldPosition = this.skeletonRenderer.TransformSlotPosition(

@@ -25,6 +25,8 @@ namespace AtomicTorch.CBND.CoreMod.Items
 
         public const string Cowboy = "Cowboy";
 
+        public const string CryoFall = "CryoFall";
+
         public const string DesertCamo = "Desert camo";
 
         public const string Elite = "Elite";
@@ -43,13 +45,17 @@ namespace AtomicTorch.CBND.CoreMod.Items
 
         public const string Graphene = "Graphene";
 
+        public const string Halloween = "Halloween";
+
         public const string Hardened = "Hardened";
 
-        public const string Halloween = "Halloween";
+        public const string Hive = "Hive";
 
         public const string Holidays = "Holidays";
 
         public const string Hunter = "Hunter";
+
+        public const string Hypnotic = "Hypnotic";
 
         public const string Iridium = "Iridium";
 
@@ -79,13 +85,19 @@ namespace AtomicTorch.CBND.CoreMod.Items
 
         public const string Pantheon = "Pantheon";
 
+        public const string Paradox = "Paradox";
+
         public const string Phoenix = "Phoenix";
 
         public const string Pirate = "Pirate";
 
         public const string Primitive = "Primitive";
 
+        public const string Prototype = "Prototype";
+
         public const string Puffer = "Puffer";
+
+        public const string RedLine = "Red line";
 
         public const string RedMarble = "Red marble";
 
@@ -98,6 +110,8 @@ namespace AtomicTorch.CBND.CoreMod.Items
         public const string Ruby = "Ruby";
 
         public const string Sapphire = "Sapphire";
+
+        public const string Scar = "Scar";
 
         public const string Shaman = "Shaman";
 
@@ -122,5 +136,7 @@ namespace AtomicTorch.CBND.CoreMod.Items
         public const string Voodoo = "Voodoo";
 
         public const string Wasp = "Wasp";
+
+        public const string Zenith = "Zenith";
     }
 }

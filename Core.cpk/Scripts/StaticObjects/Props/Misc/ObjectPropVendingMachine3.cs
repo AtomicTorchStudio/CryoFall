@@ -2,6 +2,5 @@
 {
     public class ObjectPropVendingMachine3 : ObjectPropVendingMachine1
     {
-
     }
 }

@@ -65,7 +65,9 @@
                    Grid.Column="0"
                    Grid.ColumnSpan="3"
                    Text="{Binding VehicleWeaponSlotCaption}"
-                   Style="{StaticResource TextBlockVehicleMenuCaption}" />
+                   Style="{StaticResource TextBlockVehicleMenuCaption}"
+                   TextWrapping="WrapWithOverflow"
+                   TextAlignment="Center" />
 
         <controls:ItemSlotControlForBinding Grid.Row="1"
                                             Grid.Column="1"

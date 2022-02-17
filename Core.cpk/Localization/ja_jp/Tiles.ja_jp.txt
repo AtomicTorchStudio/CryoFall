@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 エイリアン
 
+Scripts/Tiles/TileArctic@Name:
+北極
+
 Scripts/Tiles/TileBarren@Name:
 不毛地
 

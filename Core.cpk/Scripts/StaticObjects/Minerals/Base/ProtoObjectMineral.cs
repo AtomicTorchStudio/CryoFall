@@ -309,7 +309,7 @@
             Logger.Info(
                 $"{mineralObject} current damage stage changed to {damageStage}. Dropping items for that stage",
                 byCharacter);
- 
+
             try
             {
                 var dropItemsList = this.DropItemsConfig.GetForStage(damageStage);

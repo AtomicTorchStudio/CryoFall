@@ -20,9 +20,9 @@
 
         public override TextureAtlasResource CliffAtlas { get; }
             = new("Terrain/Cliffs/TerrainCliffsVolcanic.png",
-                columns: 6,
-                rows: 4,
-                isTransparent: true);
+                  columns: 6,
+                  rows: 4,
+                  isTransparent: true);
 
         public override GroundSoundMaterial GroundSoundMaterial => GroundSoundMaterial.Stone;
 

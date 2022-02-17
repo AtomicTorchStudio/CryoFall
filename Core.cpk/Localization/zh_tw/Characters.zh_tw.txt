@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 熊
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+北極熊
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 黑甲蟲
 
@@ -9,6 +12,15 @@ Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 沙漠暴君
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+巢蟲
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+蟲巢守衛
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+巢蟲窩
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 鑽地蟲
@@ -90,6 +102,9 @@ Scripts/Characters/Mobs/MobWildBoar@Name:
 
 Scripts/Characters/Mobs/MobWolf@Name:
 狼
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+北極狼
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 玩家人物

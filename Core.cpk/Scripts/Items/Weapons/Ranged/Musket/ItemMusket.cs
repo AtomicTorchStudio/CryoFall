@@ -36,7 +36,7 @@
         public override double SpecialEffectProbability => 0.3;
 
         protected override ProtoSkillWeapons WeaponSkill => GetSkill<SkillWeaponsConventional>();
-        
+
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
             description.Set(MuzzleFlashPresets.PrimitiveRifle)

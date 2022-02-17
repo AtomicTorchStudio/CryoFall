@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 Земля древних
 
+Scripts/Tiles/TileArctic@Name:
+Арктика
+
 Scripts/Tiles/TileBarren@Name:
 Пустошь
 

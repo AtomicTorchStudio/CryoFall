@@ -12,6 +12,8 @@
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.CoreMod.Systems.ItemDurability;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
+    using AtomicTorch.CBND.CoreMod.UI;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Crafting;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips;
     using AtomicTorch.CBND.CoreMod.Vehicles;
     using AtomicTorch.CBND.GameApi.Data;
@@ -21,6 +23,7 @@
     using AtomicTorch.CBND.GameApi.Resources;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Helpers;
     using JetBrains.Annotations;
@@ -130,6 +133,8 @@
         public virtual ITextureResource GroundIcon => this.Icon;
 
         public virtual double GroundIconScale => 1.0;
+
+        public virtual bool HasSkinCustomEffects => false;
 
         /// <summary>
         /// Gets the item icon.
@@ -257,6 +262,13 @@
         public void ClientTooltipCreateControls([CanBeNull] IItem item, List<UIElement> controls)
         {
             this.ClientTooltipCreateControlsInternal(item, controls);
+
+            if (this.IsSkin
+                && Client.Microtransactions.GetSkinData((ushort)this.SkinId).Pool == SkinsPool.SupporterPack
+                && !Api.Client.MasterServer.IsSupporterPackOwner)
+            {
+                controls.Add(new ItemTooltipAlertControl() { Text = CoreStrings.Skin_RequiresSupporterPack });
+            }
 
             if (item is null
                 || this.DescriptionHints.Count == 0)
@@ -431,6 +443,17 @@
 
             var folderPath = ns.Substring(defaultNamespace.Length + 1).Replace('.', '/');
             return folderPath;
+        }
+
+        protected bool ClientIsMustUseDefaultAppearance(ICharacter character, bool isPreview)
+        {
+            // currently the game will not apply Supporter Pack skins for players that don't own Supporter Pack
+            return this.IsSkin
+                   && (!isPreview || !CraftingSkinPreviewControl.IsDisplayed)
+                   && character is not null
+                   && !character.IsNpc
+                   && Client.Microtransactions.GetSkinData((ushort)this.SkinId).Pool == SkinsPool.SupporterPack
+                   && !PlayerCharacter.GetPublicState(character).IsSupporterPackOwner;
         }
 
         protected virtual void ClientItemHotbarSelectionChanged(ClientHotbarItemData data)

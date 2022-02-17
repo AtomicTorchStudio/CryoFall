@@ -264,8 +264,22 @@
             ICharacter character,
             ProtoCharacterSkeleton protoCharacterSkeleton,
             IComponentSkeleton skeletonRenderer,
-            List<IClientComponent> skeletonComponents)
+            List<IClientComponent> skeletonComponents,
+            bool isPreview = false)
         {
+            if (character is not null
+                && this.ClientIsMustUseDefaultAppearance(character, isPreview))
+            {
+                ((IProtoItemWithCharacterAppearance)this.BaseProtoItem)
+                    .ClientSetupSkeleton(item,
+                                         character,
+                                         protoCharacterSkeleton,
+                                         skeletonRenderer,
+                                         skeletonComponents,
+                                         isPreview);
+                return;
+            }
+
             this.ClientPreloadTextures();
 
             protoCharacterSkeleton.ClientSetupItemInHand(

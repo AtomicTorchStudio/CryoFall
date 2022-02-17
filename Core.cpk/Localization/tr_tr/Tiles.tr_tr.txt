@@ -1,6 +1,9 @@
 ﻿Scripts/Tiles/TileAlien@Name:
 Uzaylı
 
+Scripts/Tiles/TileArctic@Name:
+Arktik
+
 Scripts/Tiles/TileBarren@Name:
 Çorak
 

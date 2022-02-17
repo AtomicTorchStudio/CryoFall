@@ -137,6 +137,12 @@
                 return ItemDroneReservedSlot.GetPublicState(item).ProtoItemDrone;
             }
 
+            if (item.ProtoItem is IProtoItemWithSkinData
+                    { IsSkin: true } protoItemWithSkinData)
+            {
+                return protoItemWithSkinData.BaseProtoItem;
+            }
+
             return item.ProtoItem;
         }
 

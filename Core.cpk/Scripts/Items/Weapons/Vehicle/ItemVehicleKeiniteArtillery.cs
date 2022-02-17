@@ -185,8 +185,8 @@
 
         protected override void PrepareMuzzleFlashDescription(MuzzleFlashDescription description)
         {
-            description.Set(MuzzleFlashPresets.None)
-                       .Set(textureScreenOffset: (100, -89));
+            description.Set(MuzzleFlashPresets.PoisonLarge)
+                       .Set(textureScreenOffset: (135, -89));
         }
 
         protected override void PrepareProtoGrenadeLauncher(out IEnumerable<IProtoItemAmmo> compatibleAmmoProtos)

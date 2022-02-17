@@ -113,6 +113,7 @@
             }
         }
 
+        [RemoteCallSettings(clientMaxSendQueueSize: byte.MaxValue)]
         private QuadTreeSnapshot ServerRemote_GetServerZoneData(IProtoZone protoZone)
         {
             var character = ServerRemoteContext.Character;

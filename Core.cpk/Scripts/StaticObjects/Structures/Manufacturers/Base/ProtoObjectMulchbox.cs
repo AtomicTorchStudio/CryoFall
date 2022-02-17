@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
     using System;
-    using System.Linq;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;

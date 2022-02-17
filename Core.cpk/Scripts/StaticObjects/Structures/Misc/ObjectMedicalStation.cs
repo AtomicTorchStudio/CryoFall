@@ -1,7 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc
 {
     using System;
-    using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items.Equipment;
     using AtomicTorch.CBND.CoreMod.Items.Generic;

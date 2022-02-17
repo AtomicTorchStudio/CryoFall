@@ -3,6 +3,7 @@
     using AtomicTorch.CBND.CoreMod.ClientComponents.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
     public class ViewModelButtonMappingControl : BaseViewModel
@@ -26,6 +27,8 @@
         public ViewModelButtonMappingControl()
         {
         }
+
+        public bool CanRebindPrimaryButton { get; private set; }
 
         public BaseCommand CommandBindKey { get; }
 
@@ -61,6 +64,8 @@
                                                                 returnPlaceholderIfNone: false);
             this.SecondaryKeyText = InputKeyNameHelper.GetKeyText(mapping.SecondaryKey,
                                                                   returnPlaceholderIfNone: false);
+
+            this.CanRebindPrimaryButton = mapping.PrimaryKey != InputKey.Escape;
         }
     }
 }

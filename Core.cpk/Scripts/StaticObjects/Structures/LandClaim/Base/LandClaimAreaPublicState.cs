@@ -16,7 +16,8 @@
         [SyncToClient]
         public byte LandClaimTier { get; set; }
 
-        public IProtoObjectLandClaim ProtoObjectLandClaim => ProtoObjectLandClaimHelper.GetProtoByTier(this.LandClaimTier);
+        public IProtoObjectLandClaim ProtoObjectLandClaim =>
+            ProtoObjectLandClaimHelper.GetProtoByTier(this.LandClaimTier);
 
         public void SetupAreaProperties(LandClaimAreaPrivateState privateState)
         {

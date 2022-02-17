@@ -47,7 +47,7 @@
                                     frames,
                                     isLooped: false,
                                     frameDurationSeconds: animationDuration / frames.Length);
-            
+
             componentAnimator.Destroy(1.5 * animationDuration);
         }
 

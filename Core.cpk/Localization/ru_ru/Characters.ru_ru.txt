@@ -1,6 +1,9 @@
 ﻿Scripts/Characters/Mobs/MobBear@Name:
 Медведь
 
+Scripts/Characters/Mobs/MobBearPolar@Name:
+Белый медведь
+
 Scripts/Characters/Mobs/MobBlackBeetle@Name:
 Черный жук
 
@@ -9,6 +12,15 @@ Scripts/Characters/Mobs/MobBossPragmiumQueen@Name:
 
 Scripts/Characters/Mobs/MobBossSandTyrant@Name:
 Песчаный тиран
+
+Scripts/Characters/Mobs/MobBroodDrone@Name:
+Трутень выводка
+
+Scripts/Characters/Mobs/MobBroodGuardian@Name:
+Страж выводка
+
+Scripts/Characters/Mobs/MobBroodNest@Name:
+Гнездо выводка
 
 Scripts/Characters/Mobs/MobBurrower@Name:
 Кротожук
@@ -90,6 +102,9 @@ Scripts/Characters/Mobs/MobWildBoar@Name:
 
 Scripts/Characters/Mobs/MobWolf@Name:
 Волк
+
+Scripts/Characters/Mobs/MobWolfPolar@Name:
+Полярный волк
 
 Scripts/Characters/Player/PlayerCharacter@Name:
 Персонаж

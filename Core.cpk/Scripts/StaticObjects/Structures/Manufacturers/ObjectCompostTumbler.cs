@@ -34,7 +34,7 @@
 
         public override double ObstacleBlockDamageCoef => 1;
 
-        public override ushort OrganicCapacity => 250;
+        public override ushort OrganicCapacity => 1000;
 
         public override float StructurePointsMax => 3000;
 

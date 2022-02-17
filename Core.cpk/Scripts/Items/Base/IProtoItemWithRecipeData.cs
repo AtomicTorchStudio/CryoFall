@@ -4,7 +4,7 @@ namespace AtomicTorch.CBND.CoreMod.Items
     using AtomicTorch.CBND.CoreMod.Systems.Crafting;
     using AtomicTorch.CBND.GameApi.Data.Items;
 
-    public interface IProtoItemWithRecipeData :IProtoItem
+    public interface IProtoItemWithRecipeData : IProtoItem
     {
         IReadOnlyList<Recipe> ListedInRecipes { get; }
 

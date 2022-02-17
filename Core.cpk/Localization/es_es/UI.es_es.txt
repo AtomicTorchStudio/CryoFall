@@ -1856,8 +1856,14 @@ Se desbloquea jugando.
 UI/CoreStrings@Skin_Default:
 Por defecto
 
+UI/CoreStrings@Skin_HasDecorativeEffects:
+Este aspecto cuenta con sus propios efectos visuales y de sonido, o bien otras funciones estéticas exclusivas.
+
 UI/CoreStrings@Skin_NotOwned:
 No tienes este aspecto.
+
+UI/CoreStrings@Skin_RequiresSupporterPack:
+Nota: Este aspecto tan solo está disponible para los poseedores del paquete para patrocinadores de CryoFall. Este aspecto no aplicará una apariencia personalizada a tu personaje, ya que no tienes el paquete para patrocinadores.
 
 UI/CoreStrings@Skins_Button_BrowseSkins:
 Revisar aspectos
@@ -1985,6 +1991,12 @@ Confirmar correo
 UI/CoreStrings@SteamAccountRegisterOrLinkForm_Title:
 `Registro de la cuenta de AtomicTorch.com
 [br](para tu ID de Steam).`
+
+UI/CoreStrings@SteamOverlayDisabled_Message:
+Activa la interfaz de Steam desde el menú de Parámetros del cliente de Steam y, después, reinicia el juego.
+
+UI/CoreStrings@SteamOverlayDisabled_Title:
+La interfaz de Steam no está disponible
 
 UI/CoreStrings@SupporterPack_Badge:
 Insignia de patrocinador

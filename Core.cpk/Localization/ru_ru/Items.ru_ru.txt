@@ -262,6 +262,9 @@ Scripts/Items/Base/SkinName@Cossack:
 Scripts/Items/Base/SkinName@Cowboy:
 Ковбой
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 Пустынный камуфляж
 
@@ -289,17 +292,23 @@ Scripts/Items/Base/SkinName@ForestCamo:
 Scripts/Items/Base/SkinName@Graphene:
 Графен
 
+Scripts/Items/Base/SkinName@Halloween:
+Хэллоуин
+
 Scripts/Items/Base/SkinName@Hardened:
 Поверхностная закалка
 
-Scripts/Items/Base/SkinName@Halloween:
-Хэллоуин
+Scripts/Items/Base/SkinName@Hive:
+Рой
 
 Scripts/Items/Base/SkinName@Holidays:
 Праздники
 
 Scripts/Items/Base/SkinName@Hunter:
 Охотник
+
+Scripts/Items/Base/SkinName@Hypnotic:
+Гипноз
 
 Scripts/Items/Base/SkinName@Iridium:
 Иридий
@@ -343,6 +352,9 @@ Scripts/Items/Base/SkinName@Nomad:
 Scripts/Items/Base/SkinName@Pantheon:
 Пантеон
 
+Scripts/Items/Base/SkinName@Paradox:
+Парадокс
+
 Scripts/Items/Base/SkinName@Phoenix:
 Феникс
 
@@ -352,8 +364,14 @@ Scripts/Items/Base/SkinName@Pirate:
 Scripts/Items/Base/SkinName@Primitive:
 Примитивный
 
+Scripts/Items/Base/SkinName@Prototype:
+Прототип
+
 Scripts/Items/Base/SkinName@Puffer:
 Пуховик
+
+Scripts/Items/Base/SkinName@RedLine:
+Красная линия
 
 Scripts/Items/Base/SkinName@RedMarble:
 Красный мрамор
@@ -372,6 +390,9 @@ Scripts/Items/Base/SkinName@Ruby:
 
 Scripts/Items/Base/SkinName@Sapphire:
 Сапфир
+
+Scripts/Items/Base/SkinName@Scar:
+Шрам
 
 Scripts/Items/Base/SkinName@Shaman:
 Шаман
@@ -408,6 +429,9 @@ Scripts/Items/Base/SkinName@Voodoo:
 
 Scripts/Items/Base/SkinName@Wasp:
 Оса
+
+Scripts/Items/Base/SkinName@Zenith:
+Зенит
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 Журнал данных (зашифрованный)
@@ -963,6 +987,12 @@ Scripts/Items/Food/ItemDough@Description:
 
 Scripts/Items/Food/ItemDough@Name:
 Тесто
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+Сверхкрепкий кофе. Теперь с пятикратной дозой кофеина.
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+Кофе в банке
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 Энергетический напиток, популярный в этой галактике. Дает сильный прилив энергии.
@@ -2596,35 +2626,17 @@ Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 Пистолет 10 мм
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 Лазерный пистолет стреляет быстрыми импульсами высокоэнергетического света, который сжигает цель.
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 Лазерный пистолет
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
-Лазерная винтовка, сжигающая цель мощным импульсом света, в основном в инфракрасном спектре. Радиус атаки ее намного выше, чем у лазерного пистолета.
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
+Лазерная винтовка излучает мощные импульсы высокоэнергетичного света в основном в инфракрасном спектре, которые сжигают цель. Радиус атаки намного больше, чем у лазерного пистолета.
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 Лазерная винтовка
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-Плазменная винтовка, выпускающая большие сгустки плазмы, которые поджигают цель при попадании и наносят ей обширный урон. Обладает очень высоким энергопотреблением.
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-Плазменная винтовка
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-Экзотическое оружие, которое запускает во врагов небольших насекомоподобных существ вместо пуль.
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-`Пусковая установка "Рой"`
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-Экзотическое оружие, которое использует жидкий кейнит, чтобы создать и выпустить сильный токсин во врагов.
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-Эвапоратор токсинов
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 Тяжелый пулемет, использующий мощные боеприпасы калибра .300.
@@ -2643,6 +2655,12 @@ Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 Мушкет
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+Плазменная винтовка, выпускающая большие сгустки плазмы, которые поджигают цель при попадании и наносят ей обширный урон. Обладает очень высоким энергопотреблением.
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+Плазменная винтовка
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 Простое самозарядное стрелковое оружие с вращающимся барабаном, где находятся боеприпасы.
@@ -2691,6 +2709,18 @@ Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 Пистолет-пулемет
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+Экзотическое оружие, которое запускает во врагов небольших насекомоподобных существ вместо пуль.
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+`Пусковая установка "Рой"`
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+Экзотическое оружие, которое использует жидкий кейнит, чтобы создать и выпустить сильный токсин во врагов.
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+Распылитель токсинов
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 Тяжелая автоматическая пушка, разработанная для установки на руку в механизированной боевой броне. Использует боеприпасы крупного калибра.

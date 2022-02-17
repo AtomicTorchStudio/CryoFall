@@ -68,6 +68,18 @@
                   traceStartOffsetPixels: -10);
 
         // beam without a projectile texture
+        public static readonly WeaponFireTracePreset LaserBeamBlue
+            = new(traceTexturePath: null,
+                  hitSparksPreset: WeaponHitSparksPresets.LaserBlue,
+                  // not used
+                  traceSpeed: 1,
+                  traceSpriteWidthPixels: 1,
+                  traceStartScaleSpeedExponent: 0,
+                  traceStartOffsetPixels: 0,
+                  useScreenBlending: true,
+                  drawHitSparksAsLight: true);
+
+        // beam without a projectile texture
         public static readonly WeaponFireTracePreset LaserBeamRed
             = new(traceTexturePath: null,
                   hitSparksPreset: WeaponHitSparksPresets.LaserRed,
@@ -92,7 +104,7 @@
         public static readonly WeaponFireTracePreset LaserRed
             = new(traceTexturePath: "FX/WeaponTraces/TraceLaserRed",
                   hitSparksPreset: WeaponHitSparksPresets.LaserRed,
-                  traceSpeed: 30,
+                  traceSpeed: 25,
                   traceSpriteWidthPixels: 363,
                   traceStartScaleSpeedExponent: 0.5,
                   traceStartOffsetPixels: -10,

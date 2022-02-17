@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.Editor.Tools.EditorToolZones"
+    xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core;assembly=Core"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="200"
     d:DataContext="{d:DesignInstance data:ViewModelEditorToolZonesSettings, d:IsDesignTimeCreatable=True}">
@@ -17,7 +18,7 @@
                 <ResourceDictionary Source="/Editor/EditorStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <ControlTemplate x:Key="EyeCheckboxStyle" TargetType="{x:Type CheckBox}">
+            <ControlTemplate x:Key="EyeCheckboxControlTemplate" TargetType="{x:Type CheckBox}">
                 <Border Background="Transparent" Padding="{TemplateBinding Padding}">
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Ellipse x:Name="Circle" Width="8" Height="8" HorizontalAlignment="Center"
@@ -160,7 +161,8 @@
                         <CheckBox IsChecked="{Binding IsRendered}"
                                   Focusable="False"
                                   Grid.Column="0"
-                                  Template="{StaticResource EyeCheckboxStyle}"
+                                  Template="{StaticResource EyeCheckboxControlTemplate}"
+                                  core:SoundUI.EnterSound="{x:Null}"
                                   Width="24"
                                   Padding="1"
                                   Margin="0,0,3,0" />
@@ -170,7 +172,7 @@
                                    FontFamily="{StaticResource CondensedFontFamily}"
                                    FontSize="11"
                                    Grid.Column="1" />
-                        
+
                         <!-- Zone is under mouse cursor indicator -->
                         <Path Grid.Column="2"
                               HorizontalAlignment="Right"

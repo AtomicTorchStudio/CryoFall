@@ -262,6 +262,9 @@ Scripts/Items/Base/SkinName@Cossack:
 Scripts/Items/Base/SkinName@Cowboy:
 カウボーイ
 
+Scripts/Items/Base/SkinName@CryoFall:
+CryoFall
+
 Scripts/Items/Base/SkinName@DesertCamo:
 デザートカモ
 
@@ -289,17 +292,23 @@ Scripts/Items/Base/SkinName@ForestCamo:
 Scripts/Items/Base/SkinName@Graphene:
 グラフェン
 
+Scripts/Items/Base/SkinName@Halloween:
+ハロウィーン
+
 Scripts/Items/Base/SkinName@Hardened:
 ハードエンド
 
-Scripts/Items/Base/SkinName@Halloween:
-ハロウィーン
+Scripts/Items/Base/SkinName@Hive:
+ハイヴ
 
 Scripts/Items/Base/SkinName@Holidays:
 ホリデイ
 
 Scripts/Items/Base/SkinName@Hunter:
 ハンター
+
+Scripts/Items/Base/SkinName@Hypnotic:
+ヒプノティック
 
 Scripts/Items/Base/SkinName@Iridium:
 イリジウム
@@ -343,6 +352,9 @@ Scripts/Items/Base/SkinName@Nomad:
 Scripts/Items/Base/SkinName@Pantheon:
 パンテオン
 
+Scripts/Items/Base/SkinName@Paradox:
+パラドックス
+
 Scripts/Items/Base/SkinName@Phoenix:
 フェニックス
 
@@ -352,8 +364,14 @@ Scripts/Items/Base/SkinName@Pirate:
 Scripts/Items/Base/SkinName@Primitive:
 プリミティヴ
 
+Scripts/Items/Base/SkinName@Prototype:
+プロトタイプ
+
 Scripts/Items/Base/SkinName@Puffer:
 パファー
+
+Scripts/Items/Base/SkinName@RedLine:
+レッドライン
 
 Scripts/Items/Base/SkinName@RedMarble:
 レッドマーブル
@@ -372,6 +390,9 @@ Scripts/Items/Base/SkinName@Ruby:
 
 Scripts/Items/Base/SkinName@Sapphire:
 サファイア
+
+Scripts/Items/Base/SkinName@Scar:
+Scar
 
 Scripts/Items/Base/SkinName@Shaman:
 シャーマン
@@ -408,6 +429,9 @@ Scripts/Items/Base/SkinName@Voodoo:
 
 Scripts/Items/Base/SkinName@Wasp:
 ワスプ
+
+Scripts/Items/Base/SkinName@Zenith:
+ゼニス
 
 Scripts/Items/DataLogs/Base/ProtoItemDataLogUnknown@Name:
 データログ（暗号化）
@@ -551,7 +575,7 @@ Scripts/Items/Equipment/FurArmor/ItemFurArmor@Name:
 毛皮のコート
 
 Scripts/Items/Equipment/FurHelmet/ItemFurHelmet@Name:
-毛皮の帽子
+毛皮のヘルメット
 
 Scripts/Items/Equipment/GoldArmor/ItemGoldArmor@Description:
 豪華な黄金の服装。真の支配者にふさわしい。
@@ -575,7 +599,7 @@ Scripts/Items/Equipment/LeatherArmor/ItemLeatherArmor@Name:
 革の防具
 
 Scripts/Items/Equipment/LeatherHelmet/ItemLeatherHelmet@Name:
-革の帽子
+革のヘルメット
 
 Scripts/Items/Equipment/MetalArmor/ItemMetalArmor@Description:
 メタル防具は物理的な攻撃からの防御に優れていますが、環境の危険に対してはほとんど防御力がありません。
@@ -963,6 +987,12 @@ Scripts/Items/Food/ItemDough@Description:
 
 Scripts/Items/Food/ItemDough@Name:
 パン生地
+
+Scripts/Items/Food/ItemDrinkCoffee@Description:
+濃いめの缶コーヒー。カフェイン量が5倍になりました。
+
+Scripts/Items/Food/ItemDrinkCoffee@Name:
+缶コーヒー
 
 Scripts/Items/Food/ItemDrinkEnergy@Description:
 銀河中で人気のエナジー飲料。あなたに真のエナジーブーストを与えます。
@@ -2596,35 +2626,17 @@ Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Description:
 Scripts/Items/Weapons/Ranged/Handgun10mm/ItemHandgun10mm@Name:
 ハンドガン 10mm
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Description:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Description:
 レーザーピストルは、高エネルギー光線を放出して標的を燃やします。
 
-Scripts/Items/Weapons/Ranged/ItemLaserPistol/ItemLaserPistol@Name:
+Scripts/Items/Weapons/Ranged/LaserPistol/ItemLaserPistol@Name:
 レーザーピストル
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Description:
-レーザーライフルは、赤外線スペクトルの強力な高エネルギー光線を放出して標的を燃やします。レーザーピストルよりもはるかに長い射程距離を誇ります。
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Description:
+レーザーライフルは、赤外線スペクトルの強力な高エネルギー光線を放出して標的を焼きます。レーザーピストルよりもはるかに長い射程距離を誇ります。
 
-Scripts/Items/Weapons/Ranged/ItemLaserRifle/ItemLaserRifle@Name:
+Scripts/Items/Weapons/Ranged/LaserRifle/ItemLaserRifle@Name:
 レーザーライフル
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Description:
-プラズマライフルは、衝突時に標的を激しく燃やす大きな集中型プラズマパケットを形成して投射し、とても大きなダメージを与えます。非常に多くの電力を消耗します。
-
-Scripts/Items/Weapons/Ranged/ItemPlasmaRifle/ItemPlasmaRifle@Name:
-プラズマライフル
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Description:
-弾丸の代わりに小さな虫のようなものを敵に向けて発射する新型武器。
-
-Scripts/Items/Weapons/Ranged/ItemSwarmLauncher/ItemSwarmLauncher@Name:
-スワームランチャー
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Description:
-液体化ケイナイトを使って強力な毒物を作り、敵に向けて発射する新型武器。
-
-Scripts/Items/Weapons/Ranged/ItemToxinProliferator/ItemToxinProliferator@Name:
-毒素増殖銃
 
 Scripts/Items/Weapons/Ranged/Machinegun300/ItemMachinegun300@Description:
 ハイパワーの30口径弾用に開発された重機関銃。
@@ -2643,6 +2655,12 @@ Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Description:
 
 Scripts/Items/Weapons/Ranged/Musket/ItemMusket@Name:
 マスケット
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Description:
+プラズマライフルは、衝突時に標的を激しく燃やす大きな集中型プラズマパケットを形成して投射し、とても大きなダメージを与えます。非常に多くの電力を消耗します。
+
+Scripts/Items/Weapons/Ranged/PlasmaRifle/ItemPlasmaRifle@Name:
+プラズマライフル
 
 Scripts/Items/Weapons/Ranged/Revolver8mm/ItemRevolver8mm@Description:
 弾薬が入る回転シリンダー付きのシンプルな連射拳銃。
@@ -2691,6 +2709,18 @@ Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Description
 
 Scripts/Items/Weapons/Ranged/SubMachinegun10mm/ItemSubMachinegun10mm@Name:
 サブマシンガン
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Description:
+弾丸の代わりに小さな虫のようなものを敵に向けて発射する新型武器。
+
+Scripts/Items/Weapons/Ranged/SwarmLauncher/ItemSwarmLauncher@Name:
+スワームランチャー
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Description:
+液体化ケイナイトを使って強力な毒物を作り、敵に向けて発射する新型武器。
+
+Scripts/Items/Weapons/Ranged/ToxinProliferator/ItemToxinProliferator@Name:
+毒素増殖銃
 
 Scripts/Items/Weapons/Vehicle/ItemVehicleAutocannonHeavy@Description:
 メカアーマーに搭載されたハードポイント用に設計された重機関砲。 大口径および対物弾薬を使用します。

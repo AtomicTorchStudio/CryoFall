@@ -12,7 +12,11 @@
 
         public override double DamageRadius => 2.1;
 
+        public override TimeSpan ExplosionDelay => TimeSpan.FromSeconds(5);
+
         public override bool IsActivatesRaidBlock => true;
+
+        public override bool IsExplosionDelaySkippedOnDamage => true;
 
         public override string Name => "Primitive bomb";
 

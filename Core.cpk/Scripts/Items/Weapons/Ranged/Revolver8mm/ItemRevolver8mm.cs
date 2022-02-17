@@ -29,6 +29,8 @@
 
         public override string Name => "Revolver 8mm";
 
+        public override double RangeMultiplier => 1.1;
+
         public override double ReadyDelayDuration => WeaponReadyDelays.ConventionalPistols;
 
         public override double SpecialEffectProbability => 0.25;

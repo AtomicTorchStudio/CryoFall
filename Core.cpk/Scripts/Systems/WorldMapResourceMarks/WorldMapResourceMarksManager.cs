@@ -11,7 +11,7 @@
     /// It should exist in a single instance stored in server database.
     /// It is managed exclusively by <see cref="WorldMapResourceMarksSystem" />.
     /// </summary>
-    internal class WorldMapResourceMarksManager
+    public class WorldMapResourceMarksManager
         : ProtoGameObject<
               ILogicObject,
               WorldMapResourceMarksManager.PrivateState,

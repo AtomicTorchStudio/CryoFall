@@ -1,7 +1,7 @@
-﻿using AtomicTorch.GameEngine.Common.Primitives;
-
-namespace AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged
+﻿namespace AtomicTorch.CBND.CoreMod.Items.Weapons.Ranged
 {
+    using AtomicTorch.GameEngine.Common.Primitives;
+
     public class SkinRifle300Roots : ItemRifle300
     {
         public override string Name => SkinName.Roots;
