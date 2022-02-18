@@ -304,7 +304,7 @@
                 .Add(ConstructionTileRequirements.ValidatorSolidGroundOrPlatform)
                 .Add(ConstructionTileRequirements.ValidatorNotCliffOrSlope)
                 .Add(new ConstructionTileRequirements.Validator(
-                         ConstructionTileRequirements.ErrorNoFreeSpace,
+                         ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                          c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                                   c.Tile,
                                   t => t.PhysicsBody.IsStatic

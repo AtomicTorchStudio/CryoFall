@@ -416,7 +416,7 @@ Scripts/Systems/ItemFuelRefill/ItemFuelRefillSystem@NotificationNotRefillable:
 Этот предмет не требует заправки.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AnotherLandClaimTooClose:
-Слишком близко к чужой зоне контроля.
+Слишком близко к существующей точке контроля.
 
 Scripts/Systems/LandClaim/LandClaimSystem@ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed:
 Эта территория другого игрока, или она находится слишком близко к чужой зоне контроля.

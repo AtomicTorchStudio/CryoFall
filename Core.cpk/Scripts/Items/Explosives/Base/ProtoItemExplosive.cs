@@ -60,7 +60,7 @@
                                          logErrors: true,
                                          canPlace: out var canPlace,
                                          isTooFar: out var isTooFar,
-                                         errorMessage: out _);
+                                         errorCodeOrMessage: out _);
             if (!canPlace || isTooFar)
             {
                 return;
@@ -112,7 +112,7 @@
             bool logErrors,
             out bool canPlace,
             out bool isTooFar,
-            out string errorMessage)
+            out object errorCodeOrMessage)
         {
             if (NewbieProtectionSystem.SharedIsNewbie(character))
             {
@@ -123,7 +123,7 @@
 
                 canPlace = false;
                 isTooFar = false;
-                errorMessage = null;
+                errorCodeOrMessage = null;
                 return;
             }
 
@@ -149,7 +149,7 @@
                     // someone is already planting a bomb here
                     canPlace = false;
                     isTooFar = false;
-                    errorMessage = null;
+                    errorCodeOrMessage = null;
                     return;
                 }
             }
@@ -207,7 +207,7 @@
 
             if (!this.ObjectExplosiveProto.CheckTileRequirements(targetPosition,
                                                                  character,
-                                                                 out errorMessage,
+                                                                 out errorCodeOrMessage,
                                                                  logErrors))
             {
                 // explosive static object placement requirements failed
@@ -236,7 +236,7 @@
 
                 canPlace = false;
                 isTooFar = false;
-                errorMessage = CoreStrings.Notification_ObstaclesOnTheWay;
+                errorCodeOrMessage = CoreStrings.Notification_ObstaclesOnTheWay;
                 return;
             }
 

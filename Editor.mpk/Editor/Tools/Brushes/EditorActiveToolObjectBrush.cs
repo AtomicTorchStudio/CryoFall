@@ -8,6 +8,7 @@
     using AtomicTorch.CBND.CoreMod.Editor.Scripts.Helpers;
     using AtomicTorch.CBND.CoreMod.Editor.Tools.Base;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
@@ -162,8 +163,10 @@
             isTooFar = false;
             canPlace = this.protoStaticObject.CheckTileRequirements(tilePosition,
                                                                     character: null,
-                                                                    out errorMessage,
+                                                                    out var errorCodeOrMessage,
                                                                     logErrors: logErrors);
+            
+            errorMessage = ConstructionSystem.SharedConvertCodeOrErrorMessageToString(errorCodeOrMessage);
         }
     }
 }

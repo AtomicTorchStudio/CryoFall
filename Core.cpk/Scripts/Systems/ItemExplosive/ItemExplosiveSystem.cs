@@ -86,7 +86,7 @@
                                                        logErrors: true,
                                                        canPlace: out var canPlace,
                                                        isTooFar: out var isTooFar,
-                                                       errorMessage: out _);
+                                                       errorCodeOrMessage: out _);
             if (!canPlace)
             {
                 throw new Exception("The explosive item deploy requirements are not satisfied");
@@ -112,7 +112,7 @@
                                                        logErrors: true,
                                                        canPlace: out var canPlace,
                                                        isTooFar: out var isTooFar,
-                                                       errorMessage: out _);
+                                                       errorCodeOrMessage: out _);
             if (!canPlace || isTooFar)
             {
                 return null;

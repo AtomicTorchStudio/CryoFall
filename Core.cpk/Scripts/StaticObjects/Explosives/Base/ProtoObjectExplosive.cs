@@ -319,7 +319,7 @@
                 .Clear()
                 .Add(
                     new ConstructionTileRequirements.Validator(
-                        ConstructionTileRequirements.ErrorNoFreeSpace,
+                        ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                         c =>
                         {
                             var kind = c.ProtoStaticObjectToBuild.Kind;

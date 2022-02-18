@@ -357,9 +357,10 @@
                 isFocusable: false);
         }
 
-        protected sealed override void PrepareDroplistOnDestroy(DropItemsList droplist)
+        protected override void PrepareDroplistOnDestroy(DropItemsList droplist)
         {
-            // empty destroy droplist by default
+            // use the same droplist as for the spoiled plant
+            this.PrepareSpoiledGatheringDroplist(droplist);
         }
 
         protected sealed override void PrepareProtoGatherableVegetation()
@@ -380,6 +381,10 @@
         {
         }
 
+        /// <summary>
+        /// Please note: the same method is used for the destroyed plant (such as when player
+        /// uses a knife or any other weapon). If it's not desired please also override PrepareDroplistOnDestroy.
+        /// </summary>
         protected virtual void PrepareSpoiledGatheringDroplist(DropItemsList spoiledGatherDroplist)
         {
             spoiledGatherDroplist.Add<ItemFibers>(count: 3, countRandom: 2);
@@ -392,7 +397,7 @@
                 .Add(ErrorRequiresFarmPlot,
                      c => c.Tile.StaticObjects.Any(_ => _.ProtoStaticWorldObject is IProtoObjectFarm))
                 .Add(ConstructionTileRequirements.BasicRequirements)
-                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
+                .Add(ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                      // ensure there are no static physics objects (other than farm)
                      c => !ConstructionTileRequirements
                               .TileHasAnyPhysicsObjectsWhere(

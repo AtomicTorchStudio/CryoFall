@@ -42,7 +42,7 @@
                                          logErrors: true,
                                          canPlace: out var canPlace,
                                          isTooFar: out var isTooFar,
-                                         errorMessage: out _);
+                                         errorCodeOrMessage: out _);
             if (!canPlace || isTooFar)
             {
                 this.AbortAction();

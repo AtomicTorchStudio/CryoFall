@@ -185,6 +185,7 @@
             AddZone(Api.GetProtoEntity<ZoneBorealForest>());
             AddZone(Api.GetProtoEntity<ZoneTemperateBarren>());
             AddZone(Api.GetProtoEntity<ZoneTemperateSwamp>());
+            AddZone(Api.GetProtoEntity<ZoneArcticForest>());
 
             void AddZone(IProtoZone zone)
             {

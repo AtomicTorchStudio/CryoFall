@@ -115,7 +115,7 @@
             // disallow placing mining bombs on the floor on the PvE servers
             tileRequirements.Add(
                 new ConstructionTileRequirements.Validator(
-                    ConstructionTileRequirements.ErrorNoFreeSpace,
+                    ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                     c => !PveSystem.SharedIsPve(clientLogErrorIfDataIsNotYetAvailable: false)
                          || c.Tile.StaticObjects.All(
                              o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor)));

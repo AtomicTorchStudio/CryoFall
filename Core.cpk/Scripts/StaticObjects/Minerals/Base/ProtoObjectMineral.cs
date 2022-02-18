@@ -331,11 +331,12 @@
                 }
                 else if (byWeaponProto is IProtoItemWeaponMelee)
                 {
-                    var result = dropItemsList.TryDropToCharacterOrGround(byCharacter,
-                                                                          mineralObject.TilePosition,
-                                                                          dropItemContext,
-                                                                          probabilityMultiplier: probabilityMultiplier,
-                                                                          groundContainer: out _);
+                    var result = dropItemsList.TryDropToCharacterOrGround(
+                        byCharacter,
+                        (mineralObject.TilePosition.ToVector2D() + this.Layout.Center).ToVector2Ushort(),
+                        dropItemContext,
+                        probabilityMultiplier: probabilityMultiplier,
+                        groundContainer: out _);
                     if (result.TotalCreatedCount > 0)
                     {
                         NotificationSystem.ServerSendItemsNotification(byCharacter, result);
@@ -344,10 +345,11 @@
                 else
                 {
                     // not a melee weapon or cannot drop to the character inventory - drop on the ground only
-                    dropItemsList.TryDropToGround(mineralObject.TilePosition,
-                                                  dropItemContext,
-                                                  out _,
-                                                  probabilityMultiplier: probabilityMultiplier);
+                    dropItemsList.TryDropToGround(
+                        (mineralObject.TilePosition.ToVector2D() + this.Layout.Center).ToVector2Ushort(),
+                        dropItemContext,
+                        out _,
+                        probabilityMultiplier: probabilityMultiplier);
                 }
             }
             finally

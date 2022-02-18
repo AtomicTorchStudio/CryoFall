@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
+    using System.ComponentModel;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
@@ -11,9 +12,11 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient.Components;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     public abstract class ProtoObjectLithiumOreExtractor : ProtoObjectExtractor
     {
@@ -22,8 +25,10 @@
 
         private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrGeothermalSpring
             = new(() => string.Format("[b]{0}[/b][br]{1}[*]{2}[*]{3}[*]{4}[*]{5}",
-                                      ConstructionTileRequirements.Error_UnsuitableGround_Title,
-                                      ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
+                                      ConstructionTileRequirements.ErrorCode.UnsuitableGround_Title
+                                                                  .GetDescription(),
+                                      ConstructionTileRequirements.ErrorCode.UnsuitableGround_Message_CanBuildOnlyOn
+                                                                  .GetDescription(),
                                       Api.GetProtoEntity<TileForestTropical>().Name,
                                       Api.GetProtoEntity<TileForestTemperate>().Name,
                                       Api.GetProtoEntity<TileForestBoreal>().Name,
@@ -45,14 +50,15 @@
                       }
 
                       var protoTile = c.Tile.ProtoTile;
-                      return protoTile is TileForestTropical
-                             || protoTile is TileForestTemperate
-                             || protoTile is TileForestBoreal
-                             || protoTile is TileMeadows;
+                      return protoTile
+                                 is TileForestTropical
+                                 or TileForestTemperate
+                                 or TileForestBoreal
+                                 or TileMeadows;
                   });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherExtractor
-            = new(ErrorTooCloseToAnotherExtractor,
+            = new(ErrorCodeExtractor.TooCloseToAnotherExtractor,
                   c =>
                   {
                       if (PveSystem.SharedIsPve(false))
@@ -88,7 +94,7 @@
                   });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDeposit
-            = new(Error_CannotBuildTooCloseToDeposit,
+            = new(ErrorCode.CannotBuildTooCloseToDeposit,
                   c =>
                   {
                       var startPosition = c.StartTilePosition;
@@ -107,6 +113,13 @@
 
                       return true;
                   });
+
+        [RemoteEnum]
+        public enum ErrorCodeExtractor : byte
+        {
+            [Description(ErrorTooCloseToAnotherExtractor)]
+            TooCloseToAnotherExtractor
+        }
 
         public override byte ContainerInputSlotsCount => 0;
 
@@ -153,13 +166,13 @@
                 .Add(ConstructionTileRequirements.BasicRequirements)
                 .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
-                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
+                .Add(ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                      c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                               c.Tile,
                               t => t.PhysicsBody.IsStatic
                                    && t.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
                                        is not ObjectDepositGeothermalSpring))
-                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
+                .Add(ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                      c => c.Tile.StaticObjects.All(
                          o => o.ProtoWorldObject is ObjectDepositGeothermalSpring
                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor

@@ -24,6 +24,6 @@
             bool logErrors,
             out bool canPlace,
             out bool isTooFar,
-            out string errorMessage);
+            out object errorCodeOrMessage);
     }
 }

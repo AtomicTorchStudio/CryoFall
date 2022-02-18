@@ -10,8 +10,7 @@
         protected override void PrepareZone(ZoneScripts scripts)
         {
             // minerals
-            scripts
-                .Add(GetScript<SpawnResourceSand>().Configure(densityMultiplier: 0.5)); //less sand for arctic shore
+                // none
 
             // loot
             scripts

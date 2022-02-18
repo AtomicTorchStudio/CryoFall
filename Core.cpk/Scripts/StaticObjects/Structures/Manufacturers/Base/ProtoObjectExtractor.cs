@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.ItemContainers;
@@ -16,6 +17,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Bars;
     using AtomicTorch.CBND.CoreMod.Zones;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -44,7 +46,7 @@
         private const int MinDistanceBetweenExtractors = 9;
 
         protected static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDepletedDeposit
-            = new(Error_TooCloseToDepletedDeposit,
+            = new(ErrorCode.TooCloseToDepletedDeposit,
                   c =>
                   {
                       var startPosition = c.StartTilePosition;
@@ -57,6 +59,16 @@
 
                       return true;
                   });
+
+        [RemoteEnum]
+        public enum ErrorCode : byte
+        {
+            [Description(Error_CannotBuildTooCloseToDeposit)]
+            CannotBuildTooCloseToDeposit,
+
+            [Description(Error_TooCloseToDepletedDeposit)]
+            TooCloseToDepletedDeposit
+        }
 
         public override ProtoObjectConstructionSite ConstructionSitePrototype
             => Api.GetProtoEntity<ObjectConstructionSiteForExtractor>();

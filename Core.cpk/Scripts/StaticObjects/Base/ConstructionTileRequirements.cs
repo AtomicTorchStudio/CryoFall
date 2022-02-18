@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
     using AtomicTorch.CBND.CoreMod.Characters;
@@ -86,7 +87,7 @@
         /// Checks if there is no dynamic objects in the tile.
         /// </summary>
         public static readonly Validator ValidatorNoPhysicsBodyDynamic
-            = new(ErrorNoFreeSpace,
+            = new(ErrorCode.NoFreeSpace,
                   c =>
                   {
                       return !TileHasAnyPhysicsObjectsWhere(c.Tile,
@@ -111,7 +112,7 @@
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
         /// </summary>
         public static readonly Validator ValidatorNoNpcsAround
-            = new(ErrorCreaturesNearby,
+            = new(ErrorCode.CreaturesNearby,
                   c =>
                   {
                       if (c.CharacterBuilder is null)
@@ -145,7 +146,7 @@
                   });
 
         public static readonly Validator ValidatorSameHeightLevelAsPlayer
-            = new(CoreStrings.Notification_TooFar,
+            = new(ErrorCode.TooFar,
                   c =>
                   {
                       if (c.CharacterBuilder is null)
@@ -167,7 +168,7 @@
         /// Checks if there is any NPC nearby (circle physics check with radius defined by the constant RequirementNoNpcsRadius).
         /// </summary>
         public static readonly Validator ValidatorNoPlayersNearby
-            = new(ErrorPlayerNearby,
+            = new(ErrorCode.PlayerNearby,
                   c =>
                   {
                       var forCharacter = c.CharacterBuilder;
@@ -216,7 +217,7 @@
         /// (Client only) Checks if there is no current player in the cell.
         /// </summary>
         public static readonly Validator ValidatorClientOnlyNoCurrentPlayer
-            = new(ErrorStandingInCell,
+            = new(ErrorCode.StandingInCell,
                   c =>
                   {
                       if (Api.IsServer)
@@ -231,112 +232,12 @@
                                                                  == t.PhysicsBody.AssociatedWorldObject);
                   });
 
-        public static readonly Validator ValidatorNoStaticObjectsExceptFloor
-            = new(ErrorNoFreeSpace,
-                  c =>
-                  {
-                      var kind = c.ProtoStaticObjectToBuild.Kind;
-                      if (kind == StaticObjectKind.Floor
-                          || kind == StaticObjectKind.FloorDecal)
-                      {
-                          return c.Tile.StaticObjects.All(
-                              o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
-                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal
-                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform);
-                      }
-
-                      return c.Tile.StaticObjects.All(
-                          o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
-                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
-                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform);
-                  });
-
-        public static readonly Validator ValidatorNoStaticObjectsExceptPlayersStructures
-            = new(ErrorNoFreeSpace,
-                  c => c.Tile.StaticObjects.All(
-                      o => o.ProtoStaticWorldObject is IProtoObjectStructure
-                           || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
-
-        public static readonly Validator ValidatorNoStaticObjects
-            = new(ErrorNoFreeSpace,
-                  c => !c.Tile.StaticObjects.Any());
-
-        public static readonly Validator ValidatorNoPlatforms
-            = new(ErrorNoFreeSpace,
-                  c => c.Tile.StaticObjects.All(
-                      o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform));
-
-        public static readonly Validator ValidatorNoPlatformsOnlyIfPlatform
-            = new(ErrorNoFreeSpace,
-                  c => c.ProtoStaticObjectToBuild.Kind != StaticObjectKind.Platform
-                       || c.Tile.StaticObjects.All(
-                           o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform));
-
-        public static readonly Validator ValidatorNoFarmPlot
-            = new(ErrorCannotBuildOnFarmPlot,
-                  c => !c.Tile.StaticObjects.Any(
-                           o => o.ProtoStaticWorldObject is IProtoObjectFarmPlot));
-
-        public static readonly Validator ValidatorNoFloor
-            = new(ErrorCannotBuildOnFloor,
-                  c => !c.Tile.StaticObjects.Any(
-                           o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor));
-
-        public static readonly Validator ValidatorNotRestrictedArea
-            = new(ErrorCannotBuildInRestrictedArea,
-                  c =>
-                  {
-                      if (Api.IsClient)
-                      {
-                          // check skipped on client
-                          return true;
-                      }
-
-                      if (c.CharacterBuilder is null)
-                      {
-                          // check skipped if there is no character context
-                          // (so scripts can spawn objects in restricted areas)
-                          return true;
-                      }
-
-                      return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
-                  });
-
-        public static readonly Validator ValidatorNotRestrictedAreaEvenForServer
-            = new(ErrorCannotBuildInRestrictedArea,
-                  c =>
-                  {
-                      if (Api.IsClient)
-                      {
-                          // check skipped on client
-                          return true;
-                      }
-
-                      return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
-                  });
-
         public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructures;
 
         public static readonly IConstructionTileRequirementsReadOnly DefaultForPlayerStructuresOwnedOrFreeLand;
 
-        private static readonly Lazy<IServerZone> ServerZoneRestrictedArea
-            = new(() => ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance);
-
-        public static readonly Validator ValidatorSolidGroundOrPlatform
-            = new(ErrorNotSolidGround,
-                  c => c.Tile.ProtoTile.Kind == TileKind.Solid
-                       || c.Tile.StaticObjects.Any(o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform));
-
-        public static readonly Validator ValidatorSolidGround
-            = new(ErrorNotSolidGround,
-                  c => c.Tile.ProtoTile.Kind == TileKind.Solid);
-
-        public static readonly Validator ValidatorNotCliffOrSlope
-            = new(ErrorCannotBuildOnCliffOrSlope,
-                  c => !c.Tile.IsCliffOrSlope);
-
         public static readonly Validator ValidatorCheckNoEventObjectNearby
-            = new(ErrorCannotBuildEventNearby,
+            = new(ErrorCode.CannotBuildEventNearby,
                   context =>
                   {
                       var forCharacter = context.CharacterBuilder;
@@ -372,9 +273,139 @@
                       return true;
                   });
 
+        public static readonly Validator ValidatorNoFarmPlot
+            = new(ErrorCode.CannotBuildOnFarmPlot,
+                  c => !c.Tile.StaticObjects.Any(
+                           o => o.ProtoStaticWorldObject is IProtoObjectFarmPlot));
+
+        public static readonly Validator ValidatorNoFloor
+            = new(ErrorCode.CannotBuildOnFloor,
+                  c => !c.Tile.StaticObjects.Any(
+                           o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor));
+
+        public static readonly Validator ValidatorNoPlatforms
+            = new(ErrorCode.NoFreeSpace,
+                  c => c.Tile.StaticObjects.All(
+                      o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform));
+
+        public static readonly Validator ValidatorNoPlatformsOnlyIfPlatform
+            = new(ErrorCode.NoFreeSpace,
+                  c => c.ProtoStaticObjectToBuild.Kind != StaticObjectKind.Platform
+                       || c.Tile.StaticObjects.All(
+                           o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform));
+
+        public static readonly Validator ValidatorNoStaticObjects
+            = new(ErrorCode.NoFreeSpace,
+                  c => !c.Tile.StaticObjects.Any());
+
+        public static readonly Validator ValidatorNoStaticObjectsExceptFloor
+            = new(ErrorCode.NoFreeSpace,
+                  c =>
+                  {
+                      var kind = c.ProtoStaticObjectToBuild.Kind;
+                      if (kind == StaticObjectKind.Floor
+                          || kind == StaticObjectKind.FloorDecal)
+                      {
+                          return c.Tile.StaticObjects.All(
+                              o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
+                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal
+                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform);
+                      }
+
+                      return c.Tile.StaticObjects.All(
+                          o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
+                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform);
+                  });
+
+        public static readonly Validator ValidatorNoStaticObjectsExceptPlayersStructures
+            = new(ErrorCode.NoFreeSpace,
+                  c => c.Tile.StaticObjects.All(
+                      o => o.ProtoStaticWorldObject is IProtoObjectStructure
+                           || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal));
+
+        public static readonly Validator ValidatorNotCliffOrSlope
+            = new(ErrorCode.CannotBuildOnCliffOrSlope,
+                  c => !c.Tile.IsCliffOrSlope);
+
+        public static readonly Validator ValidatorNotRestrictedArea
+            = new(ErrorCode.CannotBuildInRestrictedArea,
+                  c =>
+                  {
+                      if (Api.IsClient)
+                      {
+                          // check skipped on client
+                          return true;
+                      }
+
+                      if (c.CharacterBuilder is null)
+                      {
+                          // check skipped if there is no character context
+                          // (so scripts can spawn objects in restricted areas)
+                          return true;
+                      }
+
+                      return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
+                  });
+
+        public static readonly Validator ValidatorNotRestrictedAreaEvenForServer
+            = new(ErrorCode.CannotBuildInRestrictedArea,
+                  c =>
+                  {
+                      if (Api.IsClient)
+                      {
+                          // check skipped on client
+                          return true;
+                      }
+
+                      return !ServerZoneRestrictedArea.Value.IsContainsPosition(c.Tile.Position);
+                  });
+
+        public static readonly Validator ValidatorSolidGround
+            = new(ErrorCode.NotSolidGround,
+                  c => c.Tile.ProtoTile.Kind == TileKind.Solid);
+
+        public static readonly Validator ValidatorSolidGroundOrPlatform
+            = new(ErrorCode.NotSolidGround,
+                  c => c.Tile.ProtoTile.Kind == TileKind.Solid
+                       || c.Tile.StaticObjects.Any(o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform));
+
         public static readonly Validator ValidatorTileNotRestrictingConstructionEvenForServer
-            = new(ErrorCannotBuildInRestrictedArea,
+            = new(ErrorCode.CannotBuildInRestrictedArea,
                   c => !c.Tile.ProtoTile.IsRestrictingConstruction);
+
+        private static readonly Lazy<IServerZone> ServerZoneRestrictedArea
+            = new(() => ZoneSpecialConstructionRestricted.Instance.ServerZoneInstance);
+
+        public static readonly Validator ValidatorNoPhysicsBodyStatic
+            = new(ErrorCode.NoFreeSpace,
+                  c =>
+                  {
+                      var kind = c.ProtoStaticObjectToBuild.Kind;
+                      if (kind == StaticObjectKind.Floor
+                          || kind == StaticObjectKind.FloorDecal)
+                      {
+                          return c.Tile.StaticObjects.All(
+                              o => o.ProtoStaticWorldObject.Kind != StaticObjectKind.Floor
+                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.FloorDecal
+                                   && o.ProtoStaticWorldObject.Kind != StaticObjectKind.Platform);
+                      }
+
+                      if (c.Tile.StaticObjects.All(
+                              o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor
+                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal
+                                   || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Platform))
+                      {
+                          // no static objects except floor
+                          return true;
+                      }
+
+                      // has any static objects in the tile - check whether they are physical obstacles
+                      return !TileHasAnyPhysicsObjectsWhere(
+                                 c.Tile,
+                                 // consider only static objects
+                                 t => t.PhysicsBody.IsStatic);
+                  });
 
         private readonly List<Validator> checkFunctions = new();
 
@@ -382,13 +413,13 @@
         {
             BasicRequirements = new ConstructionTileRequirements()
                                 .Add(ValidatorSolidGround)
-                                .Add(ErrorCannotBuildInRestrictedArea,
+                                .Add(ErrorCode.CannotBuildInRestrictedArea,
                                      c => c.CharacterBuilder is null
                                           || !c.Tile.ProtoTile.IsRestrictingConstruction)
                                 .Add(ValidatorNotCliffOrSlope)
-                                .Add(ErrorTooCloseToCliffOrSlope,
+                                .Add(ErrorCode.TooCloseToCliffOrSlope,
                                      c => c.Tile.EightNeighborTiles.All(neighbor => !neighbor.IsCliffOrSlope))
-                                .Add(ErrorTooCloseToWater,
+                                .Add(ErrorCode.TooCloseToWater,
                                      c => c.Tile.EightNeighborTiles.All(
                                          neighbor => neighbor.ProtoTile.Kind != TileKind.Water))
                                 .Add(ValidatorSameHeightLevelAsPlayer)
@@ -437,9 +468,61 @@
 
         public delegate string DelegateGetErrorMessage(Context context);
 
+        [RemoteEnum]
+        public enum ErrorCode : byte
+        {
+            [Description(CoreStrings.Notification_TooFar)]
+            TooFar,
+
+            [Description(Error_UnsuitableGround_Message_CanBuildOnlyOn)]
+            UnsuitableGround_Message_CanBuildOnlyOn,
+
+            [Description(Error_UnsuitableGround_Message_CannotBuilOn)]
+            UnsuitableGround_Message_CannotBuilOn,
+
+            [Description(Error_UnsuitableGround_Title)]
+            UnsuitableGround_Title,
+
+            [Description(ErrorCannotBuildEventNearby)]
+            CannotBuildEventNearby,
+
+            [Description(ErrorCannotBuildInRestrictedArea)]
+            CannotBuildInRestrictedArea,
+
+            [Description(ErrorCannotBuildOnCliffOrSlope)]
+            CannotBuildOnCliffOrSlope,
+
+            [Description(ErrorCannotBuildOnFarmPlot)]
+            CannotBuildOnFarmPlot,
+
+            [Description(ErrorCannotBuildOnFloor)]
+            CannotBuildOnFloor,
+
+            [Description(ErrorCreaturesNearby)]
+            CreaturesNearby,
+
+            [Description(ErrorNoFreeSpace)]
+            NoFreeSpace,
+
+            [Description(ErrorNotSolidGround)]
+            NotSolidGround,
+
+            [Description(ErrorPlayerNearby)]
+            PlayerNearby,
+
+            [Description(ErrorStandingInCell)]
+            StandingInCell,
+
+            [Description(ErrorTooCloseToCliffOrSlope)]
+            TooCloseToCliffOrSlope,
+
+            [Description(ErrorTooCloseToWater)]
+            TooCloseToWater
+        }
+
         public static bool TileHasAnyPhysicsObjectsWhere(
             Tile tile,
-            Func<TestResult, bool> check,
+            Func<TestResult, bool> delegateIsObstacle,
             CollisionGroup collisionGroup = null)
         {
             var physicsSpace = WorldService.GetPhysicsSpace();
@@ -455,7 +538,7 @@
                     sendDebugEvent: false);
                 foreach (var entry in tempList.AsList())
                 {
-                    if (check(entry))
+                    if (delegateIsObstacle(entry))
                     {
                         return true;
                     }
@@ -468,6 +551,12 @@
         public ConstructionTileRequirements Add(string errorMessage, DelegateCheck checkFunc)
         {
             this.checkFunctions.Add(new Validator(errorMessage, checkFunc));
+            return this;
+        }
+
+        public ConstructionTileRequirements Add(Enum errorCode, DelegateCheck checkFunc)
+        {
+            this.checkFunctions.Add(new Validator(errorCode, checkFunc));
             return this;
         }
 
@@ -514,7 +603,7 @@
             IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort startTilePosition,
             ICharacter character,
-            out string errorMessage,
+            out object errorCodeOrMessage,
             bool logErrors)
         {
             foreach (var tileOffset in protoStaticWorldObject.Layout.TileOffsets)
@@ -524,7 +613,7 @@
                                                 logOutOfBounds: false);
                 if (tile.IsOutOfBounds)
                 {
-                    errorMessage = "Out of bounds";
+                    errorCodeOrMessage = "Out of bounds";
                 }
                 else
                 {
@@ -533,7 +622,7 @@
                                               protoStaticWorldObject,
                                               tileOffset,
                                               startTilePosition);
-                    if (this.Check(context, out errorMessage))
+                    if (this.Check(context, out errorCodeOrMessage))
                     {
                         // valid tile
                         continue;
@@ -551,34 +640,34 @@
                     Api.Logger.Warning(
                         $"Cannot place {protoStaticWorldObject} at {startTilePosition} - check failed:"
                         + Environment.NewLine
-                        + errorMessage);
+                        + errorCodeOrMessage);
                 }
 
                 ConstructionSystem.SharedShowCannotPlaceNotification(
                     character,
-                    errorMessage,
+                    errorCodeOrMessage,
                     protoStaticWorldObject);
 
                 return false;
             }
 
-            errorMessage = null;
+            errorCodeOrMessage = null;
             return true;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Check(Context context, out string errorMessage)
+        public bool Check(Context context, out object errorCodeOrMessage)
         {
             foreach (var function in this.checkFunctions)
             {
                 if (!function.CheckFunction(context))
                 {
-                    errorMessage = function.GetErrorMessage(context);
+                    errorCodeOrMessage = function.GetErrorCodeOrMessage(context);
                     return false;
                 }
             }
 
-            errorMessage = null;
+            errorCodeOrMessage = null;
             return true;
         }
 
@@ -642,12 +731,18 @@
 
             private readonly DelegateGetErrorMessage errorMessageWithContextFunc;
 
-            private string errorMessage;
+            private object errorCodeOrMessage;
 
-            public Validator(string errorMessage, DelegateCheck check)
+            public Validator(string errorCodeOrMessage, DelegateCheck check)
             {
                 this.CheckFunction = check;
-                this.errorMessage = errorMessage;
+                this.errorCodeOrMessage = errorCodeOrMessage;
+            }
+
+            public Validator(Enum errorCodeOrMessage, DelegateCheck check)
+            {
+                this.CheckFunction = check;
+                this.errorCodeOrMessage = errorCodeOrMessage;
             }
 
             public Validator(
@@ -669,15 +764,15 @@
             }
 
             public bool HasErrorMessage
-                => this.errorMessage is not null
+                => this.errorCodeOrMessage is not null
                    || this.errorMessageFunc is not null
                    || this.errorMessageWithContextFunc is not null;
 
-            public string GetErrorMessage(Context context)
+            public object GetErrorCodeOrMessage(Context context)
             {
-                if (this.errorMessage is not null)
+                if (this.errorCodeOrMessage is not null)
                 {
-                    return this.errorMessage;
+                    return this.errorCodeOrMessage;
                 }
 
                 if (this.errorMessageWithContextFunc is not null)
@@ -690,7 +785,7 @@
                     return this.errorMessageFunc();
                 }
 
-                return this.errorMessage = this.errorMessageFunc();
+                return this.errorCodeOrMessage = this.errorMessageFunc();
             }
         }
     }

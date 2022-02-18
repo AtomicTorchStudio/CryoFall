@@ -10,10 +10,10 @@
             IProtoStaticWorldObject protoStaticWorldObject,
             Vector2Ushort tilePosition,
             ICharacter character,
-            out string errorMessage,
+            out object errorCodeOrMessage,
             bool logErrors);
 
-        bool Check(ConstructionTileRequirements.Context context, out string errorMessage);
+        bool Check(ConstructionTileRequirements.Context context, out object errorCodeOrMessage);
 
         ConstructionTileRequirements Clone();
     }

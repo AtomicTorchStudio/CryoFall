@@ -18,7 +18,6 @@
     using AtomicTorch.CBND.CoreMod.Systems.PvE;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Physics;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -159,30 +158,32 @@
                 if (!SharedCheckTileRequirementsForRelocation(character,
                                                               objectStructure,
                                                               tilePosition,
-                                                              out errorMessage,
+                                                              out var errorCodeOrMessage,
                                                               logErrors: logErrors))
                 {
                     // time requirements are not valid
                     canPlace = false;
                     isTooFar = false;
+                    errorMessage = ConstructionSystem.SharedConvertCodeOrErrorMessageToString(errorCodeOrMessage);
                     return;
                 }
 
                 if (!SharedValidateCanCharacterRelocateStructure(character,
                                                                  objectStructure,
                                                                  tilePosition,
-                                                                 out errorMessage,
+                                                                 out errorCodeOrMessage,
                                                                  logErrors: logErrors))
                 {
                     canPlace = true;
                     isTooFar = true;
+                    errorMessage = ConstructionSystem.SharedConvertCodeOrErrorMessageToString(errorCodeOrMessage);
                     return;
                 }
 
                 if (SharedHasObstacle(
-                    character,
-                    objectStructure,
-                    tilePosition.ToVector2D() + protoStructure.Layout.Center))
+                        character,
+                        objectStructure,
+                        tilePosition.ToVector2D() + protoStructure.Layout.Center))
                 {
                     if (logErrors)
                     {
@@ -200,14 +201,15 @@
 
                 canPlace = true;
                 isTooFar = false;
+                errorMessage = null;
             }
 
             void ClientConstructionPlaceSelectedCallback(Vector2Ushort tilePosition)
             {
                 if (SharedHasObstacle(
-                    character,
-                    objectStructure,
-                    tilePosition.ToVector2D() + protoStructure.Layout.Center))
+                        character,
+                        objectStructure,
+                        tilePosition.ToVector2D() + protoStructure.Layout.Center))
                 {
                     CannotInteractMessageDisplay.ClientOnCannotInteract(
                         character,
@@ -241,19 +243,19 @@
             ICharacter character,
             IStaticWorldObject objectStructure,
             Vector2Ushort toPosition,
-            out string errorMessage,
+            out object errorCodeOrMessage,
             bool logErrors)
         {
             if (!SharedIsRelocatable(objectStructure))
             {
-                errorMessage = null;
+                errorCodeOrMessage = null;
                 return false;
             }
 
             if (!SharedCheckTileRequirementsForRelocation(character,
                                                           objectStructure,
                                                           toPosition,
-                                                          out errorMessage,
+                                                          out errorCodeOrMessage,
                                                           logErrors))
             {
                 return false;
@@ -279,7 +281,7 @@
                         protoStructure);
                 }
 
-                errorMessage = CoreStrings.Notification_TooFar;
+                errorCodeOrMessage = CoreStrings.Notification_TooFar;
                 return false;
             }
 
@@ -291,7 +293,7 @@
 
             if (CreativeModeSystem.SharedIsInCreativeMode(character))
             {
-                errorMessage = null;
+                errorCodeOrMessage = null;
                 return true;
             }
 
@@ -302,8 +304,8 @@
                                                    ownedArea: out _)
                 || !IsOwnedLand(toPosition, out hasNoFactionPermission))
             {
-                errorMessage = string.Format(CoreStrings.Faction_Permission_Required_Format,
-                                             CoreStrings.Faction_Permission_LandClaimManagement_Title);
+                errorCodeOrMessage = string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                                   CoreStrings.Faction_Permission_LandClaimManagement_Title);
 
                 // the building location or destination is in an area that is not owned by the player
                 if (logErrors)
@@ -320,7 +322,7 @@
             if (LandClaimSystem.SharedIsUnderRaidBlock(character, objectStructure))
             {
                 // the building is in an area under the raid
-                errorMessage = LandClaimSystem.ErrorRaidBlockActionRestricted_Message;
+                errorCodeOrMessage = LandClaimSystem.ErrorRaidBlockActionRestricted_Message;
                 if (logErrors)
                 {
                     ConstructionSystem.SharedShowCannotPlaceNotification(
@@ -335,7 +337,7 @@
             if (LandClaimShieldProtectionSystem.SharedIsUnderShieldProtection(objectStructure))
             {
                 // the building is in an area under shield protection
-                errorMessage = CoreStrings.ShieldProtection_ActionRestrictedBaseUnderShieldProtection;
+                errorCodeOrMessage = CoreStrings.ShieldProtection_ActionRestrictedBaseUnderShieldProtection;
                 if (logErrors)
                 {
                     LandClaimShieldProtectionSystem.SharedSendNotificationActionForbiddenUnderShieldProtection(
@@ -345,7 +347,7 @@
                 return false;
             }
 
-            errorMessage = null;
+            errorCodeOrMessage = null;
             return true;
 
             bool IsOwnedLand(
@@ -374,12 +376,12 @@
             ICharacter character,
             IStaticWorldObject objectStructure,
             Vector2Ushort toPosition,
-            out string errorMessage,
+            out object errorCodeOrMessage,
             bool logErrors)
         {
             if (objectStructure.ProtoGameObject is not IProtoObjectStructure protoStructure)
             {
-                errorMessage = null;
+                errorCodeOrMessage = null;
                 return false;
             }
 
@@ -405,7 +407,7 @@
 
                 if (tile.IsOutOfBounds)
                 {
-                    errorMessage = "Out of bounds";
+                    errorCodeOrMessage = "Out of bounds";
                 }
                 else
                 {
@@ -415,7 +417,7 @@
                                                                            tileOffset,
                                                                            startTilePosition: toPosition,
                                                                            objectToRelocate: objectStructure);
-                    if (tileRequirements.Check(context, out errorMessage))
+                    if (tileRequirements.Check(context, out errorCodeOrMessage))
                     {
                         // valid tile
                         continue;
@@ -433,18 +435,18 @@
                     Api.Logger.Warning(
                         $"Cannot move {protoStructure} at {toPosition} - check failed:"
                         + Environment.NewLine
-                        + errorMessage);
+                        + errorCodeOrMessage);
                 }
 
                 ConstructionSystem.SharedShowCannotPlaceNotification(
                     character,
-                    errorMessage,
+                    errorCodeOrMessage,
                     protoStructure);
 
                 return false;
             }
 
-            errorMessage = null;
+            errorCodeOrMessage = null;
             return true;
         }
 
@@ -480,7 +482,7 @@
 
                     var testWorldObject = testPhysicsBody.AssociatedWorldObject;
                     if (testWorldObject is null
-                        || ReferenceEquals(testWorldObject,    character)
+                        || ReferenceEquals(testWorldObject, character)
                         || ReferenceEquals(testWorldObject, forStructureRelocation))
                     {
                         // not an obstacle - it's the character or world object itself
@@ -559,7 +561,7 @@
             if (!SharedValidateCanCharacterRelocateStructure(character,
                                                              objectStructure,
                                                              toPosition,
-                                                             errorMessage: out _,
+                                                             errorCodeOrMessage: out _,
                                                              logErrors: true))
             {
                 return;

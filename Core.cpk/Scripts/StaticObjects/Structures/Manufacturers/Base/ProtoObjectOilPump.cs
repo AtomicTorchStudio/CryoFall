@@ -1,5 +1,6 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers
 {
+    using System.ComponentModel;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Deposits;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.ConstructionSite;
@@ -11,8 +12,10 @@
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Manufacturers.Data;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
+    using AtomicTorch.GameEngine.Common.Extensions;
 
     public abstract class ProtoObjectOilPump : ProtoObjectExtractor
     {
@@ -21,8 +24,10 @@
 
         private static readonly ConstructionTileRequirements.Validator ValidatorGroundTypeOrOilSeep
             = new(() => string.Format("{0}[br]{1}[*]{2}[*]{3}",
-                                      ConstructionTileRequirements.Error_UnsuitableGround_Title,
-                                      ConstructionTileRequirements.Error_UnsuitableGround_Message_CanBuildOnlyOn,
+                                      ConstructionTileRequirements.ErrorCode.UnsuitableGround_Title
+                                                                  .GetDescription(),
+                                      ConstructionTileRequirements.ErrorCode.UnsuitableGround_Message_CanBuildOnlyOn
+                                                                  .GetDescription(),
                                       Api.GetProtoEntity<TileBarren>().Name,
                                       Api.GetProtoEntity<TileSwamp>().Name),
                   c =>
@@ -42,18 +47,19 @@
                       }
 
                       var protoTile = c.Tile.ProtoTile;
-                      if (!(protoTile is TileBarren
-                            || protoTile is TileSwamp))
+                      if (protoTile
+                          is TileBarren
+                          or TileSwamp)
                       {
-                          // unsuitable ground type
-                          return false;
+                          return true;
                       }
 
-                      return true;
+                      // unsuitable ground type
+                      return false;
                   });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToAnotherOilPump
-            = new(ErrorTooCloseToAnotherOilPump,
+            = new(ErrorCodePump.TooCloseToAnotherOilPump,
                   c =>
                   {
                       if (PveSystem.SharedIsPve(false))
@@ -89,7 +95,7 @@
                   });
 
         private static readonly ConstructionTileRequirements.Validator ValidatorTooCloseToDeposit
-            = new(Error_CannotBuildTooCloseToDeposit,
+            = new(ErrorCode.CannotBuildTooCloseToDeposit,
                   c =>
                   {
                       var startPosition = c.StartTilePosition;
@@ -108,6 +114,13 @@
 
                       return true;
                   });
+
+        [RemoteEnum]
+        public enum ErrorCodePump : byte
+        {
+            [Description(ErrorTooCloseToAnotherOilPump)]
+            TooCloseToAnotherOilPump
+        }
 
         public override byte ContainerInputSlotsCount => 1;
 
@@ -149,13 +162,13 @@
                 .Add(ConstructionTileRequirements.BasicRequirements)
                 .Add(ConstructionTileRequirements.ValidatorClientOnlyNoCurrentPlayer)
                 .Add(ConstructionTileRequirements.ValidatorNoPhysicsBodyDynamic)
-                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
+                .Add(ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                      c => !ConstructionTileRequirements.TileHasAnyPhysicsObjectsWhere(
                               c.Tile,
                               o => o.PhysicsBody.IsStatic
                                    && o.PhysicsBody.AssociatedWorldObject?.ProtoWorldObject
                                        is not ObjectDepositOilSeep))
-                .Add(ConstructionTileRequirements.ErrorNoFreeSpace,
+                .Add(ConstructionTileRequirements.ErrorCode.NoFreeSpace,
                      c => c.Tile.StaticObjects.All(
                          o => o.ProtoWorldObject is ObjectDepositOilSeep
                               || o.ProtoStaticWorldObject.Kind == StaticObjectKind.Floor

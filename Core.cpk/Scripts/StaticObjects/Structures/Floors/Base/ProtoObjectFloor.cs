@@ -160,7 +160,7 @@
             // can build only if there is no floor or floor of different prototype
             var validatorNoFloorOfTheSameType
                 = new ConstructionTileRequirements.Validator(
-                    ConstructionTileRequirements.ErrorCannotBuildOnFloor,
+                    ConstructionTileRequirements.ErrorCode.CannotBuildOnFloor,
                     c => c.Tile.StaticObjects.All(
                         o => o.ProtoStaticWorldObject != this));
 

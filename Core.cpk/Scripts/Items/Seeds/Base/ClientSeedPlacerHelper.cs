@@ -1,6 +1,7 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Items.Seeds
 {
     using AtomicTorch.CBND.CoreMod.ClientComponents.StaticObjects;
+    using AtomicTorch.CBND.CoreMod.Systems.Construction;
     using AtomicTorch.CBND.GameApi.Data.Items;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.GameEngine.Common.Primitives;
@@ -69,7 +70,9 @@
                 logErrors: logErrors,
                 canPlace: out canPlace,
                 isTooFar: out isTooFar,
-                errorMessage: out errorMessage);
+                errorCodeOrMessage: out var errorCodeOrMessage);
+            
+            errorMessage = ConstructionSystem.SharedConvertCodeOrErrorMessageToString(errorCodeOrMessage);
         }
     }
 }

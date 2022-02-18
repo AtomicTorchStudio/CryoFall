@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters;
     using AtomicTorch.CBND.CoreMod.Characters.Mobs;
@@ -18,6 +19,7 @@
     using AtomicTorch.CBND.CoreMod.Systems.ServerTimers;
     using AtomicTorch.CBND.CoreMod.Systems.Weapons;
     using AtomicTorch.CBND.CoreMod.Systems.WorldObjectClaim;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.State;
     using AtomicTorch.CBND.GameApi.Data.World;
@@ -64,7 +66,7 @@
         private const int ServerSpawnNodesMaxCountPerIteration = 1; // spawn at max 1 nodes per iteration
 
         public static readonly ConstructionTileRequirements.Validator ValidatorCheckNoPragmiumSourceNearbyOnPvE
-            = new(ErrorCannotBuild_PragmiumSourceTooCloseOnPvE,
+            = new(ErrorCode.CannotBuild_PragmiumSourceTooCloseOnPvE,
                   context =>
                   {
                       var forCharacter = context.CharacterBuilder;
@@ -114,6 +116,13 @@
 
         private static readonly Lazy<ObjectMineralPragmiumNode> ProtoNodeLazy
             = new(GetProtoEntity<ObjectMineralPragmiumNode>);
+
+        [RemoteEnum]
+        public enum ErrorCode : byte
+        {
+            [Description(ErrorCannotBuild_PragmiumSourceTooCloseOnPvE)]
+            CannotBuild_PragmiumSourceTooCloseOnPvE
+        }
 
         public override bool IsAllowDroneMining => false;
 

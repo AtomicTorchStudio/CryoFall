@@ -3889,6 +3889,7 @@
             Updates the world map. All static world objects and zones will be loaded from the map file too.
             In order to prevent prop objects duplication, remove them before calling this method.
             (See how it's used in Core.cpk BootstrapperServerWorld)
+            Important: The map size (and offset) must be exactly the same.
             </summary>
         </member>
         <member name="M:AtomicTorch.CBND.GameApi.ServicesServer.IWorldService.GetGameObjectsOfProto``2">

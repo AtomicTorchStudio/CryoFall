@@ -277,14 +277,17 @@
             if (!protoStructure.CheckTileRequirements(
                     tilePosition,
                     character,
-                    errorMessage: out errorMessage,
+                    errorCodeOrMessage: out var errorCodeOrMessage,
                     logErrors: logErrors))
             {
                 // time requirements are not valid
                 canPlace = false;
                 isTooFar = false;
+                errorMessage = ConstructionSystem.SharedConvertCodeOrErrorMessageToString(errorCodeOrMessage);
                 return;
             }
+            
+            errorMessage = null;
 
             var configBuild = protoStructure.ConfigBuild;
             if (configBuild.CheckStageCanBeBuilt(character))

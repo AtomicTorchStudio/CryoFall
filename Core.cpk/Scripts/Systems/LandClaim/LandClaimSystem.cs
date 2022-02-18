@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
@@ -36,6 +37,7 @@
     using AtomicTorch.CBND.CoreMod.Technologies;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects;
+    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -54,6 +56,7 @@
 
     public partial class LandClaimSystem : ProtoSystem<LandClaimSystem>
     {
+        // Too close to a land claim structure (they cannot be placed right next to each other).
         public const string ErrorCannotBuild_AnotherLandClaimTooClose =
             "Too close to another land claim.";
 
@@ -139,7 +142,7 @@
 
         public static readonly ConstructionTileRequirements.Validator
             ValidatorIsOwnedOrFreeLandNoFactionPermissionsRequired
-                = new(ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed,
+                = new(ErrorCode.CannotBuild_AreaIsClaimedOrTooCloseToClaimed,
                       context => ValidatorIsOwnedOrFreeLandCheck(context, requireFactionPermission: false, out _));
 
         /// <summary>
@@ -150,7 +153,7 @@
         public static readonly ConstructionTileRequirements.Validator ValidatorFreeLandEvenForServer
             = new( // reuse this error message as it matches this validator well
                 // (technically this validation message will be never visible to player)
-                ErrorCannotBuild_AnotherLandClaimTooClose,
+                ErrorCode.CannotBuild_AnotherLandClaimTooClose,
                 context =>
                 {
                     var forCharacter = context.CharacterBuilder;
@@ -240,7 +243,7 @@
                   });
 
         public static readonly ConstructionTileRequirements.Validator ValidatorNoRaid
-            = new(ErrorCannotBuild_RaidUnderWay,
+            = new(ErrorCode.CannotBuild_RaidUnderWay,
                   context =>
                   {
                       var forCharacter = context.CharacterBuilder;
@@ -315,7 +318,7 @@
 
         public static readonly ConstructionTileRequirements.Validator
             ValidatorNewLandClaimNoLandClaimIntersectionsWithShieldProtection
-                = new(ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection,
+                = new(ErrorCode.CannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection,
                       context =>
                       {
                           var forCharacter = context.CharacterBuilder;
@@ -349,7 +352,7 @@
 
         public static readonly ConstructionTileRequirements.Validator
             ValidatorNewLandClaimSafeStorageCapacityNotExceeded
-                = new(ErrorCannotBuild_ExceededSafeStorageCapacity,
+                = new(ErrorCode.CannotBuild_ExceededSafeStorageCapacity,
                       context =>
                       {
                           if (IsClient)
@@ -527,7 +530,7 @@
 
         public static readonly ConstructionTileRequirements.Validator
             ValidatorNewLandClaimNoLandClaimIntersectionsWithDemoPlayers
-                = new(ErrorCannotBuild_DemoPlayerLandClaims,
+                = new(ErrorCode.CannotBuild_DemoPlayerLandClaims,
                       context =>
                       {
                           var forCharacter = context.CharacterBuilder;
@@ -560,7 +563,7 @@
                       });
 
         public static readonly ConstructionTileRequirements.Validator ValidatorNewLandClaimNoLandClaimsTooClose
-            = new(ErrorCannotBuild_AnotherLandClaimTooClose,
+            = new(ErrorCode.CannotBuild_AnotherLandClaimTooClose,
                   context =>
                   {
                       var forCharacter = context.CharacterBuilder;
@@ -633,7 +636,8 @@
                   {
                       if (IsServer)
                       {
-                          return string.Empty;
+                          // player should never see this message as the client-side check will prevent it
+                          return "The land claims limit is exceeded.";
                       }
 
                       SharedGetPersonalLandClaimsNumberLimit(ClientCurrentCharacterHelper.Character,
@@ -657,9 +661,9 @@
                           foreach (var effect in node.NodeEffects)
                           {
                               if (effect is TechNodeEffectPerkUnlock
-                              {
-                                  Perk: ProtoPerkIncreaseLandClaimLimit protoPerk
-                              })
+                                  {
+                                      Perk: ProtoPerkIncreaseLandClaimLimit protoPerk
+                                  })
                               {
                                   canRaiseLimitNumber = true;
                                   maxPossibleNumber += protoPerk.LimitIncrease;
@@ -680,7 +684,7 @@
 
         public static readonly ConstructionTileRequirements.Validator
             ValidatorCheckLandClaimDepositRequireXenogeology
-                = new(ErrorCannotBuild_NeedXenogeologyTech,
+                = new(ErrorCode.CannotBuild_NeedXenogeologyTech,
                       context =>
                       {
                           var forCharacter = context.CharacterBuilder;
@@ -772,7 +776,7 @@
             = new(() => (ushort)(MaxLandClaimSize.Value + MinPaddingSizeOneDirection * 2));
 
         public static readonly ConstructionTileRequirements.Validator ValidatorCheckLandClaimDepositClaimDelay
-            = new(ErrorCannotBuild_DepositCooldown,
+            = new(ErrorCode.CannotBuild_DepositCooldown,
                   context =>
                   {
                       var forCharacter = context.CharacterBuilder;
@@ -894,6 +898,34 @@
         public static event DelegateServerObjectLandClaimDestroyed ServerObjectLandClaimDestroyed;
 
         public static event DelegateServerRaidBlockStartedOrExtended ServerRaidBlockStartedOrExtended;
+
+        [RemoteEnum]
+        public enum ErrorCode : byte
+        {
+            [Description(ErrorCannotBuild_AnotherLandClaimTooClose)]
+            CannotBuild_AnotherLandClaimTooClose,
+
+            [Description(ErrorCannotBuild_AreaIsClaimedOrTooCloseToClaimed)]
+            CannotBuild_AreaIsClaimedOrTooCloseToClaimed,
+
+            [Description(ErrorCannotBuild_DemoPlayerLandClaims)]
+            CannotBuild_DemoPlayerLandClaims,
+
+            [Description(ErrorCannotBuild_DepositCooldown)]
+            CannotBuild_DepositCooldown,
+
+            [Description(ErrorCannotBuild_ExceededSafeStorageCapacity)]
+            CannotBuild_ExceededSafeStorageCapacity,
+
+            [Description(ErrorCannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection)]
+            CannotBuild_IntersectingWithAnotherLandClaimUnderShieldProtection,
+
+            [Description(ErrorCannotBuild_NeedXenogeologyTech)]
+            CannotBuild_NeedXenogeologyTech,
+
+            [Description(ErrorCannotBuild_RaidUnderWay)]
+            CannotBuild_RaidUnderWay
+        }
 
         public static void ClientCannotInteractNotOwner(IStaticWorldObject worldObject)
         {
@@ -1140,7 +1172,7 @@
             IStaticWorldObject landClaimStructure)
         {
             if (landClaimStructure?.ProtoStaticWorldObject
-                    is not IProtoObjectLandClaim)
+                is not IProtoObjectLandClaim)
             {
                 throw new Exception("Not a land claim structure: " + landClaimStructure);
             }
@@ -1177,7 +1209,7 @@
             IStaticWorldObject landClaimStructure)
         {
             if (landClaimStructure?.ProtoStaticWorldObject
-                    is not IProtoObjectLandClaim)
+                is not IProtoObjectLandClaim)
             {
                 throw new Exception("Not a land claim structure: " + landClaimStructure);
             }
@@ -2253,12 +2285,12 @@
                 }
 
                 if (validatorNoRaid.CheckFunction(
-                    new ConstructionTileRequirements.Context(
-                        occupiedTile,
-                        character,
-                        protoStaticWorldObject,
-                        tileOffset,
-                        startTilePosition)))
+                        new ConstructionTileRequirements.Context(
+                            occupiedTile,
+                            character,
+                            protoStaticWorldObject,
+                            tileOffset,
+                            startTilePosition)))
                 {
                     continue;
                 }
@@ -2966,7 +2998,7 @@
             }
 
             if (!((IProtoObjectLandClaim)privateState.ServerLandClaimWorldObject.ProtoStaticWorldObject)
-                    .SharedCanEditOwners(privateState.ServerLandClaimWorldObject, owner))
+                .SharedCanEditOwners(privateState.ServerLandClaimWorldObject, owner))
             {
                 return WorldObjectOwnersSystem.DialogCannotSetOwners_MessageCannotEdit;
             }

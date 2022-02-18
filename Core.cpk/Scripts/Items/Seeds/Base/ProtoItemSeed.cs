@@ -64,12 +64,12 @@
             bool logErrors,
             out bool canPlace,
             out bool isTooFar,
-            out string errorMessage)
+            out object errorCodeOrMessage)
         {
             canPlace = this.tileRequirementsPlantPlacement.Check(this.ObjectPlantProto,
                                                                  tilePosition,
                                                                  character,
-                                                                 errorMessage: out errorMessage,
+                                                                 out errorCodeOrMessage,
                                                                  logErrors);
             if (!canPlace)
             {
@@ -198,7 +198,7 @@
                 logErrors: true,
                 canPlace: out var canPlace,
                 isTooFar: out var isTooFar,
-                errorMessage: out _);
+                errorCodeOrMessage: out _);
             if (!canPlace || isTooFar)
             {
                 return;

@@ -164,9 +164,9 @@ namespace AtomicTorch.CBND.CoreMod.Characters.Mobs
 
             // primary loot
             lootDroplist
-                .Add<ItemKeinite >(count: 5, countRandom: 3)
+                .Add<ItemKeinite>(count: 5,       countRandom: 3)
                 .Add<ItemInsectMeatRaw>(count: 5, countRandom: 3)
-                .Add<ItemSlime>(count: 2, countRandom: 1);
+                .Add<ItemSlime>(count: 2,         countRandom: 1);
 
             // extra loot
             lootDroplist.Add(condition: SkillHunting.ServerRollExtraLoot,

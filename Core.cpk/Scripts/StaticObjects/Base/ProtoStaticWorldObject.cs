@@ -126,10 +126,10 @@
         public bool CheckTileRequirements(
             Vector2Ushort startTilePosition,
             ICharacter character,
-            out string errorMessage,
+            out object errorCodeOrMessage,
             bool logErrors)
         {
-            return this.tileRequirements.Check(this, startTilePosition, character, out errorMessage, logErrors);
+            return this.tileRequirements.Check(this, startTilePosition, character, out errorCodeOrMessage, logErrors);
         }
 
         public bool CheckTileRequirements(

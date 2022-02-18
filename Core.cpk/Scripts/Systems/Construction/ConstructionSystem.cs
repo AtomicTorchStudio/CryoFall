@@ -27,6 +27,7 @@
     using AtomicTorch.CBND.GameApi.Data.World;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.Scripting.Network;
+    using AtomicTorch.GameEngine.Common.Extensions;
     using AtomicTorch.GameEngine.Common.Primitives;
 
     public class ConstructionSystem : ProtoSystem<ConstructionSystem>
@@ -132,7 +133,7 @@
         public static void ClientTryStartAction(bool allowReplacingCurrentConstructionAction)
         {
             if (ClientHotbarSelectedItemManager.SelectedItem?.ProtoGameObject
-                    is not IProtoItemToolToolbox)
+                is not IProtoItemToolToolbox)
             {
                 // no tool is selected
                 return;
@@ -341,6 +342,18 @@
             return true;
         }
 
+        public static string SharedConvertCodeOrErrorMessageToString(object errorCodeOrMessage)
+        {
+            var errorMessage = errorCodeOrMessage switch
+            {
+                Enum enumEntry => enumEntry.GetDescription(), // a error code
+                string text    => text, // a text message
+                null           => null,
+                _              => errorCodeOrMessage.ToString() // unknown
+            };
+            return errorMessage;
+        }
+
         public static void SharedOnNotEnoughItemsAvailable(ConstructionActionState state)
         {
             if (Api.IsClient)
@@ -375,18 +388,18 @@
 
         public static void SharedShowCannotPlaceNotification(
             ICharacter character,
-            string errorMessage,
+            object errorCodeOrMessage,
             IProtoStaticWorldObject proto)
         {
             if (IsClient)
             {
-                Instance.ClientRemote_ShowNotificationCannotPlace(errorMessage, proto);
+                Instance.ClientRemote_ShowNotificationCannotPlace(errorCodeOrMessage, proto);
             }
             else
             {
                 Instance.CallClient(
                     character,
-                    _ => _.ClientRemote_ShowNotificationCannotPlace(errorMessage, proto));
+                    _ => _.ClientRemote_ShowNotificationCannotPlace(errorCodeOrMessage, proto));
             }
         }
 
@@ -567,8 +580,9 @@
                 proto.Icon);
         }
 
-        private void ClientRemote_ShowNotificationCannotPlace(string errorMessage, IProtoStaticWorldObject proto)
+        private void ClientRemote_ShowNotificationCannotPlace(object errorCodeOrMessage, IProtoStaticWorldObject proto)
         {
+            var errorMessage = SharedConvertCodeOrErrorMessageToString(errorCodeOrMessage);
             NotificationSystem.ClientShowNotification(
                 NotificationCannotPlace,
                 errorMessage,
