@@ -25,7 +25,7 @@
 
         public BaseCommand CommandBuy
             => new ActionCommand(
-                () => Api.Client.SteamApi.OpenBuyGamePage());
+                () => Api.Client.ExternalApi.OpenBuyGamePage());
 
         public string DemoTimeRemainingText { get; set; }
 

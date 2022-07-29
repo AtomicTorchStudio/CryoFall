@@ -1285,6 +1285,9 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 농경지가 필요합니다.
 
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallBushArctic1@Name:
+Small shrub
+
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
 파란색 약초
 
@@ -1319,9 +1322,6 @@ Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 이 나무를 베려면 도끼를 사용하세요.
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
-죽은 나무
-
-Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
 죽은 나무
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:

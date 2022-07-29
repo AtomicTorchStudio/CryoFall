@@ -397,6 +397,9 @@ Adiciona:
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Remove:
 
+UI/CoreStrings@EmailPleaseUseAnotherEmailService:
+Parece que você está tentando se registrar usando uma conta de e-mail de um servidor de propriedade da Microsoft. Infelizmente, a Microsoft simplesmente [b]bloqueia[/b] quaisquer e-mails que provenham não sejam de provedores grandes, impedindo-nos de enviar e-mails para sua conta. Use qualquer outro serviço de e-mail, como [b]gmail.com[/b].
+
 UI/CoreStrings@EmptyList:
 A lista está vazia.
 
@@ -408,6 +411,10 @@ UE
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 UE/s
+
+UI/CoreStrings@EpicAccountRegisterOrLinkForm_Title:
+`Registro de conta no AtomicTorch.com
+[br](para sua conta Epic Games).`
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 Você precisa causar pelo menos {0}% de dano total para poder receber uma recompensa neste evento. Boa sorte na próxima vez!
@@ -997,6 +1004,9 @@ PA
 UI/CoreStrings@LearningPointsCost_Format:
 Custo: [b]{0}[/b] PA
 
+UI/CoreStrings@LinkEpicAccountForm_Title:
+Insira os dados da sua conta [url=atomictorch.com]AtomicTorch.com[/url] para vincular a conta do Epic Games.
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Insira os dados da sua conta [url=atomictorch.com]AtomicTorch.com[/url] para vincular a conta do Steam.
 
@@ -1154,6 +1164,12 @@ Mundos locais
 
 UI/CoreStrings@MenuLocalGame_TabNewWorld:
 Novo mundo
+
+UI/CoreStrings@MenuLogin_EpicError_Message:
+Reinicie o iniciador Epic Games e execute o jogo a partir dele mais uma vez.
+
+UI/CoreStrings@MenuLogin_EpicError_Title:
+Erro do iniciador Epic Games
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Saia do jogo, reinicie o Steam e inicie o jogo novamente.
@@ -1968,8 +1984,8 @@ Intensidade
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
 [*] Entrar na lista de e-mails da AtomicTorch para receber notificações sobre novas funcionalidades do jogo, lançamentos de novas versões e mais coisas maneiras.
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
-[*] Baixar e jogar um cópia sem Steam do CryoFall e ter acesso total ao seu jogo com os mesmos personagens e servidores.
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayStandalone:
+[*] Baixe e execute uma cópia autônoma de CryoFall (diretamente de AtomicTorch.com ou pelo iniciador AtomicTorch GameLauncher) e ainda tenha acesso total ao jogo com os mesmos personagens e servidores.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
 [*] Participar de votações privadas disponíveis para usuários da AtomicTorch.
@@ -2681,11 +2697,11 @@ Criar uma nova conta AtomicTorch
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 Link para minha conta AtomicTorch existente
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-Você não é obrigado a fazer isso. Você pode continuar usando a sua conta Steam existente para jogar, se preferir. Porém, vincular o jogo a uma conta AtomicTorch.com traz alguns benefícios.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Epic:
+Você não é obrigado a fazer isso. Você pode continuar usando a sua conta Epic Games existente para jogar, se preferir. Porém, vincular o jogo a uma conta AtomicTorch.com traz alguns benefícios.
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-Você não é obrigado a fazer isso e pode simplesmente usar a sua conta Steam para jogar. Porém, vincular traz alguns benefícios.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Steam:
+Você não é obrigado a fazer isso. Você pode continuar usando a sua conta Steam existente para jogar, se preferir. Porém, vincular o jogo a uma conta AtomicTorch.com traz alguns benefícios.
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Você pode vincular a sua conta Steam à sua conta AtomicTorch.com ou criar uma nova.
@@ -3467,7 +3483,4 @@ Insira sua senha.
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
 Para continuar, você deve aceitar os termos de serviço.
-
-UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-Parece que você está tentando se registrar usando uma conta de e-mail de um servidor de propriedade da Microsoft. Infelizmente, a Microsoft simplesmente [b]bloqueia[/b] quaisquer e-mails que provenham não sejam de provedores grandes, impedindo-nos de enviar e-mails para sua conta. Use qualquer outro serviço de e-mail, como [b]gmail.com[/b].
 

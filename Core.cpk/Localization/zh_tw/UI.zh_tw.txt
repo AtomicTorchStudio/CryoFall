@@ -396,6 +396,9 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 移除效果：
 
+UI/CoreStrings@EmailPleaseUseAnotherEmailService:
+看起來您正嘗試使用Microsoft旗下服務器中的電子郵件帳戶進行註冊。不幸的是，微軟徹底[b]阻止[/b]任何非大型提供商發送的電子郵件，我們無法向您的帳戶發送任何電子郵件。請使用任何其他電子郵件服務，例如[b]gmail.com[/b]。
+
 UI/CoreStrings@EmptyList:
 列表為空
 
@@ -407,6 +410,10 @@ UI/CoreStrings@EnergyUnitAbbreviation:
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 能量每秒
+
+UI/CoreStrings@EpicAccountRegisterOrLinkForm_Title:
+`AtomicTorch.com賬戶已註冊
+[br](為您的Epic Games賬戶)。`
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 你需要造成至少{0}%總傷害才能在本次事件中獲得獎勵。祝下次好運！
@@ -996,6 +1003,9 @@ LP
 UI/CoreStrings@LearningPointsCost_Format:
 花費：[b]{0}[/b]知識點
 
+UI/CoreStrings@LinkEpicAccountForm_Title:
+請輸入您的[url=atomictorch.com]AtomicTorch.com[/url]帳戶詳細資訊以連結您的Epic Games帳戶。
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 請輸入您的[url=atomictorch.com]AtomicTorch.com[/url]帳戶詳細資訊以連結您的Steam帳戶。
 
@@ -1153,6 +1163,12 @@ UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
 
 UI/CoreStrings@MenuLocalGame_TabNewWorld:
 新世界
+
+UI/CoreStrings@MenuLogin_EpicError_Message:
+請重啟Epic Games Launcher並再次啟動遊戲。
+
+UI/CoreStrings@MenuLogin_EpicError_Title:
+Epic Games Launcher錯誤
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 請退出遊戲，重新啟動Steam用戶端並再次啟動遊戲。
@@ -1969,8 +1985,8 @@ UI/CoreStrings@StatusEffect_TitleIntensity:
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
 [*]訂閱AtomicTorch Studio的郵件，獲取遊戲更新情報等第一手消息。
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
-[*]下載並運行無需Steam的CryoFall，並完整保留您的遊戲進度。
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayStandalone:
+[*]下載並運行獨立版CryoFall(來自AtomicTorch.com或AtomicTorch 客戶端) ，並完整保留您的遊戲進度。
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
 [*]參與僅向AtomicTorch用戶開放的投票。
@@ -2683,11 +2699,11 @@ UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 連結到我現有的AtomicTorch帳戶
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-這不是必須行動 - 您可以繼續使用現有的Steam帳戶進行遊戲。但是，連結到AtomicTorch.com帳戶有一些額外好處。
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Epic:
+這不是必須行動 - 您可以繼續使用現有的Epic Games帳戶進行遊戲。但是，連結到AtomicTorch.com帳戶有一些額外好處。
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-這不是必須行動，只需使用您現有的Steam帳戶即可。但是，這樣做有一些額外好處。
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Steam:
+這不是必須行動 - 您可以繼續使用現有的Steam帳戶進行遊戲。但是，連結到AtomicTorch.com帳戶有一些額外好處。
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 您可以將您的Steam帳戶與AtomicTorch.com帳戶相關聯，也可以創建一個新帳戶。
@@ -3470,7 +3486,4 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
 你必須接受服務條款才能繼續。
-
-UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-看起來您正嘗試使用Microsoft旗下伺服器中的電子郵件帳戶進行註冊。不幸的是，微軟徹底[b]阻止[/b]任何非大型提供商發送的電子郵件，我們無法向您的帳戶發送任何電子郵件。請使用任何其他電子郵件服務，例如[b]gmail.com[/b]。
 

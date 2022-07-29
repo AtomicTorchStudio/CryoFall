@@ -1285,6 +1285,9 @@ Blé
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Nécessite une parcelle agricole.
 
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallBushArctic1@Name:
+Small shrub
+
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
 Herbe bleue
 
@@ -1319,9 +1322,6 @@ Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Utilisez une hache pour couper cet arbre.
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
-Arbre mort
-
-Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
 Arbre mort
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:

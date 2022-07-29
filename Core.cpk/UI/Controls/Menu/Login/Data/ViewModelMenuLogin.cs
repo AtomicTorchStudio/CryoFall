@@ -14,11 +14,13 @@
 
         public Visibility VisibilityConnectingControl { get; private set; } = Visibility.Collapsed;
 
+        public Visibility VisibilityEpicLauncherError { get; private set; } = Visibility.Collapsed;
+
+        public Visibility VisibilityExternalAccountLinking { get; private set; } = Visibility.Collapsed;
+
         public Visibility VisibilityLoginAtomicTorchAccountForm { get; private set; } = Visibility.Collapsed;
 
         public Visibility VisibilitySelectUsernameControl { get; private set; } = Visibility.Collapsed;
-
-        public Visibility VisibilitySteamAccountLinking { get; private set; } = Visibility.Collapsed;
 
         public Visibility VisibilitySteamError { get; private set; } = Visibility.Collapsed;
 
@@ -26,14 +28,27 @@
         {
             Visibility visibilityLoginControl = Visibility.Collapsed,
                        visibilitySelectUsernameControl = Visibility.Collapsed,
-                       visibilitySteamAccountLinking = Visibility.Collapsed,
+                       visibilityExternalAccountLinking = Visibility.Collapsed,
                        visibilityConnectingControl = Visibility.Collapsed,
-                       visibilitySteamError = Visibility.Collapsed;
+                       visibilitySteamError = Visibility.Collapsed,
+                       visibilityEpicLauncherError = Visibility.Collapsed;
 
-            if (Api.Client.SteamApi.IsSteamClient
-                && Api.Client.SteamApi.State == SteamApiState.Error)
+            var externalApi = Api.Client.ExternalApi;
+            if (externalApi.IsExternalClient
+                && externalApi.State == ExternalApiState.Error)
             {
-                mode = MenuLoginMode.SteamError;
+                if (externalApi.IsSteamClient)
+                {
+                    mode = MenuLoginMode.SteamError;
+                }
+                else if (externalApi.IsEpicClient)
+                {
+                    mode = MenuLoginMode.EpicLauncherError;
+                }
+                else
+                {
+                    throw new Exception("Unknown external client");
+                }
             }
 
             switch (mode)
@@ -54,10 +69,14 @@
                     visibilitySteamError = Visibility.Visible;
                     break;
 
+                case MenuLoginMode.EpicLauncherError:
+                    visibilityEpicLauncherError = Visibility.Visible;
+                    break;
+
                 case MenuLoginMode.Login:
-                    if (Api.Client.SteamApi.IsSteamClient)
+                    if (externalApi.IsExternalClient)
                     {
-                        visibilitySteamAccountLinking = Visibility.Visible;
+                        visibilityExternalAccountLinking = Visibility.Visible;
                     }
                     else
                     {
@@ -71,10 +90,11 @@
             }
 
             this.VisibilityLoginAtomicTorchAccountForm = visibilityLoginControl;
-            this.VisibilitySteamAccountLinking = visibilitySteamAccountLinking;
+            this.VisibilityExternalAccountLinking = visibilityExternalAccountLinking;
             this.VisibilitySelectUsernameControl = visibilitySelectUsernameControl;
             this.VisibilityConnectingControl = visibilityConnectingControl;
             this.VisibilitySteamError = visibilitySteamError;
+            this.VisibilityEpicLauncherError = visibilityEpicLauncherError;
         }
     }
 }

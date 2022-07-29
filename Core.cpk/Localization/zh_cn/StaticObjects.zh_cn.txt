@@ -1286,6 +1286,9 @@ Scripts/StaticObjects/Vegetation/Plants/ObjectPlantWheat@Name:
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 需要农田。
 
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallBushArctic1@Name:
+Small shrub
+
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
 蓝色草药
 
@@ -1320,9 +1323,6 @@ Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 用斧头来砍这棵树。
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
-死树
-
-Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
 死树
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:

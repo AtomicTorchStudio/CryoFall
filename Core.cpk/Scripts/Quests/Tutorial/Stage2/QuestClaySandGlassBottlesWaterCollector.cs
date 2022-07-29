@@ -1,10 +1,10 @@
 ﻿namespace AtomicTorch.CBND.CoreMod.Quests.Tutorial
 {
-    using System.Collections.Generic;
     using AtomicTorch.CBND.CoreMod.CraftRecipes;
     using AtomicTorch.CBND.CoreMod.Items.Generic;
     using AtomicTorch.CBND.CoreMod.PlayerTasks;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
+    using AtomicTorch.CBND.GameApi.Scripting;
 
     public class QuestClaySandGlassBottlesWaterCollector : ProtoQuest
     {
@@ -26,7 +26,9 @@
         protected override void PrepareQuest(QuestsList prerequisites, TasksList tasks, HintsList hints)
         {
             tasks
-                .Add(TaskBuildStructure.Require<ObjectWaterCollector>())
+                .Add(TaskBuildStructure.Require<IProtoObjectWell>(
+                         description: string.Format(TaskBuildStructure.DescriptionFormat,
+                                                    Api.GetProtoEntity<ObjectWaterCollector>().Name)))
                 .Add(TaskManufactureItem.Require<ItemGlassRaw>(count: 50))
                 .Add(TaskCraftRecipe.RequireStationRecipe<RecipeBottle>(count: 5));
 

@@ -3128,6 +3128,11 @@
             (currently processed by client, actual server time is ahead).
             </summary>
         </member>
+        <member name="P:AtomicTorch.CBND.GameApi.ServicesClient.IExternalApiClientService.IsExternalClient">
+            <summary>
+            Is it any external client? (Steam/Epic/etc)
+            </summary>
+        </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.IInputClientService">
             <summary>
             Provides methods and properties for accessing keyboard and mouse input.
@@ -3241,6 +3246,12 @@
             This method will open the savegame and overwrite its rates config.
             Please note: the slot must be not active currently (e.g. as during browsing the saves list)
             otherwise the server will overwrite the savegame on shutdown with the old rates config.
+            </summary>
+        </member>
+        <member name="M:AtomicTorch.CBND.GameApi.ServicesClient.IMasterServerService.RegisterNewAccountForExternalUser">
+            <summary>
+            Use it to create new AtomicTorch.com account for Steam/Epic/etc external user
+            (the game must be launched by according client application).
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.InputKey">
@@ -3487,6 +3498,11 @@
         <member name="F:AtomicTorch.CBND.GameApi.ServicesClient.Rendering.TextureFilter.Point">
             <summary>
             Point filtering (neighert neigbbor). Ideal for pixel-perfect rendering.
+            </summary>
+        </member>
+        <member name="T:AtomicTorch.CBND.GameApi.ServicesClient.SteamApiState">
+            <summary>
+            TODO: remove with R32 Update.
             </summary>
         </member>
         <member name="T:AtomicTorch.CBND.GameApi.ServicesServer.CreateItemResult">

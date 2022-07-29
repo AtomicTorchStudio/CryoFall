@@ -1285,6 +1285,9 @@ Buğday
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Tarım yeri gerekiyor
 
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallBushArctic1@Name:
+Small shrub
+
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
 Mavi ot
 
@@ -1319,9 +1322,6 @@ Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Bu ağacı kesmek için balta kullan.
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
-Ölü ağaç
-
-Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
 Ölü ağaç
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:

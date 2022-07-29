@@ -1285,6 +1285,9 @@ Pszenica
 Scripts/StaticObjects/Vegetation/Plants/Base/ProtoObjectPlant@ErrorRequiresFarmPlot:
 Wymaga działki rolnej.
 
+Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallBushArctic1@Name:
+Small shrub
+
 Scripts/StaticObjects/Vegetation/SmallGatherables/ObjectSmallHerbBlue@Name:
 Niebieskie zioło
 
@@ -1319,9 +1322,6 @@ Scripts/StaticObjects/Vegetation/Trees/Base/ProtoObjectTree@NotificationUseAxe:
 Zetnij drzewo siekierą.
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy1@Name:
-Uschłe drzewo
-
-Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeDeadMossy2@Name:
 Uschłe drzewo
 
 Scripts/StaticObjects/Vegetation/Trees/Dead/ObjectTreeFallen@Name:

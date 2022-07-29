@@ -1,17 +1,15 @@
-﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data
+﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.Data
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public class ViewModelSteamAccountRegisterOrLinkFormControl : BaseViewModel
+    public class ViewModelExternalAccountRegisterOrLinkFormControl : BaseViewModel
     {
-        public const string EmailPleaseUseAnotherEmailService =
-            "It looks like you are trying to register using an email account from a server owned by Microsoft. Unfortunately, Microsoft outright [b]blocks[/b] any emails that aren't from large providers, effectively preventing us from sending any emails to your account. Please use any other email service, such as [b]gmail.com[/b].";
-
         // we have trouble delivering emails to these Microsoft domains
         [SuppressMessage("ReSharper", "CanExtractXamlLocalizableStringCSharp")]
         private static readonly string[] NotRecommendEmailRegistrationDomains =
@@ -24,7 +22,7 @@
 
         private string email;
 
-        public ViewModelSteamAccountRegisterOrLinkFormControl()
+        public ViewModelExternalAccountRegisterOrLinkFormControl()
         {
             this.PasswordInputControl = Client.UI.CreateSecurePasswordInputControl();
         }
@@ -50,7 +48,7 @@
                 if (NotRecommendEmailRegistrationDomains.Any(
                     domain => this.email.IndexOf(domain, StringComparison.OrdinalIgnoreCase) >= 0))
                 {
-                    this.EmailRegistrationErrorMessage = EmailPleaseUseAnotherEmailService;
+                    this.EmailRegistrationErrorMessage = CoreStrings.EmailPleaseUseAnotherEmailService;
                     this.CanRegister = false;
                 }
                 else
@@ -69,6 +67,11 @@
 
         [ViewModelNotAutoDisposeField]
         public FrameworkElement PasswordInputControl { get; }
+
+        public string Title
+            => Client.ExternalApi.IsSteamClient
+                   ? CoreStrings.SteamAccountRegisterOrLinkForm_Title
+                   : CoreStrings.EpicAccountRegisterOrLinkForm_Title;
 
         private void ExecuteCommandRegisterAccount()
         {

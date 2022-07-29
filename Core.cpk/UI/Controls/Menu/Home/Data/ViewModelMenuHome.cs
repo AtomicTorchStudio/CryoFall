@@ -63,7 +63,7 @@
             this.HistoryServers.IsActive = true;
 
             Client.Core.RequestRssFeed(
-                Api.Client.SteamApi.IsSteamClient
+                Api.Client.ExternalApi.IsSteamClient
                     ? CryoFallNewsSteamRssFeed
                     : AtomicTorchNewsRssFeed,
                 this.OnNewsRssFeedResult);

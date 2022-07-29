@@ -75,7 +75,7 @@
                     throw new Exception(ErrorMustAcceptTermsOfService);
                 }
 
-                var result = await Api.Client.SteamApi.RegisterOrLinkAtomicTorchAccountAsync(
+                var result = await Api.Client.ExternalApi.RegisterOrLinkAtomicTorchAccountAsync(
                                  email,
                                  passwordInputControlRegistrationForm,
                                  isLinkingToExistingAccount: isLinkingToExistingAccount,
@@ -84,12 +84,12 @@
                 switch (result.Result)
                 {
                     case ScriptingRegisterAtomicTorchAccountResult.ResultCode.Success:
-                        Api.Client.SteamApi.TryLoginWithSteamAccount();
+                        Api.Client.ExternalApi.TryLoginWithExternalAccount();
                         break;
 
                     case ScriptingRegisterAtomicTorchAccountResult.ResultCode.SuccessNeedActivation:
                         // a error message will be displayed automatically
-                        Api.Client.SteamApi.TryLoginWithSteamAccount();
+                        Api.Client.ExternalApi.TryLoginWithExternalAccount();
                         break;
 
                     case ScriptingRegisterAtomicTorchAccountResult.ResultCode.ErrorAccountLinkedtoAnotherSteamId:
@@ -111,7 +111,7 @@
                             DialogCannotRegister_Title,
                             DialogCannotRegister_MessageAlreadyLinkedToAnotherAtomicTorchAccount,
                             closeByEscapeKey: true);
-                        Api.Client.SteamApi.TryLoginWithSteamAccount();
+                        Api.Client.ExternalApi.TryLoginWithExternalAccount();
                         break;
 
                     case ScriptingRegisterAtomicTorchAccountResult.ResultCode.ErrorUnknown:

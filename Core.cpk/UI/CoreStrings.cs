@@ -334,6 +334,10 @@
 
         public const string EffectActionDescription_RemovesEffects = "Removes effects:";
 
+        // this line was previously translated - reuse the translation
+        public const string EmailPleaseUseAnotherEmailService =
+            "It looks like you are trying to register using an email account from a server owned by Microsoft. Unfortunately, Microsoft outright [b]blocks[/b] any emails that aren't from large providers, effectively preventing us from sending any emails to your account. Please use any other email service, such as [b]gmail.com[/b].";
+
         public const string EmptyList = "This list is empty.";
 
         public const string EmptyText = "The text is empty.";
@@ -341,6 +345,10 @@
         public const string EnergyUnitAbbreviation = "EU";
 
         public const string EnergyUnitPerSecondAbbreviation = "EU/s";
+
+        public const string EpicAccountRegisterOrLinkForm_Title =
+            @"AtomicTorch.com account registration
+              [br](for your Epic Games account).";
 
         public const string EventDamage_FailureMessage_Format =
             "You need to deal at least {0}% total damage to be eligible for a reward in this event. Good luck next time!";
@@ -803,6 +811,9 @@
 
         public const string LearningPointsCost_Format = "Cost: [b]{0}[/b] LP";
 
+        public const string LinkEpicAccountForm_Title =
+            "Please enter your [url=atomictorch.com]AtomicTorch.com[/url] account details to link your Epic account.";
+
         public const string LinkSteamAccountForm_Title =
             "Please enter your [url=atomictorch.com]AtomicTorch.com[/url] account details to link your Steam account.";
 
@@ -923,8 +934,13 @@
         // this is a tab name
         public const string MenuLocalGame_TabNewWorld = "New world";
 
+        public const string MenuLogin_EpicError_Message =
+            "Please restart the Epic Games Launcher and launch the game from it again.";
+
+        public const string MenuLogin_EpicError_Title = "Epic Games Launcher Error";
+
         public const string MenuLogin_SteamError_Message =
-            "Please quit the game, restart the Steam client and launch the game again.";
+            "Please restart the Steam client and launch the game from it again.";
 
         public const string MenuLogin_SteamError_Title = "Steam Client Error";
 
@@ -1575,8 +1591,8 @@
         public const string SteamAccountLinkingBenefitsDescription_Newsletters =
             "[*] Get access to AtomicTorch Studio's mailing list with notifications about upcoming features, new version launches, and other goodies.";
 
-        public const string SteamAccountLinkingBenefitsDescription_PlayWithoutSteam =
-            "[*] Download and run a Steam-free copy of CryoFall and still have full access to your game with the same characters and servers.";
+        public const string SteamAccountLinkingBenefitsDescription_PlayStandalone =
+            "[*] Download and run a standalone copy of CryoFall (directly from AtomicTorch.com or with AtomicTorch GameLauncher) and still have full access to your game with the same characters and servers.";
 
         public const string SteamAccountLinkingBenefitsDescription_Polls =
             "[*] Participate in private polls available to AtomicTorch users.";
@@ -2126,11 +2142,12 @@
         public const string WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch =
             "Link to my existing AtomicTorch account";
 
-        public const string WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist
-            = "You don't have to do it—you can simply continue using your existing Steam account to play, if you prefer. However, there are certain benefits in linking to an AtomicTorch.com account.";
+        // there is already a translated string with almost the same text but for Steam version
+        public const string WindowSteamAccountLinking_TitleBenefitsExplanation_Epic
+            = "You don't have to do it—you can simply continue using your existing Epic Games account to play, if you prefer. However, there are certain benefits in linking to an AtomicTorch.com account.";
 
-        public const string WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist =
-            "You absolutely don't have to do it and can simply use your existing Steam account to play. However, there are certain benefits in doing so.";
+        public const string WindowSteamAccountLinking_TitleBenefitsExplanation_Steam
+            = "You don't have to do it—you can simply continue using your existing Steam account to play, if you prefer. However, there are certain benefits in linking to an AtomicTorch.com account.";
 
         // not used
         public const string WindowSteamAccountLinking_YouCanLinkYourSteam =

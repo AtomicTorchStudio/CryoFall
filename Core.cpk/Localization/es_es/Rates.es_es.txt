@@ -121,6 +121,9 @@ Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
 Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
 [JcJ] Duración de la recarga de la protección del E.S.C.U.D.O. de la base
 
+Scripts/Rates/RatePvPShieldProtectionDuration@Name:
+[PvP] Base S.H.I.E.L.D. protection duration
+
 Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
 [JcJ] Disponibilidad de protección del E.S.C.U.D.O. de la base
 
@@ -147,6 +150,9 @@ Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
 
 Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
 [Recursos] [JcJ] Retraso de obtención de depósitos
+
+Scripts/Rates/RateResourcesPvPDepositLifetimeDuration@Name:
+[Resources] [PvP] Deposit lifetime duration
 
 Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
 [Recursos] [JcJ] Número de depósitos de litio

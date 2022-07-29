@@ -9,6 +9,7 @@
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Defenses;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Doors;
+    using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Floors;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.LandClaim;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Misc;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Walls;
@@ -22,7 +23,6 @@
     using AtomicTorch.CBND.CoreMod.Triggers;
     using AtomicTorch.CBND.CoreMod.UI;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.GameApi;
     using AtomicTorch.CBND.GameApi.Data;
     using AtomicTorch.CBND.GameApi.Data.Characters;
     using AtomicTorch.CBND.GameApi.Data.Logic;
@@ -244,8 +244,9 @@
                 case IProtoObjectWall:
                 case IProtoObjectDoor:
                 case IProtoObjectTurret:
+                case IProtoObjectFloor:
                 case ObjectPsionicFieldGenerator:
-                    // only doors, walls, and defense structures are protected
+                    // only doors, walls, floor, and defense structures are protected
                     break;
 
                 default:
@@ -319,7 +320,7 @@
             static IStaticWorldObject ClientFindLandClaimForArea(ILogicObject area)
             {
                 foreach (var worldObject
-                    in Client.World.GetGameObjectsOfProto<IStaticWorldObject, IProtoObjectLandClaim>())
+                         in Client.World.GetGameObjectsOfProto<IStaticWorldObject, IProtoObjectLandClaim>())
                 {
                     if (ReferenceEquals(area,
                                         worldObject.GetPublicState<ObjectLandClaimPublicState>()

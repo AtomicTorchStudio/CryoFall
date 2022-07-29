@@ -5,6 +5,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.Characters.Player;
     using AtomicTorch.CBND.CoreMod.Items;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.Systems.Creative;
     using AtomicTorch.CBND.CoreMod.Systems.ItemFreshnessSystem;
     using AtomicTorch.CBND.CoreMod.Systems.Notifications;
@@ -444,8 +445,30 @@
                 return;
             }
 
-            Logger.Info($"Crafting of {queueItem} completed.");
+            var craftedCount = 1;
+            var countToCraftRemains = 0;
+            
             var recipeEntry = queueItem.RecipeEntry;
+            if (recipeEntry.Recipe.RecipeType 
+                is RecipeType.StationCrafting
+                or RecipeType.Hand)
+            {
+                countToCraftRemains = Math.Min(queueItem.CountToCraftRemains - 1,
+                                               (int)(RateCraftingSpeedMultiplier.SharedValue - 1));
+            }
+
+            while (countToCraftRemains > 0)
+            {
+                if (!ServerTryCreateOutputItems(craftingQueue, queueItem))
+                {
+                    break;
+                }
+
+                craftedCount++;
+                countToCraftRemains--;
+            }
+
+            Logger.Info($"Crafting of {queueItem} completed.");
             if (recipeEntry.Recipe.RecipeType == RecipeType.Manufacturing)
             {
                 // auto-manufacturers: destroy input items when crafting completed
@@ -456,11 +479,14 @@
                     isCreativeMode: false);
             }
 
-            Api.SafeInvoke(() => ServerNonManufacturingRecipeCrafted?.Invoke(queueItem));
+            for (var index = 0; index < craftedCount; index++)
+            {
+                Api.SafeInvoke(() => ServerNonManufacturingRecipeCrafted?.Invoke(queueItem));
+            }
 
             if (recipeEntry.Recipe.RecipeType
-                    is RecipeType.Manufacturing
-                    or RecipeType.ManufacturingByproduct)
+                is RecipeType.Manufacturing
+                or RecipeType.ManufacturingByproduct)
             {
                 // do not reduce count to craft as this is a manufacturing recipe
                 var station = craftingQueue.GameObject as IStaticWorldObject;
@@ -480,9 +506,9 @@
             }
             else // if this is a non-manufacturing recipe
             {
-                if (queueItem.CountToCraftRemains > 1)
+                if (queueItem.CountToCraftRemains > craftedCount)
                 {
-                    queueItem.CountToCraftRemains--;
+                    queueItem.CountToCraftRemains = (ushort)(queueItem.CountToCraftRemains - craftedCount);
                 }
                 else
                 {
@@ -558,9 +584,9 @@
                     }
                 }
 
-                NotificationSystem.ServerSendItemsNotification(
+                /*NotificationSystem.ServerSendItemsNotification(
                     character,
-                    result);
+                    result);*/
             }
 
             return true;

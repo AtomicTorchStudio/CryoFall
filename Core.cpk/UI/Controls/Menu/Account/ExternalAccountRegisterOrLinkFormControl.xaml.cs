@@ -1,21 +1,22 @@
-﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam
+﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account
 {
     using System.Windows;
     using System.Windows.Controls;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.Data;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public partial class SteamAccountRegisterOrLinkFormControl : BaseUserControl
+    public partial class ExternalAccountRegisterOrLinkFormControl : BaseUserControl
     {
         public static readonly DependencyProperty CommandBackProperty =
             DependencyProperty.Register(nameof(CommandBack),
                                         typeof(BaseCommand),
-                                        typeof(SteamAccountRegisterOrLinkFormControl),
+                                        typeof(ExternalAccountRegisterOrLinkFormControl),
                                         new PropertyMetadata(default(BaseCommand)));
 
         private FrameworkElement root;
 
-        private ViewModelSteamAccountRegisterOrLinkFormControl viewModel;
+        private ViewModelExternalAccountRegisterOrLinkFormControl viewModel;
 
         public BaseCommand CommandBack
         {
@@ -26,7 +27,7 @@
         protected override void OnLoaded()
         {
             this.root = this.GetByName<Grid>("LayoutRoot");
-            this.root.DataContext = this.viewModel = new ViewModelSteamAccountRegisterOrLinkFormControl();
+            this.root.DataContext = this.viewModel = new ViewModelExternalAccountRegisterOrLinkFormControl();
         }
 
         protected override void OnUnloaded()

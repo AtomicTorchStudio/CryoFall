@@ -112,7 +112,7 @@
         public static readonly int AtlasSmokeSmall1OriginX = 35;
 
         /// <summary>
-        /// Used for black powder pistols such as luger and revolver.
+        /// Used for black powder weapons such as revolver and bolt action rifle.
         /// </summary>
         public static readonly TextureAtlasResource AtlasSmokeSmall2
             = new("FX/MuzzleFlash/AtlasSmokeSmall2",

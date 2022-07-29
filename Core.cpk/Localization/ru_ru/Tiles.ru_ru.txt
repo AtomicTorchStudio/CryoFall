@@ -7,6 +7,9 @@ Scripts/Tiles/TileArctic@Name:
 Scripts/Tiles/TileBarren@Name:
 Пустошь
 
+Scripts/Tiles/TileBeachArctic@Name:
+Пляж (Арктика)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 Пляж (север)
 
@@ -27,6 +30,9 @@ Scripts/Tiles/TileForestTropical@Name:
 
 Scripts/Tiles/TileLakeShore@Name:
 Берег озера
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Берег озера (Арктика)
 
 Scripts/Tiles/TileLava@Name:
 Лава

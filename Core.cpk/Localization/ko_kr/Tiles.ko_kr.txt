@@ -7,6 +7,9 @@ Scripts/Tiles/TileArctic@Name:
 Scripts/Tiles/TileBarren@Name:
 불모지
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 해변 (아한대)
 
@@ -27,6 +30,9 @@ Scripts/Tiles/TileForestTropical@Name:
 
 Scripts/Tiles/TileLakeShore@Name:
 호숫가
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 용암

@@ -7,6 +7,9 @@ Scripts/Tiles/TileArctic@Name:
 Scripts/Tiles/TileBarren@Name:
 荒地
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 海灘（寒帶）
 
@@ -27,6 +30,9 @@ Scripts/Tiles/TileForestTropical@Name:
 
 Scripts/Tiles/TileLakeShore@Name:
 湖岸
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 熔岩

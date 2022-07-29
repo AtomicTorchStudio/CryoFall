@@ -14,6 +14,7 @@
     d:DataContext="{d:DesignInstance data:ViewModelMenuLogin, IsDesignTimeCreatable=True}"
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:language="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Language"
+    xmlns:account="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account"
     Focusable="True"
     Background="Black"
     Panel.ZIndex="9001">
@@ -55,8 +56,8 @@
                                 <menu:LoginAtomicTorchFormControl />
                             </ContentControl>
 
-                            <ContentControl Visibility="{Binding VisibilitySteamAccountLinking}">
-                                <steam:UnregisteredSteamAccountWelcomeControl />
+                            <ContentControl Visibility="{Binding VisibilityExternalAccountLinking}">
+                                <account:UnregisteredExternalAccountWelcomeControl />
                             </ContentControl>
 
                             <ContentControl Visibility="{Binding VisibilitySelectUsernameControl}">
@@ -93,6 +94,40 @@
                                     <!-- Text: Please quit the game, restart the Steam Client and launch the game again. -->
                                     <TextBlock
                                         Text="{x:Static loc:CoreStrings.MenuLogin_SteamError_Message}"
+                                        Foreground="{StaticResource BrushColorLabelForeground}"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        FontFamily="{StaticResource CondensedFontFamily}"
+                                        HorizontalAlignment="Center"
+                                        TextAlignment="Left"
+                                        TextWrapping="Wrap"
+                                        Margin="0,7,0,0" />
+
+                                    <!-- Text: Quit -->
+                                    <Button Content="{x:Static loc:CoreStrings.Button_Quit}"
+                                            Command="{Binding CommandQuit}"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,12,0,0"
+                                            IsTabStop="True"
+                                            FontSize="18" />
+                                </StackPanel>
+                            </ContentControl>
+                            
+                            <ContentControl Visibility="{Binding VisibilityEpicLauncherError}">
+                                <StackPanel Orientation="Vertical"
+                                            Margin="0,-5">
+                                    <!-- Text: Epic Launcher Error -->
+                                    <TextBlock
+                                        Foreground="{StaticResource BrushColor6}"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        FontFamily="{StaticResource CondensedFontFamily}"
+                                        HorizontalAlignment="Center"
+                                        Text="{x:Static loc:CoreStrings.MenuLogin_EpicError_Title}" />
+
+                                    <!-- Text: Please quit the game, restart the Epic Games Launcher and launch the game again. -->
+                                    <TextBlock
+                                        Text="{x:Static loc:CoreStrings.MenuLogin_EpicError_Message}"
                                         Foreground="{StaticResource BrushColorLabelForeground}"
                                         FontSize="16"
                                         FontWeight="Bold"

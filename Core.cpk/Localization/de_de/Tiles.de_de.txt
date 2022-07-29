@@ -7,6 +7,9 @@ Arktisch
 Scripts/Tiles/TileBarren@Name:
 Ödland
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 Strand (nördlich)
 
@@ -27,6 +30,9 @@ Wald (tropisch)
 
 Scripts/Tiles/TileLakeShore@Name:
 Seeufer
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 Lava

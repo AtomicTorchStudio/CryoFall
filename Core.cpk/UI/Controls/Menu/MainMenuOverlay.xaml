@@ -172,7 +172,7 @@
                                                         MinHeight="1"
                                                         Padding="5,3"
                                                         Margin="0,5"
-                                                        Visibility="{Binding CommandLinkSteamAccountVisibility}"
+                                                        Visibility="{Binding CommandLinkExternalAccountVisibility}"
                                                         Focusable="False">
                                                     <Button.Content>
                                                         <!-- Text: Link account -->

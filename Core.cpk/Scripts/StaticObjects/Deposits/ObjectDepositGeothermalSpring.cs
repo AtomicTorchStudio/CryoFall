@@ -4,6 +4,7 @@
     using System.Linq;
     using AtomicTorch.CBND.CoreMod.ClientComponents.Rendering;
     using AtomicTorch.CBND.CoreMod.Helpers.Client;
+    using AtomicTorch.CBND.CoreMod.Rates;
     using AtomicTorch.CBND.CoreMod.SoundPresets;
     using AtomicTorch.CBND.CoreMod.StaticObjects.Structures.Manufacturers;
     using AtomicTorch.CBND.CoreMod.Systems.Physics;
@@ -24,8 +25,8 @@
 
         public override double DecaySpeedMultiplierWhenExtractingActive => 1;
 
-        public override double LifetimeTotalDurationSeconds { get; }
-            = TimeSpan.FromDays(4).TotalSeconds;
+        public override double LifetimeTotalDurationSeconds
+            => RateResourcesPvPDepositLifetimeDuration.SharedValue;
 
         public override string Name => "Geothermal spring";
 

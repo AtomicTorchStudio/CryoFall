@@ -175,6 +175,11 @@
 
             internal void RefreshRaidedState()
             {
+                if (!HudNotificationsPanelControl.IsAvailable)
+                {
+                    return;
+                }
+
                 var isRaidedNow = LandClaimSystem.SharedIsAreasGroupUnderRaid(this.areasGroup);
                 if (this.lastIsRaided == isRaidedNow)
                 {

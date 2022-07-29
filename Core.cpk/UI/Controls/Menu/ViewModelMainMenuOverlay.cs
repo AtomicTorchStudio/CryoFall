@@ -4,7 +4,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account;
     using AtomicTorch.CBND.GameApi.Scripting;
     using AtomicTorch.CBND.GameApi.ServicesClient;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
@@ -33,9 +33,10 @@
             Client.CurrentGame.ConnectionStateChanged += this.RefreshOverlay;
             LoadingSplashScreenManager.Instance.StateChanged += this.RefreshOverlay;
 
-            if (Client.SteamApi.IsSteamClient)
+            if (Client.ExternalApi.IsExternalClient)
             {
-                Client.SteamApi.IsLinkedAccountPropertyChanged += this.SteamApiIsLinkedAccountPropertyChangedHandler;
+                Client.ExternalApi.IsLinkedAccountPropertyChanged
+                    += () => this.NotifyPropertyChanged(nameof(this.CommandLinkExternalAccountVisibility));
             }
 
             Client.MasterServer.DemoVersionInfoChanged += this.MasterServerDemoVersionInfoChangedHandler;
@@ -46,9 +47,9 @@
         public static ViewModelMainMenuOverlay Instance
             => instance ??= new ViewModelMainMenuOverlay();
 
-        public Visibility CommandLinkSteamAccountVisibility
-            => Client.SteamApi.IsSteamClient
-               && !Client.SteamApi.IsLinkedAccount
+        public Visibility CommandLinkExternalAccountVisibility
+            => Client.ExternalApi.IsExternalClient
+               && !Client.ExternalApi.IsLinkedAccount
                && !Client.MasterServer.IsDemoVersion
                    ? Visibility.Visible
                    : Visibility.Collapsed;
@@ -56,11 +57,10 @@
         public BaseCommand CommandLogout
             => new ActionCommand(() => Client.MasterServer.LogoutPlayer());
 
-        public Visibility CommandLogoutVisibility =>
-            // in Steam version we must hide the logout button (as single Steam account can have only a single AtomicTorch.com account)
-            Client.SteamApi.IsSteamClient
-                ? Visibility.Collapsed
-                : Visibility.Visible;
+        public Visibility CommandLogoutVisibility
+            => Client.ExternalApi.IsExternalClient
+                   ? Visibility.Collapsed // hide logout in Steam/Epic/etc version
+                   : Visibility.Visible;
 
         public ICommand CommandOpenAtomicTorchTermsOfService
             => new ActionCommand(() => Client.Core.OpenWebPage(@"https://atomictorch.com/Pages/Terms-of-Service"));
@@ -69,12 +69,7 @@
             => new ActionCommand(() => Client.Core.OpenWebPage(@"http://privacypolicy.daedalic.com"));
 
         public BaseCommand CommandOpenLinkSteamAccountWindow
-            => new ActionCommand(
-                () =>
-                {
-                    var window = new WindowSteamAccountLinking();
-                    Client.UI.LayoutRootChildren.Add(window);
-                });
+            => new ActionCommand(() => Client.UI.LayoutRootChildren.Add(new WindowExternalAccountLinking()));
 
         // ReSharper disable once CanExtractXamlLocalizableStringCSharp
         public string GameVersion { get; } = "v" + Api.Shared.GameVersionNumberWithBuildNumber;
@@ -144,6 +139,11 @@
 
         public string Username { get; private set; }
 
+        private void ExternalApiIsLinkedAccountPropertyChangedHandler()
+        {
+            this.NotifyPropertyChanged(nameof(this.CommandLinkExternalAccountVisibility));
+        }
+
         private void MainMenuOverlayOnIsHiddenChanged()
         {
             // selects "Current game" tab when connected
@@ -157,7 +157,7 @@
 
         private void MasterServerDemoVersionInfoChangedHandler()
         {
-            this.NotifyPropertyChanged(nameof(this.CommandLinkSteamAccountVisibility));
+            this.NotifyPropertyChanged(nameof(this.CommandLinkExternalAccountVisibility));
         }
 
         private void RefreshOverlay()
@@ -177,11 +177,6 @@
         private void RefreshUsername()
         {
             this.Username = Client.MasterServer.CurrentPlayerUsername;
-        }
-
-        private void SteamApiIsLinkedAccountPropertyChangedHandler()
-        {
-            this.NotifyPropertyChanged(nameof(this.CommandLinkSteamAccountVisibility));
         }
     }
 }

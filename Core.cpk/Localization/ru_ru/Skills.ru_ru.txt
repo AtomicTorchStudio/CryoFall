@@ -128,7 +128,7 @@ Scripts/Skills/Skills/Production/SkillProspecting@Flags.AdditionalYield:
 Шанс получить дополнительный минерал
 
 Scripts/Skills/Skills/Production/SkillProspecting@Flags.FindGemstones:
-Шанс найти самородки при добыче минералов
+Шанс найти драгоценные камни при добыче минералов
 
 Scripts/Skills/Skills/Production/SkillProspecting@Description:
 Чем больше вы знаете о горных породах, тем выше скорость добычи, объем полученных минералов и шанс найти редкие ресурсы.

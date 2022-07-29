@@ -121,6 +121,9 @@ Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
 Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
 [PvP] Dauer der Schutzabklingzeit des Basis-S.H.I.E.L.D.
 
+Scripts/Rates/RatePvPShieldProtectionDuration@Name:
+[PvP] Base S.H.I.E.L.D. protection duration
+
 Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
 [PvP] Basis-S.H.I.E.L.D.-Schutz verfügbar
 
@@ -147,6 +150,9 @@ Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
 
 Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
 [Ressourcen] [PvP] Verzögerung der Vorkommensbeanspruchung
+
+Scripts/Rates/RateResourcesPvPDepositLifetimeDuration@Name:
+[Resources] [PvP] Deposit lifetime duration
 
 Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
 [Ressourcen] [PvP] Anzahl von Lithiumvorkommen

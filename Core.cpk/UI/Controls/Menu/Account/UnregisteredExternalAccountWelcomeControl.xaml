@@ -1,16 +1,16 @@
 ﻿<base:BaseUserControl
-    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.UnregisteredSteamAccountWelcomeControl"
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.UnregisteredExternalAccountWelcomeControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="clr-namespace:AtomicTorch.GameEngine.Common.Client.MonoGame.UI;assembly=AtomicTorch.CBND.GameApi.WPF.Stubs"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
-    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data"
-    xmlns:steam="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance data:ViewModelSteamAccountLinkingWelcome, IsDesignTimeCreatable=True}"
-    Foreground="White" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    d:DataContext="{d:DesignInstance data:ViewModelExternalAccountLinkingWelcome, IsDesignTimeCreatable=True}"
+    Foreground="White" xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:account="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.Data">
 
     <base:BaseUserControl.Resources>
         <Style TargetType="TextBlock">
@@ -22,7 +22,7 @@
 
     <Grid VerticalAlignment="Top"
           KeyboardNavigation.TabNavigation="Cycle">
-        <!-- Steam account mode selection -->
+        <!-- Account mode selection -->
         <Grid Visibility="{Binding ViewVisibilityModeSelection}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -91,21 +91,21 @@
                             Margin="0,20,0,0"
                             HorizontalAlignment="Center">
                     <TextBlock
-                        Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist}"
+                        Text="{Binding AccountLinkingBenefits}"
                         FontSize="14"
                         Foreground="#FFCFCFCF"
                         TextWrapping="Wrap" />
-                    <steam:SteamAccountLinkingBenefitsDescriptionControl />
+                    <account:ExternalAccountLinkingBenefitsDescriptionControl />
                 </StackPanel>
             </StackPanel>
         </Grid>
 
-        <!-- Steam account linking form -->
-        <steam:LinkSteamAccountFormControl Visibility="{Binding ViewVisibilityAccountLinkingForm}"
-                                           CommandBack="{Binding CommandResetMenu}" />
+        <!-- Account linking form -->
+        <account:ExternalAccountLinkControl Visibility="{Binding ViewVisibilityAccountLinkingForm}"
+                                            CommandBack="{Binding CommandResetMenu}" />
 
-        <!-- Steam account registration form -->
-        <steam:SteamAccountRegisterOrLinkFormControl Visibility="{Binding ViewVisibilityAccountRegistrationForm}"
-                                                     CommandBack="{Binding CommandResetMenu}" />
+        <!-- Account registration form -->
+        <account:ExternalAccountRegisterOrLinkFormControl Visibility="{Binding ViewVisibilityAccountRegistrationForm}"
+                                                          CommandBack="{Binding CommandResetMenu}" />
     </Grid>
 </base:BaseUserControl>

@@ -101,7 +101,7 @@
 
         private static void ExecuteCommandNavigateToSupporterPackPage()
         {
-            Api.Client.SteamApi.OpenBuySupporterPackPage();
+            Api.Client.ExternalApi.OpenBuySupporterPackPage();
         }
     }
 }

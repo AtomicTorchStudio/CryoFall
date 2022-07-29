@@ -116,7 +116,7 @@
         public BaseCommand CommandAddCustomServer => new ActionCommand(this.ExecuteCommandAddCustomServer);
 
         public BaseCommand CommandBuyFullVersion
-            => new ActionCommand(Api.Client.SteamApi.OpenBuyGamePage);
+            => new ActionCommand(Api.Client.ExternalApi.OpenBuyGamePage);
 
         public BaseCommand CommandClearFavorites => new ActionCommand(
             () =>

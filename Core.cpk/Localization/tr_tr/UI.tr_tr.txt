@@ -397,6 +397,9 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Şu etkileri kaldırır:
 
+UI/CoreStrings@EmailPleaseUseAnotherEmailService:
+Görünüşe göre Microsoft'un sahip olduğu bir sunucudan bir e-posta adresini kullanarak kayıt olmaya çalışıyorsunuz. Microsoft, büyük sağlayıcılardan olmayan e-postaları hemen [b]engelliyor[/b], bu da hesabınıza e-posta göndermemizi engelliyor. Lütfen [b]gmail.com[/b] gibi başka bir e-posta hizmeti kullanın.
+
 UI/CoreStrings@EmptyList:
 Bu liste boş.
 
@@ -408,6 +411,10 @@ EB
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EB/s
+
+UI/CoreStrings@EpicAccountRegisterOrLinkForm_Title:
+`AtomicTorch.com hesap kaydı
+[br](Epic Games hesabınız için).`
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 Bu etkinlikte ödül alabilmeye uygun olmak için en azından {0}% toplam hasar vermen gerekir. Bir dahakine iyi şanslar!
@@ -997,6 +1004,9 @@ EP
 UI/CoreStrings@LearningPointsCost_Format:
 Bedel: [b]{0}[/b] EP
 
+UI/CoreStrings@LinkEpicAccountForm_Title:
+Epic Games hesabını bağlamak için lütfen [url=atomictorch.com]AtomicTorch.com[/url] hesap detaylarınızı girin.
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Steam hesabını bağlamak için lütfen [url=atomictorch.com]AtomicTorch.com[/url] hesap detaylarınızı girin.
 
@@ -1154,6 +1164,12 @@ Yerel dünyalar
 
 UI/CoreStrings@MenuLocalGame_TabNewWorld:
 Yeni dünya
+
+UI/CoreStrings@MenuLogin_EpicError_Message:
+Lütfen Epic Games Launcher'ı tekrar başlatın ve oyunu oradan tekrar açın.
+
+UI/CoreStrings@MenuLogin_EpicError_Title:
+Epic Games Launcher Hatası
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Lütfen oyundan çıkın, Steam'i yeniden başlatın ve oyunu tekrar çalıştırın.
@@ -1970,8 +1986,8 @@ Yoğunluk
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
 [*] AtomicTorch Studio'nun e-mail listesine katılarak yeni özellikler, yeni versiyonlar ve diğer güzellikler hakkında bilgi edin.
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
-[*] CryoFall'un Steam dışı bir versiyonunu indirip çalıştırarak aynı karakterler ve sunucularla oyununa tam erişim sağla.
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayStandalone:
+[*] CryoFall'un tek kopyasını (direkt AtomicTorch.com'dan veya AtomicTorch GameLauncher'dan) indirip çalıştırırsanız aynı karakterler ve sunucuların bulunduğu oyunun tam versiyonuna yine ulaşabilirsiniz.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
 [*] AtomicTorch kullanıcılarıyla özel anketlere katıl.
@@ -2684,11 +2700,11 @@ AtomicTorch hesabı yarat
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 Var olan AtomicTorch hesabıma bağlan
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-Yapmak zorunda değilsin - istersen var olan Steam hesabını kullanarak oynayabilirsin. Fakat AtomicTorch.com hesabına bağlanmanın belirli yararları vardır.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Epic:
+Yapmak zorunda değilsin - istersen var olan Epic Games hesabını kullanarak oynayabilirsin. Fakat AtomicTorch.com hesabına bağlanmanın belirli yararları vardır.
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-Kesinlikle yapmak zorunda değilsin ve oynamak için var olan Steam hesabını kullanabilrisin. Ama yapmanda belirli yararlar var.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Steam:
+Yapmak zorunda değilsin - istersen var olan Steam hesabını kullanarak oynayabilirsin. Fakat AtomicTorch.com hesabına bağlanmanın belirli yararları vardır.
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Steam hesabını AtomicTorch.com hesabınla bağlayabilirsin veya yeni bir hesap açabilirsin.
@@ -3471,7 +3487,4 @@ Lütfen parolanızı girin.
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
 Devam etmek için hizmet kullanım şartlarını kabul etmeniz gerekiyor.
-
-UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-Görünüşe göre Microsoft'un sahip olduğu bir sunucudan bir e-posta adresini kullanarak kayıt olmaya çalışıyorsunuz. Microsoft, büyük sağlayıcılardan olmayan e-postaları hemen [b]engelliyor[/b], bu da hesabınıza e-posta göndermemizi engelliyor. Lütfen [b]gmail.com[/b] gibi başka bir e-posta hizmeti kullanın.
 

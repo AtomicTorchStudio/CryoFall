@@ -7,6 +7,9 @@ Scripts/Tiles/TileArctic@Name:
 Scripts/Tiles/TileBarren@Name:
 Árido
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 Playa (boreal)
 
@@ -27,6 +30,9 @@ Bosque (tropical)
 
 Scripts/Tiles/TileLakeShore@Name:
 Orilla de lago
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 Lava

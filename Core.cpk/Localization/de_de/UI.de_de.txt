@@ -397,6 +397,9 @@ Fügt Effekte hinzu:
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Entfernt Effekte:
 
+UI/CoreStrings@EmailPleaseUseAnotherEmailService:
+Wie es scheint, versuchst du dich über das E-Mail-Konto eines Microsoft-Servers zu registrieren. Leider [b]blockiert[/b] Microsoft jede E-Mail, die nicht von einem großen Anbieter stammt. Dies verhindert, dass wir dir E-Mails an dieses Konto schicken können. Bitte benutze einen anderen E-Mail-Dienst, z.B. [b]gmail.com[/b].
+
 UI/CoreStrings@EmptyList:
 Diese Liste ist leer.
 
@@ -408,6 +411,10 @@ EE
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EE/s
+
+UI/CoreStrings@EpicAccountRegisterOrLinkForm_Title:
+`AtomicTorch.com Nutzerkontoregistrierung
+[br](für deinen Epic Games-Account).`
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 Du musst mindestens {0}% Gesamtschaden verursachen, um eine Belohnung für dieses Event zu erhalten. Viel Erfolg beim nächsten Mal!
@@ -997,6 +1004,9 @@ LP
 UI/CoreStrings@LearningPointsCost_Format:
 Kosten: [b]{0}[/b] LP
 
+UI/CoreStrings@LinkEpicAccountForm_Title:
+Bitte gib deine [url=atomictorch.com]AtomicTorch.com[/url] Nutzerkontodaten ein, um deinen Epic Games-Account zu verknüpfen.
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Bitte gib deine [url=atomictorch.com]AtomicTorch.com[/url] Nutzerkontodaten ein, um deinen Steam-Account zu verknüpfen.
 
@@ -1154,6 +1164,12 @@ Lokale Welten
 
 UI/CoreStrings@MenuLocalGame_TabNewWorld:
 Neue Welt
+
+UI/CoreStrings@MenuLogin_EpicError_Message:
+Bitte starte den Epic Games Launcher neu und starte das Spiel darüber noch einmal.
+
+UI/CoreStrings@MenuLogin_EpicError_Title:
+Epic Games Launcher Fehler
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Bitte beende das Spiel, starte den Steam-Client neu und starte dann das Spiel erneut.
@@ -1968,8 +1984,8 @@ Intensität
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
 [*] Erhalte Zugang zur Mailing-List von AtomicTorch Studio und informiere dich über zukünftige Features, den Launch neuer Versionen und andere Goodies.
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
-[*] Lade und spiele eine Steam-freie Version von CryoFall und behalte den vollständigen Zugang zu deinem Spiel mit denselben Charakteren und Servern.
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayStandalone:
+[*] Lade eine eigenständige Version von CryoFall herunter und spiele diese (direkt über AtomicTorch.com oder mit dem AtomicTorch GameLauncher). Behalte vollen Zugriff auf dein Spiel mit denselben Charakteren und Servern.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
 [*] Nehme an nichtöffentlichen Umfragen teil, die Nutzern von AtomicTorch vorbehalten sind.
@@ -2682,11 +2698,11 @@ Neues AtomicTorch Nutzerkonto erstellen
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 Mit AtomicTorch Nutzerkonto verbinden
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-Es ist nicht zwingend nötig – wenn dir das lieber ist, kannst du auch weiterhin dein Steam-Account zum Spielen benutzen, jedoch bietet dir das Verbinden mit einem AtomicTorch.com Nutzerkonto gewisse Vorteile.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Epic:
+Es ist nicht zwingend nötig – wenn es dir lieber ist, kannst du auch weiterhin deinen Epic Games-Account zum Spielen benutzen, jedoch bietet dir das Verbinden mit einem AtomicTorch.com Nutzerkonto gewisse Vorteile.
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-Es ist absolut freiwillig und du kannst stattdessen zum Spielen einfach deinen bestehenden Steam-Account verwenden. Es bringt jedoch gewisse Vorteile mit sich.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Steam:
+Es ist nicht zwingend nötig – wenn es dir lieber ist, kannst du auch weiterhin deinen Steam-Account zum Spielen benutzen, jedoch bietet dir das Verbinden mit einem AtomicTorch.com Nutzerkonto gewisse Vorteile.
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Du kannst deinen Steam-Account mit deinem AtomicTorch.com Nutzerkonto verbinden oder ein neues Nutzerkonto erstellen.
@@ -3469,7 +3485,4 @@ Bitte gib dein Passwort ein.
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
 Du musst die Nutzungsbedingungen akzeptieren, um fortfahren zu können.
-
-UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-Wie es scheint, versuchst du dich über das E-Mail-Konto eines Microsoft-Servers zu registrieren. Leider [b]blockiert[/b] Microsoft jede E-Mail, die nicht von einem großen Anbieter stammt. Dies verhindert, dass wir dir E-Mails an dieses Konto schicken können. Bitte benutze einen anderen E-Mail-Dienst, z.B. [b]gmail.com[/b].
 

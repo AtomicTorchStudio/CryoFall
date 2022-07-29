@@ -92,11 +92,6 @@
 
             async void OnSave(string text)
             {
-                if (Api.Client.SteamApi.IsSteamClient)
-                {
-                    text = Api.Client.SteamApi.FilterText(text);
-                }
-
                 text = ProfanityFilteringSystem.SharedApplyFilters(text);
 
                 await Instance.CallServer(_ => _.ServerRemote_SetDescription(text));
@@ -135,11 +130,6 @@
 
             async void OnSave(string text)
             {
-                if (Api.Client.SteamApi.IsSteamClient)
-                {
-                    text = Api.Client.SteamApi.FilterText(text);
-                }
-
                 text = ProfanityFilteringSystem.SharedApplyFilters(text);
 
                 await Instance.CallServer(_ => _.ServerRemote_SetWelcomeMessage(text));

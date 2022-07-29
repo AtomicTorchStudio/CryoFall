@@ -87,7 +87,7 @@
             Client.MasterServer.LoginFailed += MasterServerLoginFailedHandler;
             Client.MasterServer.ConnectingFailed += MasterServerConnectingFailedHandler;
             Client.MasterServer.ConnectionStateChanged += MasterServerConnectionStateChangedHandler;
-            Client.SteamApi.StateChanged += SteamServiceStateChanged;
+            Client.ExternalApi.StateChanged += SteamServiceStateChanged;
 
             RefreshLoggedInState();
 
@@ -316,8 +316,8 @@
             {
                 var connectionState = Client.MasterServer.MasterServerConnectionState;
 
-                if (Client.SteamApi.IsSteamClient
-                    && Client.SteamApi.State == SteamApiState.Connecting)
+                if (Client.ExternalApi.IsExternalClient
+                    && Client.ExternalApi.State == ExternalApiState.Connecting)
                 {
                     connectionState = ConnectionState.Connecting;
                 }

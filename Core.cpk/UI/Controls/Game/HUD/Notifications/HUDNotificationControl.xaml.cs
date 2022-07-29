@@ -102,7 +102,10 @@
         {
             if (quick)
             {
-                this.storyboardFadeOut.SpeedRatio = 6.5;
+                if (this.storyboardFadeOut is not null)
+                {
+                    this.storyboardFadeOut.SpeedRatio = 6.5;
+                }
             }
 
             if (this.IsHiding)

@@ -179,18 +179,12 @@
         {
             base.ClientInitialize(data);
 
-            var objectDeposit = this.SharedGetDepositWorldObject(data.GameObject.OccupiedTile);
+            var objectExtractor = data.GameObject;
+            var objectDeposit = this.SharedGetDepositWorldObject(objectExtractor.OccupiedTile);
             // force reinitialize deposit to ensure the deposit healthbar will be hidden
             objectDeposit?.ClientInitialize();
 
-            if (objectDeposit is not null
-                && ((IProtoObjectDeposit)objectDeposit.ProtoGameObject).LifetimeTotalDurationSeconds <= 0)
-            {
-                // this extractor is built over an infinite source
-                // remove a "broken shield" icon as this area cannot be claimed
-                // this extractor cannot be damaged anyway (see SharedOnDamage method)
-                StructureLandClaimIndicatorManager.ClientDeinitialize(data.GameObject);
-            }
+            StructureLandClaimIndicatorManager.ClientDeinitialize(objectExtractor);
         }
 
         protected override void ClientObserving(ClientObjectData data, bool isObserving)

@@ -304,8 +304,10 @@
                                                    ownedArea: out _)
                 || !IsOwnedLand(toPosition, out hasNoFactionPermission))
             {
-                errorCodeOrMessage = string.Format(CoreStrings.Faction_Permission_Required_Format,
-                                                   CoreStrings.Faction_Permission_LandClaimManagement_Title);
+                errorCodeOrMessage = hasNoFactionPermission
+                                         ? string.Format(CoreStrings.Faction_Permission_Required_Format,
+                                                         CoreStrings.Faction_Permission_LandClaimManagement_Title)
+                                         : LandClaimSystem.ErrorNotLandOwner_Message;
 
                 // the building location or destination is in an area that is not owned by the player
                 if (logErrors)

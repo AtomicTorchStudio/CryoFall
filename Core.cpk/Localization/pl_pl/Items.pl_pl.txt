@@ -650,7 +650,7 @@ Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Description:
 Podstawowa maska filtrująca cząsteczki radioaktywne i niebezpieczne gazy. Nie zapewnia żadnej innej ochrony.
 
 Scripts/Items/Equipment/Misc/ItemHelmetRespirator@Name:
-Maksa ochronna
+Maska ochronna
 
 Scripts/Items/Equipment/PragmiumSuit/ItemPragmiumSuit@Description:
 Eksperymentalna zbroja cienkich metalowych płyt wzmacnianych włóknami pragmium. Bardzo lekka i trwała.

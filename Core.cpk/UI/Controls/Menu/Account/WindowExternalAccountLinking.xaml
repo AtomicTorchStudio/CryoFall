@@ -1,16 +1,18 @@
 ﻿<core:BaseUserControlWithWindow
-    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.WindowSteamAccountLinking"
+    x:Class="AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.WindowExternalAccountLinking"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:core="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Core"
     xmlns:steam="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam"
-    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance data:ViewModelSteamAccountLinkingWelcome, IsDesignTimeCreatable=True}"
-    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI">
+    d:DataContext="{d:DesignInstance data:ViewModelExternalAccountLinkingWelcome, IsDesignTimeCreatable=True}"
+    xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
+    xmlns:account="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.Data">
+
     <core:GameWindow x:Name="GameWindow"
                      Width="330"
                      CloseByEscapeKey="True"
@@ -31,12 +33,6 @@
 
             <StackPanel Visibility="{Binding ViewVisibilityModeSelection}"
                         Orientation="Vertical">
-                <!-- Text: You can link your Steam account with your AtomicTorch.com account or create a new one. -->
-                <!--<TextBlock
-                    Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_YouCanLinkYourSteam}"
-                    HorizontalAlignment="Left"
-                    Margin="20,0,0,10" />-->
-
                 <TextBlock
                     Text="{x:Static loc:CoreStrings.MainMenuOverlay_Button_LinkAccount}"
                     FontWeight="Bold"
@@ -78,20 +74,21 @@
                             HorizontalAlignment="Center">
                     <!-- Benefits explanation -->
                     <TextBlock
-                        Text="{x:Static loc:CoreStrings.WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist}"
+                        Text="{Binding AccountLinkingBenefits}"
                         FontSize="14"
                         Foreground="#FFCFCFCF" />
-                    <steam:SteamAccountLinkingBenefitsDescriptionControl />
+                    <account:ExternalAccountLinkingBenefitsDescriptionControl />
                 </StackPanel>
             </StackPanel>
 
-            <!-- Steam account linking form -->
-            <steam:LinkSteamAccountFormControl Visibility="{Binding ViewVisibilityAccountLinkingForm}"
-                                               CommandBack="{Binding CommandClose}" />
+            <!-- Account linking form -->
+            <account:ExternalAccountLinkControl Visibility="{Binding ViewVisibilityAccountLinkingForm}"
+                                                CommandBack="{Binding CommandClose}" />
 
-            <!-- Steam account registration form -->
-            <steam:SteamAccountRegisterOrLinkFormControl Visibility="{Binding ViewVisibilityAccountRegistrationForm}"
-                                                         CommandBack="{Binding CommandClose}" />
+            <!-- Account registration form -->
+            <account:ExternalAccountRegisterOrLinkFormControl
+                Visibility="{Binding ViewVisibilityAccountRegistrationForm}"
+                CommandBack="{Binding CommandClose}" />
 
         </Grid>
     </core:GameWindow>

@@ -73,11 +73,23 @@ Vous vous êtes cassé la jambe : votre capacité de déplacement s'en trouve a
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Jambe cassée
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+You are in a cold climate. Wearing warm clothes is a good idea.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Cold
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Vous êtes étourdi ! Donnez-vous quelques instants pour reprendre vos esprits.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 Étourdi
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+You are freezing to death. Quickly put on warm clothing or move to a warm area.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Frostbite
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 Vous êtes exposé à une chaleur intense : quittez immédiatement la zone pour éviter de subir des dégâts.

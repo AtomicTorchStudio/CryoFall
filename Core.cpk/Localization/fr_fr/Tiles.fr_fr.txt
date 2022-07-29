@@ -7,6 +7,9 @@ Arctique
 Scripts/Tiles/TileBarren@Name:
 Aride
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 Plage (boréale)
 
@@ -27,6 +30,9 @@ Forêt (tropicale)
 
 Scripts/Tiles/TileLakeShore@Name:
 Rivage de lac
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 Lave

@@ -73,11 +73,23 @@ Du hast dir das Bein gebrochen, was deine Bewegungsfähigkeit einschränkt. Jede
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Gebrochenes Bein
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+You are in a cold climate. Wearing warm clothes is a good idea.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Cold
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Du bist benommen! Warte einen Moment, um wieder Herr deiner Sinne zu werden.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 Benommen
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+You are freezing to death. Quickly put on warm clothing or move to a warm area.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Frostbite
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 Du bist einem hohen Maß an Hitze aus einer nahegelegenen Hitzequelle ausgesetzt. Verlasse das Gebiet umgehend, um weiteren Schaden zu vermeiden.

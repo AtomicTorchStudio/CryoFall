@@ -121,6 +121,9 @@ Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
 Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
 [PvP] 基地护盾保护冷却时间
 
+Scripts/Rates/RatePvPShieldProtectionDuration@Name:
+[PvP] Base S.H.I.E.L.D. protection duration
+
 Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
 [PvP] 基地护盾保护可用
 
@@ -147,6 +150,9 @@ Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
 
 Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
 [Resources] [PvP] 资源点占领延迟
+
+Scripts/Rates/RateResourcesPvPDepositLifetimeDuration@Name:
+[Resources] [PvP] Deposit lifetime duration
 
 Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
 [Resources] [PvP] 锂矿数量

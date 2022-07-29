@@ -47,8 +47,7 @@
                 return;
             }
 
-            if (vehicleName != ProfanityFilteringSystem.SharedApplyFilters(vehicleName)
-                || vehicleName != Client.SteamApi.FilterText(vehicleName))
+            if (vehicleName != ProfanityFilteringSystem.SharedApplyFilters(vehicleName))
             {
                 Logger.Warning("Profanity detected: " + vehicleName);
                 return;

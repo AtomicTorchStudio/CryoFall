@@ -75,17 +75,7 @@
                 return message;
             }
 
-            if (Api.Client.SteamApi.IsSteamClient)
-            {
-                // Apply user-configurable Steam text filters
-                // (in some countries there is mandatory filtering).
-                // https://store.steampowered.com/news/app/593110/view/2855803154584367415
-                message = Api.Client.SteamApi.FilterText(message);
-            }
-
-            // Apply our profanity filters (extendable with mods).
             message = ProfanityFilteringSystem.SharedApplyFilters(message);
-
             return message;
         }
 

@@ -59,10 +59,6 @@
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotLightRifle");
 
-        public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedLuger
-            = WeaponRanged.Clone()
-                          .Replace(Shot, "Weapons/Ranged/ShotLuger");
-
         public static readonly ReadOnlySoundPreset<WeaponSound> WeaponRangedMachinegun
             = WeaponRanged.Clone()
                           .Replace(Shot, "Weapons/Ranged/ShotMachinegun");

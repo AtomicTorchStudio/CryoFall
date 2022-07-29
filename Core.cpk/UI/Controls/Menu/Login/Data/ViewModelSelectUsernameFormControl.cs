@@ -26,9 +26,9 @@
             this.CommandQuit = new ActionCommand(this.ExecuteCommandQuit);
             this.CommandContinue = new ActionCommand(this.ExecuteCommandContinue);
 
-            if (Client.SteamApi.IsSteamClient)
+            if (Client.ExternalApi.IsExternalClient)
             {
-                this.Username = Client.SteamApi.SteamUsername;
+                this.Username = Client.ExternalApi.ExternalAccountUsername;
             }
         }
 

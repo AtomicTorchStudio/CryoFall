@@ -27,9 +27,9 @@
             var originalMessage = message;
 
             if (Api.IsClient
-                && Api.Client.SteamApi.IsSteamClient)
+                && Api.Client.ExternalApi.IsExternalClient)
             {
-                message = Api.Client.SteamApi.FilterText(message);
+                message = Api.Client.ExternalApi.FilterText(message);
             }
 
             foreach (var test in FilterBlacklist)

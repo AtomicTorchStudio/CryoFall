@@ -1,27 +1,27 @@
-﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam
+﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account
 {
     using System;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
-    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data;
+    using AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.Data;
     using AtomicTorch.CBND.GameApi.Scripting;
 
-    public partial class WindowSteamAccountLinking : BaseUserControlWithWindow
+    public partial class WindowExternalAccountLinking : BaseUserControlWithWindow
     {
-        private ViewModelSteamAccountLinkingWelcome viewModel;
+        private ViewModelExternalAccountLinkingWelcome viewModel;
 
         protected override void OnLoaded()
         {
-            if (!Api.Client.SteamApi.IsSteamClient)
+            if (!Api.Client.ExternalApi.IsExternalClient)
             {
-                throw new Exception("Not a Steam version of the game");
+                throw new Exception("Not a Steam/Epic/external version of the game");
             }
 
-            if (Api.Client.SteamApi.IsLinkedAccount)
+            if (Api.Client.ExternalApi.IsLinkedAccount)
             {
-                throw new Exception("Steam account is already linked");
+                throw new Exception("External account is already linked");
             }
 
-            this.DataContext = this.viewModel = new ViewModelSteamAccountLinkingWelcome(
+            this.DataContext = this.viewModel = new ViewModelExternalAccountLinkingWelcome(
                                    callbackResizeWindow: () =>
                                                          {
                                                              this.Window.Height = double.NaN;

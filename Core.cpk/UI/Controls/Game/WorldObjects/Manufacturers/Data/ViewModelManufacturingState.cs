@@ -392,7 +392,11 @@
         private void ExecuteCommandSelectRecipeFromBrowser(object arg)
         {
             this.CloseRecipesBrowser();
-            this.SelectRecipe((Recipe)arg);
+            var recipe = arg is RecipeWithSkin recipeWithSkin
+                             ? recipeWithSkin.Recipe
+                             : (Recipe)arg;
+
+            this.SelectRecipe(recipe);
         }
 
         private List<Recipe> GetAllRecipes()

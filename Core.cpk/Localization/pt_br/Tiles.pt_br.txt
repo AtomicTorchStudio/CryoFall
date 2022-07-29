@@ -7,6 +7,9 @@ Scripts/Tiles/TileArctic@Name:
 Scripts/Tiles/TileBarren@Name:
 Estéril
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 Praia (boreal)
 
@@ -27,6 +30,9 @@ Floresta (tropical)
 
 Scripts/Tiles/TileLakeShore@Name:
 Margem do lago
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 Lava

@@ -162,11 +162,6 @@
                     ClientCurrentCharacterHelper.Character,
                     message));
 
-            if (Api.Client.SteamApi.IsSteamClient)
-            {
-                message = Api.Client.SteamApi.FilterText(message);
-            }
-
             message = ProfanityFilteringSystem.SharedApplyFilters(message);
 
             var chatRoomHolder = (ILogicObject)chatRoom.GameObject;

@@ -73,11 +73,23 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 斷腿
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+You are in a cold climate. Wearing warm clothes is a good idea.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Cold
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 你暈眩了！請等待其恢復。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 暈眩
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+You are freezing to death. Quickly put on warm clothing or move to a warm area.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Frostbite
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 你正在暴露於一個附近的高熱源，立即離開該地區以防止進一步損害。

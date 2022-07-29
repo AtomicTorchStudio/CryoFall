@@ -73,11 +73,23 @@ Te has roto una pierna, lo cual afecta a tu capacidad de movimiento. Sufrirás u
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Pierna rota
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+You are in a cold climate. Wearing warm clothes is a good idea.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Cold
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 ¡Sufres aturdimiento! Tardarás un ratito en recuperarte.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 Aturdimiento
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+You are freezing to death. Quickly put on warm clothing or move to a warm area.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Frostbite
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 Te estás exponiendo al calor muy elevado que emite una fuente cercana. Abandona inmediatamente la zona si no quieres sufrir más daños.

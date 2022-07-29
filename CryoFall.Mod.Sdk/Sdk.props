@@ -5,7 +5,7 @@
   <PropertyGroup>
     <OutputPath>.temp\bin\</OutputPath>
     <BaseIntermediateOutputPath>.temp\obj\</BaseIntermediateOutputPath>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <LangVersion>9.0</LangVersion>
     <Configurations>Debug;Debug_LibsAsProjects</Configurations>

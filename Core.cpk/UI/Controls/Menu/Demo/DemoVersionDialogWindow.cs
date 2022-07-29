@@ -11,7 +11,7 @@
                 CoreStrings.Demo_Title,
                 CoreStrings.Demo_OnlyOfficialServers,
                 okText: CoreStrings.Demo_Button_BuyGameOnSteam,
-                okAction: () => Api.Client.SteamApi.OpenBuyGamePage(),
+                okAction: () => Api.Client.ExternalApi.OpenBuyGamePage(),
                 cancelText: CoreStrings.Button_Cancel,
                 cancelAction: () => { },
                 focusOnCancelButton: true,

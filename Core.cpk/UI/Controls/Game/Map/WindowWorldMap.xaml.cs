@@ -143,21 +143,23 @@
             this.CloseContextMenu();
 
             var controller = this.controlWorldMap.WorldMapController;
+            var mapPositionAbsolute = controller.PointedMapWorldPositionAbsolute;
+
             if (this.MapClickOverride is not null)
             {
-                var mapPositionAbsolute = controller.PointedMapWorldPositionAbsolute;
                 Api.SafeInvoke(() => this.MapClickOverride(mapPositionAbsolute));
                 return;
             }
 
             var contextMenu = new ContextMenu();
+
             contextMenu.Items.Add(new MenuItem()
             {
                 Header = ContextMenuCopyCoordinates,
                 Command = new ActionCommand(
                     () => Api.Client.Core.CopyToClipboard(
                         WorldMapSectorHelper.FormatWorldPositionWithSectorCoordinate(
-                            controller.PointedMapWorldPositionAbsolute)))
+                            mapPositionAbsolute)))
             });
 
             var character = Api.Client.Characters.CurrentPlayerCharacter;
@@ -165,12 +167,11 @@
                 || CreativeModeSystem.SharedIsInCreativeMode(character)
                 || Api.IsEditor)
             {
-                var mapPositionWithoutOffset = controller.PointedMapWorldPositionAbsolute;
                 contextMenu.Items.Add(new MenuItem()
                 {
                     Header = ContextMenuTeleport,
                     Command = new ActionCommand(
-                        () => CallCreativeModeTeleport(mapPositionWithoutOffset.ToVector2D()))
+                        () => CallCreativeModeTeleport(mapPositionAbsolute.ToVector2D()))
                 });
             }
 

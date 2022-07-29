@@ -51,11 +51,6 @@
             text = text?.Trim();
             SharedValidateSignText(text);
 
-            if (Client.SteamApi.IsSteamClient)
-            {
-                text = Client.SteamApi.FilterText(text);
-            }
-
             text = ProfanityFilteringSystem.SharedApplyFilters(text);
 
             this.CallServer(_ => _.ServerRemote_SetSignText(worldObjectSign, text));

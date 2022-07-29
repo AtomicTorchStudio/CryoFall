@@ -73,11 +73,23 @@ Złamana nogę utrudnia poruszanie się. Próba biegania spowoduje silny ból. U
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Złamana noga
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+You are in a cold climate. Wearing warm clothes is a good idea.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Cold
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Oszołomienie niedługo minie, poczekaj chwilę, aby dojść od siebie.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 Oszołomienie
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+You are freezing to death. Quickly put on warm clothing or move to a warm area.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Frostbite
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 Czujesz bardzo wysoką temperaturę z pobliskiego źródła ciepła. Natychmiast opuść teren, aby uniknąć dalszych obrażeń.

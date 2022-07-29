@@ -206,11 +206,6 @@
         {
             ClientValidateHasAccessRights(FactionMemberAccessRights.EditDescription);
 
-            if (Api.Client.SteamApi.IsSteamClient)
-            {
-                text = Api.Client.SteamApi.FilterText(text);
-            }
-
             text = ProfanityFilteringSystem.SharedApplyFilters(text);
 
             SharedValidateDescriptionLength(text, isPrivateDescription);

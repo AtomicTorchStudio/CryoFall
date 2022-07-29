@@ -121,6 +121,9 @@ Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
 Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
 [PvP] Длительность перезарядки Щ.И.Т.а базы
 
+Scripts/Rates/RatePvPShieldProtectionDuration@Name:
+[PvP] Длительность защиты Щ.И.Т.а базы
+
 Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
 [PvP] Щ.И.Т. базы доступен
 
@@ -147,6 +150,9 @@ Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
 
 Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
 [Ресурсы] [PvP] Задержка захвата месторождения
+
+Scripts/Rates/RateResourcesPvPDepositLifetimeDuration@Name:
+[Ресурсы] [PvP] Время жизни месторождения
 
 Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
 [Ресурсы] [PvP] Количество месторождений лития

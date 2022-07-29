@@ -10,6 +10,8 @@
 
         Login,
 
-        SteamError
+        SteamError,
+
+        EpicLauncherError
     }
 }

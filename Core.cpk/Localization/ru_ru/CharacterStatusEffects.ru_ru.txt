@@ -73,11 +73,23 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 Сломанная нога
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+Вы находитесь в холодном климате. Одеться потеплее — хорошая идея.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Холод
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 Вы оглушены! Потребуется несколько мгновений, чтобы прийти в себя.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 Оглушение
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+Вы замерзаете до смерти. Быстро наденьте теплую одежду или переместитесь в теплое место.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Обморожение
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 Вы подвергаетесь перегреву от близкого источника тепла. Немедленно покиньте это место, чтобы не получить больше урона.

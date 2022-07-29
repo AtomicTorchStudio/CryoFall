@@ -73,11 +73,23 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 骨折
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+You are in a cold climate. Wearing warm clothes is a good idea.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Cold
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 目が眩んでいます！感覚を取り戻すための時間が必要です。
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 目まい
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+You are freezing to death. Quickly put on warm clothing or move to a warm area.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Frostbite
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 近くの熱源からの高レベルの熱にさらされています。これ以上のダメージを防ぐためにすぐにその場を離れてください。

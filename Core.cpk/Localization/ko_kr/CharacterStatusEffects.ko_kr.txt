@@ -73,11 +73,23 @@ Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Description:
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectBrokenLeg@Name:
 다리 골절
 
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Description:
+You are in a cold climate. Wearing warm clothes is a good idea.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectCold@Name:
+Cold
+
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Description:
 기절했습니다! 감각이 돌아오려면 잠시 기다려야 합니다.
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectDazed@Name:
 기절
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Description:
+You are freezing to death. Quickly put on warm clothing or move to a warm area.
+
+Scripts/CharacterStatusEffects/Debuffs/StatusEffectFrostbite@Name:
+Frostbite
 
 Scripts/CharacterStatusEffects/Debuffs/StatusEffectHeat@Description:
 높은 열에 노출되고 있습니다. 더 이상의 대미지를 막기 위해 즉시 해당 지역에서 벗어나십시오.

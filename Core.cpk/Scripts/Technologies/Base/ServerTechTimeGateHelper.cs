@@ -36,14 +36,10 @@
             return IsTimeGateFinished(TechTier.Tier5, isSpecialized: true);
         }
 
-        private static double Get(TechTier tier, bool isSpecialized)
+        public static bool IsTimeGateFinished(TechTier tier, bool isSpecialized)
         {
-            return TechConstants.PvPTimeGates.Get(tier, isSpecialized);
-        }
-
-        private static bool IsTimeGateFinished(TechTier tier, bool isSpecialized)
-        {
-            return IsTimeGateFinished(Get(tier, isSpecialized));
+            return IsTimeGateFinished(
+                TechConstants.PvPTimeGates.Get(tier, isSpecialized));
         }
 
         private static bool IsTimeGateFinished(double timeGateDuration)

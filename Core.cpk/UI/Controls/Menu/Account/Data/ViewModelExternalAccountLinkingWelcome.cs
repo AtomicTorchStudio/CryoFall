@@ -1,11 +1,11 @@
-﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Steam.Data
+﻿namespace AtomicTorch.CBND.CoreMod.UI.Controls.Menu.Account.Data
 {
     using System;
     using System.Windows;
     using AtomicTorch.CBND.CoreMod.UI.Controls.Core;
     using AtomicTorch.GameEngine.Common.Client.MonoGame.UI;
 
-    public class ViewModelSteamAccountLinkingWelcome : BaseViewModel
+    public class ViewModelExternalAccountLinkingWelcome : BaseViewModel
     {
         private readonly Action callbackClose;
 
@@ -13,7 +13,7 @@
 
         private Modes mode;
 
-        public ViewModelSteamAccountLinkingWelcome(
+        public ViewModelExternalAccountLinkingWelcome(
             Action callbackResizeWindow = null,
             Action callbackClose = null)
         {
@@ -29,6 +29,11 @@
 
             AccountRegistration
         }
+
+        public string AccountLinkingBenefits
+            => Client.ExternalApi.IsSteamClient
+                   ? CoreStrings.WindowSteamAccountLinking_TitleBenefitsExplanation_Steam
+                   : CoreStrings.WindowSteamAccountLinking_TitleBenefitsExplanation_Epic;
 
         public BaseCommand CommandClose => new ActionCommand(this.callbackClose);
 
@@ -58,7 +63,7 @@
 
         private void ExecuteCommandProceedWithoutAccount()
         {
-            Client.SteamApi.RegisterSteamOnlyAccount();
+            Client.MasterServer.RegisterNewAccountForExternalUser();
         }
 
         private void ExecuteCommandQuit()

@@ -121,6 +121,9 @@ Scripts/Rates/RatePvPShieldProtectionActivationDuration@Name:
 Scripts/Rates/RatePvPShieldProtectionCooldownDuration@Name:
 [PvP] 기지 실드 보호 쿨타임 지속 시간
 
+Scripts/Rates/RatePvPShieldProtectionDuration@Name:
+[PvP] Base S.H.I.E.L.D. protection duration
+
 Scripts/Rates/RatePvPShieldProtectionEnabled@Name:
 [PvP] 기지 실드 보호 이용 가능
 
@@ -147,6 +150,9 @@ Scripts/Rates/RateResourcesPragmiumSourceMultiplier@Name:
 
 Scripts/Rates/RateResourcesPvPDepositClaimDelay@Name:
 [Resources] [PvP] 매장지 점유 지연 시간
+
+Scripts/Rates/RateResourcesPvPDepositLifetimeDuration@Name:
+[Resources] [PvP] Deposit lifetime duration
 
 Scripts/Rates/RateResourcesPvPDepositLithiumMultiplier@Name:
 [Resources] [PvP] 리튬 매장지 개수

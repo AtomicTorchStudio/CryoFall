@@ -126,7 +126,7 @@
                 throw new Exception("Skins are not supported in current version of the client");
             }
 
-            if (!Api.Client.SteamApi.IsSteamOverlayEnabled)
+            if (!Api.Client.ExternalApi.IsOverlayEnabled)
             {
                 DialogWindow.ShowMessage(
                     CoreStrings.SteamOverlayDisabled_Title,
@@ -135,10 +135,10 @@
                 return;
             }
 
-            Api.Client.SteamApi.InitMicrotransaction((ushort)this.ProtoItemSkin.SkinId,
-                                                     string.Format(CoreStrings.Skins_SkinNameFormat,
-                                                                   this.ProtoItemSkin.Name,
-                                                                   this.ProtoItemSkin.BaseProtoItem.Name));
+            Api.Client.ExternalApi.InitMicrotransaction((ushort)this.ProtoItemSkin.SkinId,
+                                                        string.Format(CoreStrings.Skins_SkinNameFormat,
+                                                                      this.ProtoItemSkin.Name,
+                                                                      this.ProtoItemSkin.BaseProtoItem.Name));
         }
     }
 }

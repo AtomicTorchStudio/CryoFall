@@ -397,6 +397,9 @@ Dodaje efekty:
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Usuwa efekty:
 
+UI/CoreStrings@EmailPleaseUseAnotherEmailService:
+Próbujesz zarejestrować się za pomocą konta e-mail z serwera należącego do firmy Microsoft. Niestety Microsoft bezpośrednio [b]blokuje[/b] wszelkie wiadomości e-mail, które nie pochodzą od dużych dostawców, co skutecznie uniemożliwi nam wysyłanie jakichkolwiek wiadomości na twoje konto. Skorzystaj z innego konta e-mail, np. [b]gmail.com[/b].
+
 UI/CoreStrings@EmptyList:
 Ta lista jest pusta.
 
@@ -408,6 +411,10 @@ JE
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 JE/s
+
+UI/CoreStrings@EpicAccountRegisterOrLinkForm_Title:
+`Rejestracja konta AtomicTorch.com
+[br](dla twojego konta Epic Games).`
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 Musisz zadać co najmniej {0}% obrażeń łącznie, aby otrzymać nagrodę w tym wydarzeniu. Powodzenia następnym razem!
@@ -997,6 +1004,9 @@ PT
 UI/CoreStrings@LearningPointsCost_Format:
 Koszt: [b]{0}[/b] PT
 
+UI/CoreStrings@LinkEpicAccountForm_Title:
+Aby połączyć konto Epic Games, podaj dane konta [url=atomictorch.com]AtomicTorch.com[/url].
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Aby połączyć konto Steam, podaj dane konta [url=atomictorch.com]AtomicTorch.com[/url].
 
@@ -1154,6 +1164,12 @@ UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
 
 UI/CoreStrings@MenuLocalGame_TabNewWorld:
 Nowy świat
+
+UI/CoreStrings@MenuLogin_EpicError_Message:
+Ponownie uruchom Epic Games Launcher i za jego pomocą jeszcze raz uruchom grę.
+
+UI/CoreStrings@MenuLogin_EpicError_Title:
+Błąd Epic Games Launcher
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Wyjdź z gry, zrestartuj klienta Steam i uruchom grę ponownie.
@@ -1968,8 +1984,8 @@ Wartość
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
 [*] Uzyskaj dostęp do listy mailingowej AtomicTorch i otrzymuj powiadomienia o nowych funkcjach, wersjach gry i inne informacje.
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
-[*] Pobierz i uruchom kopię gry CryoFall bez Steam i nadal w pełni korzystaj z tych samych postaci i serwerów.
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayStandalone:
+[*] Pobierz i uruchom niezależną kopię CryoFall (bezpośrednio z AtomicTorch.com lub za pomocą AtomicTorch GameLauncher) i ciesz się pełnym dostępem do swojej gry, wszystkich postaci i serwerów.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
 [*] Bierz udział w ankietach dla użytkowników AtomicTorch.
@@ -2682,11 +2698,11 @@ Utwórz nowe konto AtomicTorch
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 Połącz z moim istniejącym kontem AtomicTorch
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-Nie musisz tego robić. Jeśli chcesz, możesz dalej grać za pomocą istniejącego konta Steam. Są jednak pewne korzyści z połączenia z kontem AtomicTorch.com.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Epic:
+Nie musisz tego robić. Jeśli chcesz, możesz dalej grać za pomocą istniejącego konta Epic Games. Są jednak pewne korzyści z połączenia z kontem AtomicTorch.com.
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-Absolutnie nie musisz tego robić i możesz po prostu grać za pomocą istniejącego konta Steam. Jednak ominą cię pewne korzyści.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Steam:
+Nie musisz tego robić. Jeśli chcesz, możesz dalej grać za pomocą istniejącego konta Steam. Są jednak pewne korzyści z połączenia z kontem AtomicTorch.com.
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Możesz połączyć swoje konto Steam z kontem AtomicTorch.com lub utworzyć nowe.
@@ -3469,7 +3485,4 @@ Wpisz hasło.
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
 Aby kontynuować, musisz zaakceptować Warunki świadczenia usług.
-
-UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-Próbujesz zarejestrować się za pomocą konta e-mail z serwera należącego do firmy Microsoft. Niestety Microsoft bezpośrednio [b]blokuje[/b] wszelkie wiadomości e-mail, które nie pochodzą od dużych dostawców, co skutecznie uniemożliwi nam wysyłanie jakichkolwiek wiadomości na twoje konto. Skorzystaj z innego konta e-mail, np. [b]gmail.com[/b].
 

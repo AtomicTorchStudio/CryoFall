@@ -7,6 +7,9 @@ Arktyczne
 Scripts/Tiles/TileBarren@Name:
 Jałowa gleba
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 Plaża (tajga)
 
@@ -27,6 +30,9 @@ Las (tropikalny)
 
 Scripts/Tiles/TileLakeShore@Name:
 Wybrzeże jeziora
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 Lawa

@@ -397,6 +397,9 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 Снимает эффекты:
 
+UI/CoreStrings@EmailPleaseUseAnotherEmailService:
+Похоже, вы пытаетесь зарегистрироваться с помощью электронной почты на сервере Microsoft. К сожалению, Microsoft [b]блокирует[/b] получение писем от всех, кто не является крупными провайдерами, поэтому мы не можем отправить письмо на ваш адрес электронной почты. Пожалуйста, используйте другой почтовый сервис, например [b]gmail.com[/b].
+
 UI/CoreStrings@EmptyList:
 Этот список пуст.
 
@@ -408,6 +411,10 @@ UI/CoreStrings@EnergyUnitAbbreviation:
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 ЭН/с
+
+UI/CoreStrings@EpicAccountRegisterOrLinkForm_Title:
+`Регистрация учетной записи AtomicTorch.com
+[br](для вашей учетной записи Epic Games).`
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 Вам нужно нанести хотя бы {0}% от всего урона, чтобы рассчитывать на награду в этом событии. Удачи в следующий раз!
@@ -997,6 +1004,9 @@ UI/CoreStrings@LearningPointsAbbreviation:
 UI/CoreStrings@LearningPointsCost_Format:
 Стоимость: [b]{0}[/b] ОТ
 
+UI/CoreStrings@LinkEpicAccountForm_Title:
+Пожалуйста, введите данные своей учетной записи [url=atomictorch.com]AtomicTorch.com[/url], чтобы связать ее с вашей учетной записью Epic Games.
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Пожалуйста, введите данные своей учетной записи [url=atomictorch.com]AtomicTorch.com[/url], чтобы связать ее с вашей учетной записью Steam.
 
@@ -1154,6 +1164,12 @@ UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
 
 UI/CoreStrings@MenuLocalGame_TabNewWorld:
 Новый мир
+
+UI/CoreStrings@MenuLogin_EpicError_Message:
+Пожалуйста, перезапустите программу запуска Epic Games и заново запустите через нее игру.
+
+UI/CoreStrings@MenuLogin_EpicError_Title:
+Ошибка программы запуска Epic Games
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 Пожалуйста, выйдите из игры, перезапустите клиент Steam и снова загрузите игру.
@@ -1962,8 +1978,8 @@ UI/CoreStrings@StatusEffect_TitleIntensity:
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
 [*] Получить доступ к рассылке AtomicTorch Studio, из которой вы сможете узнавать о предстоящих обновлениях, выходе новых версий и других возможностях.
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
-[*] Скачать и использовать копию игры CryoFall без Steam с полным доступом к вашей игре, персонажам и серверам.
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayStandalone:
+[*] Скачайте и запустите автономную копию CryoFall (напрямую с сайта AtomicTorch.com или с помощью программы запуска AtomicTorch GameLauncher) с полным доступом к вашей игре, персонажам и серверам.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
 [*] Участвовать в закрытых опросах, доступных пользователям AtomicTorch.
@@ -2675,11 +2691,11 @@ UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 Связать с учетной записью AtomicTorch
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-Это не обязательно. Если хотите, вы можете продолжить играть со своей имеющейся учетной записью Steam. Но за привязку к учетной записи AtomicTorch.com вас ждут дополнительные преимущества.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Epic:
+Это не обязательно. Если хотите, вы можете продолжить играть со своей имеющейся учетной записью Epic Games. Но за привязку к учетной записи AtomicTorch.com вас ждут дополнительные преимущества.
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-Это делать необязательно, вы можете продолжить играть со своей имеющейся учетной записью Steam. Но за это вас ждут дополнительные преимущества.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Steam:
+Это не обязательно. Если хотите, вы можете продолжить играть со своей имеющейся учетной записью Steam. Но за привязку к учетной записи AtomicTorch.com вас ждут дополнительные преимущества.
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Вы можете связать свою учетную запись Steam с учетной записью AtomicTorch.com или создать новую.
@@ -3462,7 +3478,4 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
 Вы должны принять Условия использования, чтобы продолжить.
-
-UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-Похоже, вы пытаетесь зарегистрироваться с помощью электронной почты на сервере Microsoft. К сожалению, Microsoft [b]блокирует[/b] получение писем от всех, кто не является крупными провайдерами, поэтому мы не можем отправить письмо на ваш адрес электронной почты. Пожалуйста, используйте другой почтовый сервис, например [b]gmail.com[/b].
 

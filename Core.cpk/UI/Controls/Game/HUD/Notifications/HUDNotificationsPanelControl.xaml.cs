@@ -15,6 +15,8 @@
 
         private UIElementCollection stackPanelChildren;
 
+        public static bool IsAvailable => instance is not null;
+
         public static void ShowNotificationControl
             <TNotificationControl>(TNotificationControl notificationControl)
             where TNotificationControl : UIElement, IHudNotificationControl

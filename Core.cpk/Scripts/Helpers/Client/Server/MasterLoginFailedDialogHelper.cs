@@ -77,14 +77,14 @@
                     DialogWindow.ShowDialog(
                         EmailWithTheActivation_Title,
                         EmailWithTheActivation_Message,
-                        okText: Api.Client.SteamApi.IsSteamClient
+                        okText: Api.Client.ExternalApi.IsExternalClient
                                     ? CoreStrings.Button_Continue
                                     : CoreStrings.Button_OK,
                         okAction: () =>
                                   {
-                                      if (Api.Client.SteamApi.IsSteamClient)
+                                      if (Api.Client.ExternalApi.IsExternalClient)
                                       {
-                                          Api.Client.SteamApi.TryLoginWithSteamAccount();
+                                          Api.Client.ExternalApi.TryLoginWithExternalAccount();
                                       }
                                   },
                         textAlignment: TextAlignment.Left);
@@ -118,7 +118,10 @@
 
                 case MasterClientLoginErrorCode.UnknownError:
                 default:
-                    MenuLogin.SetDisplayed(MenuLoginMode.SteamError);
+                    MenuLogin.SetDisplayed(
+                        Api.Client.ExternalApi.IsSteamClient
+                            ? MenuLoginMode.SteamError
+                            : MenuLoginMode.EpicLauncherError);
                     errorMessage = UnknownError;
                     break;
             }

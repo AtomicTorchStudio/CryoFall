@@ -8,11 +8,11 @@
     xmlns:loc="clr-namespace:AtomicTorch.CBND.CoreMod.UI"
     xmlns:items="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls"
     xmlns:tooltips="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.Items.Controls.Tooltips"
-    xmlns:data1="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets.Data"
+    xmlns:data="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets.Data"
     xmlns:turrets="clr-namespace:AtomicTorch.CBND.CoreMod.UI.Controls.Game.WorldObjects.Turrets"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    d:DataContext="{d:DesignInstance data1:ViewModelWindowTurret, IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance data:ViewModelWindowTurret, IsDesignTimeCreatable=True}"
     FontFamily="{StaticResource CondensedFontFamily}"
     FontWeight="Bold">
 

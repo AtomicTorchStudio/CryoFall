@@ -397,6 +397,9 @@ UI/CoreStrings@EffectActionDescription_AddsEffects:
 UI/CoreStrings@EffectActionDescription_RemovesEffects:
 제거되는 효과:
 
+UI/CoreStrings@EmailPleaseUseAnotherEmailService:
+마이크로소프트가 소유한 서버의 이메일 계정을 사용하여 등록을 시도하고 계신 것 같아 보입니다. 안타깝게도, 마이크로소포트는 대형 공급자가 아닌 이메일을 완전히 [b]차단[/b]하여 저희가 당신의 계정으로 이메일 보내는 것을 효과적으로 차단하였습니다. [b]gmail.com[/b]과 같은 다른 이메일 서비스를 사용하십시오.
+
 UI/CoreStrings@EmptyList:
 이 목록은 비어 있습니다.
 
@@ -408,6 +411,10 @@ EU
 
 UI/CoreStrings@EnergyUnitPerSecondAbbreviation:
 EU/s
+
+UI/CoreStrings@EpicAccountRegisterOrLinkForm_Title:
+`AtomicTorch.com 계정 등록
+[br](Epic Games 계정용).`
 
 UI/CoreStrings@EventDamage_FailureMessage_Format:
 이번 이벤트에서 보상을 받으려면 최소한 {0}%의 총 대미지를 입혀야 합니다. 다음 번에는 좀 더 힘내 보세요!
@@ -996,6 +1003,9 @@ LP
 UI/CoreStrings@LearningPointsCost_Format:
 소모: [b]{0}[/b] LP
 
+UI/CoreStrings@LinkEpicAccountForm_Title:
+Epic Games 계정과 연결하려면 [url=atomictorch.com]AtomicTorch.com[/url] 계정의 세부 정보를 입력하십시오.
+
 UI/CoreStrings@LinkSteamAccountForm_Title:
 Steam 계정과 연결하려면 [url=atomictorch.com]AtomicTorch.com[/url] 계정의 세부 정보를 입력하십시오.
 
@@ -1153,6 +1163,12 @@ UI/CoreStrings@MenuLocalGame_TabLocalWorlds:
 
 UI/CoreStrings@MenuLocalGame_TabNewWorld:
 새로운 월드
+
+UI/CoreStrings@MenuLogin_EpicError_Message:
+Epic Games Launcher를 다시 시작한 뒤, 게임을 실행하여 주십시오.
+
+UI/CoreStrings@MenuLogin_EpicError_Title:
+Epic Games Launcher 오류
 
 UI/CoreStrings@MenuLogin_SteamError_Message:
 게임을 종료하고 Steam 클라이언트를 다시 시작한 후 게임을 다시 시작하십시오.
@@ -1967,8 +1983,8 @@ UI/CoreStrings@StatusEffect_TitleIntensity:
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Newsletters:
 [*] AtomicTorch 스튜디오의 메일링 목록에 접근하여 향후 추가될 기능과 새 버전 출시 및 그 밖의 소식에 대한 알림을 받으세요.
 
-UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayWithoutSteam:
-[*] 비Steam판의 CryoFall을 다운로드하여 실행해도 동일한 캐릭터와 서버로 게임을 즐기실 수 있습니다.
+UI/CoreStrings@SteamAccountLinkingBenefitsDescription_PlayStandalone:
+[*] (AtomicTorch.com 또는 AtomicTorch GameLauncher에서) 독립형 CryoFall을 다운로드하여 실행해도 기존의 캐릭터와 서버를 이용할 수 있습니다.
 
 UI/CoreStrings@SteamAccountLinkingBenefitsDescription_Polls:
 [*] AtomicTorch 사용자라면 투표할 수 있는 비공개 설문조사에 참여하세요.
@@ -2681,11 +2697,11 @@ UI/CoreStrings@WindowSteamAccountLinking_Button_CreateNewAtomicTorchAccount:
 UI/CoreStrings@WindowSteamAccountLinking_Button_LinkToMyExistingAtomicTorch:
 기존의 AtomicTorch 계정에 연결하기
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountExist:
-굳이 하지 않아도 됩니다. 원한다면, 기존의 Steam 계정을 이용하여 게임을 계속 즐겨도 됩니다. 하지만 AtomicTorch.com으로 연결하면 몇 가지 혜택이 있습니다.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Epic:
+굳이 하지 않아도 됩니다. 원한다면, 기존의 Epic Games 계정을 이용하여 게임을 계속 즐겨도 됩니다. 하지만 AtomicTorch.com으로 연결하면 몇 가지 혜택이 있습니다.
 
-UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_WhenSteamAccountNotExist:
-기존의 Steam 계정을 이용하여 게임을 계속 즐겨도 됩니다. 하지만 AtomicTorch.com으로 연결하면 몇 가지 혜택이 있습니다.
+UI/CoreStrings@WindowSteamAccountLinking_TitleBenefitsExplanation_Steam:
+굳이 하지 않아도 됩니다. 원한다면, 기존의 Steam 계정을 이용하여 게임을 계속 즐겨도 됩니다. 하지만 AtomicTorch.com으로 연결하면 몇 가지 혜택이 있습니다.
 
 UI/CoreStrings@WindowSteamAccountLinking_YouCanLinkYourSteam:
 Steam 계정을 AtomicTorch.com 계정과 연결하거나 새 계정을 만들 수 있습니다.
@@ -3468,7 +3484,4 @@ UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorEnterPassword:
 
 UI/Controls/Menu/Steam/Data/SteamAccountRegistrationHelper@ErrorMustAcceptTermsOfService:
 계속하려면 서비스 약관에 동의하셔야 합니다.
-
-UI/Controls/Menu/Steam/Data/ViewModelSteamAccountRegisterOrLinkFormControl@EmailPleaseUseAnotherEmailService:
-마이크로소프트가 소유한 서버의 이메일 계정을 사용하여 등록을 시도하고 계신 것 같아 보입니다. 안타깝게도, 마이크로소포트는 대형 공급자가 아닌 이메일을 완전히 [b]차단[/b]하여 저희가 당신의 계정으로 이메일 보내는 것을 효과적으로 차단하였습니다. [b]gmail.com[/b]과 같은 다른 이메일 서비스를 사용하십시오.
 

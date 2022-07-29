@@ -67,7 +67,7 @@
                                   GameButton.CaptureScreenshot,
                                   () =>
                                   {
-                                      if (Client.SteamApi.IsSteamClient
+                                      if (Client.ExternalApi.IsSteamClient
                                           && Client.Input.IsKeyDown(InputKey.F12, evenIfHandled: true))
                                       {
                                           // The default screenshot key (F12) was pressed while playing from Steam Client.

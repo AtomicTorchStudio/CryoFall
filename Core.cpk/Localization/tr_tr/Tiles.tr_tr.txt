@@ -7,6 +7,9 @@ Arktik
 Scripts/Tiles/TileBarren@Name:
 Çorak
 
+Scripts/Tiles/TileBeachArctic@Name:
+Beach (Arctic)
+
 Scripts/Tiles/TileBeachBoreal@Name:
 Sahil (Boreal)
 
@@ -27,6 +30,9 @@ Orman (Tropikal)
 
 Scripts/Tiles/TileLakeShore@Name:
 Göl kıyısı
+
+Scripts/Tiles/TileLakeShoreArctic@Name:
+Lake shore (Arctic)
 
 Scripts/Tiles/TileLava@Name:
 Lav

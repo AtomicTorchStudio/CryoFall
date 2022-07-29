@@ -296,7 +296,19 @@
 
         public static readonly Validator ValidatorNoStaticObjects
             = new(ErrorCode.NoFreeSpace,
-                  c => !c.Tile.StaticObjects.Any());
+                  c =>
+                  {
+                      var kind = c.ProtoStaticObjectToBuild.Kind;
+                      if (kind == StaticObjectKind.Floor
+                          || kind == StaticObjectKind.FloorDecal)
+                      {
+                          // allow building farm plot over charred ground
+                          return c.Tile.StaticObjects.All(
+                              o => o.ProtoStaticWorldObject.Kind == StaticObjectKind.FloorDecal);
+                      }
+
+                      return !c.Tile.StaticObjects.Any();
+                  });
 
         public static readonly Validator ValidatorNoStaticObjectsExceptFloor
             = new(ErrorCode.NoFreeSpace,
